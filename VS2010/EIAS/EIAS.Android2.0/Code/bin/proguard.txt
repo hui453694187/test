@@ -1,0 +1,175 @@
+# view res/layout/popup_preview_pic.xml #generated:52
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:12
+-keep class android.test.InstrumentationTestRunner { <init>(...); }
+
+# view AndroidManifest.xml #generated:193
+-keep class com.baidu.location.f { <init>(...); }
+
+# view res/layout/baidu_map.xml #generated:40
+-keep class com.baidu.mapapi.map.MapView { <init>(...); }
+
+# view res/layout/log_listview_item.xml #generated:9
+-keep class com.iiseeuu.asyncimage.widget.AsyncImageView { <init>(...); }
+
+# view AndroidManifest.xml #generated:24
+-keep class com.yunfang.eias.base.EIASApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:184
+-keep class com.yunfang.eias.base.MainService { <init>(...); }
+
+# view AndroidManifest.xml #generated:151
+-keep class com.yunfang.eias.ui.AboutActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:157
+-keep class com.yunfang.eias.ui.BaiduMapActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:163
+-keep class com.yunfang.eias.ui.CameraActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:169
+-keep class com.yunfang.eias.ui.CameraPreviewActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:73
+-keep class com.yunfang.eias.ui.CreateTaskActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:109
+-keep class com.yunfang.eias.ui.DataLogActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:31
+-keep class com.yunfang.eias.ui.HomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:127
+-keep class com.yunfang.eias.ui.IntroductionActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:48
+-keep class com.yunfang.eias.ui.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:37
+-keep class com.yunfang.eias.ui.LogoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:145
+-keep class com.yunfang.eias.ui.MainSettingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class com.yunfang.eias.ui.MediaNavigationActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:175
+-keep class com.yunfang.eias.ui.MultiSelectAlbumActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:139
+-keep class com.yunfang.eias.ui.OpenDialogResource { <init>(...); }
+
+# view AndroidManifest.xml #generated:61
+-keep class com.yunfang.eias.ui.ShowPhotoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:67
+-keep class com.yunfang.eias.ui.ShowVideoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:121
+-keep class com.yunfang.eias.ui.SystemSettingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:133
+-keep class com.yunfang.eias.ui.TaskImportGuide { <init>(...); }
+
+# view AndroidManifest.xml #generated:79
+-keep class com.yunfang.eias.ui.TaskInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:91
+-keep class com.yunfang.eias.ui.TaskInfoInquiryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:85
+-keep class com.yunfang.eias.ui.TaskListFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:97
+-keep class com.yunfang.eias.ui.TaskMatchActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:103
+-keep class com.yunfang.eias.ui.TaskMatchFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:115
+-keep class com.yunfang.eias.ui.UserInfoActivity { <init>(...); }
+
+# view res/layout/activity_baidumap.xml #generated:16
+-keep class com.yunfang.framework.view.BaibuMapView { <init>(...); }
+
+# view hdpi-v4\res/layout-hdpi-v4/login_activity.xml #generated:33
+# view mdpi-v4\res/layout-mdpi-v4/login_activity.xml #generated:30
+# view res/layout/introduction.xml #generated:28
+# view res/layout/log_title_layout.xml #generated:16
+-keep class com.yunfang.framework.view.ComboBox { <init>(...); }
+
+# view res/layout/dialog_multiplechoice.xml #generated:9
+-keep class com.yunfang.framework.view.CustomMultipleChoiceView { <init>(...); }
+
+# view hdpi-v4\res/layout-hdpi-v4/home_fragment.xml #generated:50
+# view hdpi-v4\res/layout-hdpi-v4/user_info.xml #generated:15
+# view mdpi-v4\res/layout-mdpi-v4/home_fragment.xml #generated:50
+# view mdpi-v4\res/layout-mdpi-v4/user_info.xml #generated:15
+# view res/layout/user_info.xml #generated:15
+-keep class com.yunfang.framework.view.RoundImage { <init>(...); }
+
+# view res/layout/layout_slidemenu.xml #generated:2
+-keep class com.yunfang.framework.view.SlideMenu { <init>(...); }
+
+# view land\res/layout-land/album.xml #generated:17
+# view port\res/layout-port/album.xml #generated:30
+# view res/layout/album.xml #generated:30
+-keep class com.yunfang.framework.view.album.AlbumGridView { <init>(...); }
+
+# view hdpi-v4\res/layout-hdpi-v4/task_info_add_photo_item.xml #generated:14
+# view mdpi-v4\res/layout-mdpi-v4/task_info_add_photo_item.xml #generated:14
+# view port\res/layout-port/camera_bottom_bar.xml #generated:28
+# view port\res/layout-port/cameracontainer.xml #generated:7
+# view port\res/layout-port/item_album_grid.xml #generated:7
+# view res/layout/camera_preview.xml #generated:32
+# view res/layout/task_info_add_photo_item.xml #generated:14
+-keep class com.yunfang.framework.view.album.FilterImageView { <init>(...); }
+
+# view port\res/layout-port/item_album_pager.xml #generated:6
+-keep class com.yunfang.framework.view.album.MatrixImageView { <init>(...); }
+
+# view port\res/layout-port/camera.xml #generated:10
+# view res/layout/camera.xml #generated:10
+-keep class com.yunfang.framework.view.camera.CameraContainer { <init>(...); }
+
+# view port\res/layout-port/cameracontainer.xml #generated:15
+-keep class com.yunfang.framework.view.camera.CameraView { <init>(...); }
+
+# view port\res/layout-port/cameracontainer.xml #generated:25
+-keep class com.yunfang.framework.view.camera.FocusImageView { <init>(...); }
+
+# view port\res/layout-port/cameracontainer.xml #generated:20
+-keep class com.yunfang.framework.view.camera.TempImageView { <init>(...); }
+
+# view port\res/layout-port/albumitem.xml #generated:13
+-keep class com.yunfang.framework.view.video.AlbumViewPager { <init>(...); }
+
+# view port\res/layout-port/albumitem.xml #generated:34
+-keep class com.yunfang.framework.view.video.VideoPlayerContainer { <init>(...); }
+
+# view port\res/layout-port/video_bottom_bar.xml #generated:7
+-keep class com.yunfang.framework.view.video.VideoPlayerView { <init>(...); }
+
+# onClick res/layout/picasso_grid.xml #generated:12
+-keepclassmembers class * { *** back(...); }
+
+# onClick res/layout/activity_multi_select_album.xml #generated:34
+# onClick res/layout/popup_preview_pic.xml #generated:35
+-keepclassmembers class * { *** confirm(...); }
+
+# onClick res/layout/picasso_grid.xml #generated:32
+-keepclassmembers class * { *** ok(...); }
+
+# onClick res/layout/activity_multi_select_album.xml #generated:13
+# onClick res/layout/popup_preview_pic.xml #generated:13
+-keepclassmembers class * { *** onBack(...); }
+
+# onClick res/layout/activity_multi_select_album.xml #generated:95
+-keepclassmembers class * { *** previewSelect(...); }
+
+# onClick res/layout/activity_multi_select_album.xml #generated:82
+# onClick res/layout/picasso_grid.xml #generated:70
+-keepclassmembers class * { *** select(...); }
+

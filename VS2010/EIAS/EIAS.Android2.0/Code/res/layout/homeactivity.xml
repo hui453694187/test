@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <include
+        android:id="@+id/home_title"
+        layout="@layout/app_title_layout" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/maintab_toolbar_bg"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/main_tab_bottom"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:drawableTop="@drawable/icon_1_n"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/rb_survey"
+            style="@style/main_tab_bottom"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_2_n"
+            android:text="待勘察" />
+
+        <RadioButton
+            android:id="@+id/rb_submit"
+            style="@style/main_tab_bottom"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_3_n"
+            android:text="待提交" />
+
+        <RadioButton
+            android:id="@+id/rb_finish"
+            style="@style/main_tab_bottom"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_4_n"
+            android:text="已完成" />
+
+        <RadioButton
+            android:id="@+id/rb_submiting"
+            style="@style/main_tab_bottom"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_5_n"
+            android:text="提交中" />
+    </RadioGroup>
+
+</LinearLayout>
