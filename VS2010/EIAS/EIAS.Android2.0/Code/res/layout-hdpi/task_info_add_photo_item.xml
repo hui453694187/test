@@ -54,7 +54,7 @@
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
             android:completionThreshold="1"
-            android:dropDownHeight="100dp"
+            android:dropDownHeight="300dp"
             android:hint="请选择类型"
             android:singleLine="true"
             android:textSize="12sp"

@@ -413,7 +413,7 @@ com.squareup.picasso.Utils$BitmapHoneycombMR1:
 com.squareup.picasso.Utils$OkHttpLoaderCreator:
     419:419:private Utils$OkHttpLoaderCreator()
 com.yunfang.eias.base.EIASApplication:
-    440:443:protected void StopService()
+    449:452:protected void StopService()
 com.yunfang.eias.http.task.AdditionalResourceTask
 com.yunfang.eias.impl.ContactItemInterface
 com.yunfang.eias.logic.AppHeader2
@@ -421,19 +421,20 @@ com.yunfang.eias.logic.CompressImageOperator
 com.yunfang.eias.model.MapPointObj:
     private static final long serialVersionUID
 com.yunfang.eias.tables.TaskDataWorker:
-    481:487:private static java.lang.Boolean hasTaskDataItem(com.yunfang.eias.model.TaskDataItem,java.lang.Boolean)
+    524:530:private static java.lang.Boolean hasTaskDataItem(com.yunfang.eias.model.TaskDataItem,java.lang.Boolean)
 com.yunfang.eias.ui.Adapter.DataLogListAdapter$ViewHolder:
     android.widget.TextView log_item_concent2
 com.yunfang.eias.ui.CameraActivity:
     374:379:private void savePhoto(java.lang.String)
 com.yunfang.eias.ui.HomeFragment:
     private android.widget.ScrollView mScrollView
+    570:576:private void invisibleTaskInfoByOffline()
 com.yunfang.eias.ui.MainSettingActivity:
     private static final int TASK_CHECK_VERSION
 com.yunfang.eias.ui.ShowMediaListFragment:
-    565:565:private android.content.DialogInterface$OnClickListener dialogListener()
-    602:604:private void getFileOfMediaLib()
-    176:176:static synthetic int access$10(com.yunfang.eias.ui.ShowMediaListFragment)
+    562:562:private android.content.DialogInterface$OnClickListener dialogListener()
+    600:602:private void getFileOfMediaLib()
+    173:173:static synthetic int access$10(com.yunfang.eias.ui.ShowMediaListFragment)
 com.yunfang.eias.ui.ShowMediaListFragment$12
 com.yunfang.eias.ui.ShowPhotoFragment:
     346:395:private java.lang.Boolean compressImage(java.io.File)

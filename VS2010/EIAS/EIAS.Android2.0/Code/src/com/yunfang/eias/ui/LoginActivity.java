@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.EIASApplication;
+import com.yunfang.eias.logic.DatadefinesOperator;
 import com.yunfang.eias.logic.LoginInfoOperator;
 import com.yunfang.framework.base.BaseWorkerActivity;
 import com.yunfang.framework.model.ResultInfo;
@@ -54,6 +56,10 @@ public class LoginActivity extends BaseWorkerActivity {
 	 * 离线登录
 	 */
 	private final int TASK_OFFLINE_LOGIN = 2;
+	/***
+	 * 获取最新勘察配置信息
+	 */
+	private final int TASK_ONLINE_GET_NEWEST_DATADEFINES = 3;
 
 	// }}
 
@@ -149,6 +155,13 @@ public class LoginActivity extends BaseWorkerActivity {
 		mBackgroundHandler.sendMessage(loginMsg);
 	}
 
+	private void getNewesDatadefines() {
+		loadingWorker.showLoading("检查勘察配置信息中...");
+		Message getDatadefinde = new Message();
+		getDatadefinde.what = TASK_ONLINE_GET_NEWEST_DATADEFINES;
+		mBackgroundHandler.sendMessage(getDatadefinde);
+	}
+
 	// {{ 进程调用重载类
 	/**
 	 * 
@@ -166,6 +179,9 @@ public class LoginActivity extends BaseWorkerActivity {
 		case TASK_OFFLINE_LOGIN:// 离线登录
 			result = LoginInfoOperator.loginByOffline(txtUserAccount.getText().toString().trim(), txtUserPwd.getText().toString().trim(), comboboxServer.getText().trim(), cbIsAuto.isChecked(),
 					cbRemeberPwd.isChecked());
+			break;
+		case TASK_ONLINE_GET_NEWEST_DATADEFINES:// 获取最新勘察配置表
+			DatadefinesOperator.getNewestDatadefine(LoginInfoOperator.getCurrentUser());
 			break;
 		default:
 			result = new ResultInfo<UserInfo>(false);
@@ -188,6 +204,11 @@ public class LoginActivity extends BaseWorkerActivity {
 		case TASK_OFFLINE_LOGIN:// 离线登录
 			afterLogined((ResultInfo<UserInfo>) msg.obj, TASK_OFFLINE_LOGIN);
 			break;
+		case TASK_ONLINE_GET_NEWEST_DATADEFINES:// 删除不存在勘察表数据完成了 执行跳转
+			Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+			startActivity(intent);
+			LoginActivity.this.finish();
+			break;
 		default:
 			showToast("没有找到任务执行的操作函数");
 			break;
@@ -207,22 +228,21 @@ public class LoginActivity extends BaseWorkerActivity {
 	private void afterLogined(ResultInfo<UserInfo> result, int loginStatus) {
 		if (result.Success) {
 			if (result.Data != null && result.Data.Token != null && result.Data.Token.length() > 0 && !result.Data.Token.equals("null")) {
-				Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-				startActivity(intent);
-				LoginActivity.this.finish();
+				// TODO 登录成功， 更新勘查配置表
+				getNewesDatadefines();
 			} else {
 				showToast(result.Message);
 			}
 		} else {
+			Log.d("lee", "msg:" + result.Message);
 			if (result.Message.contains("Value Connection")) {
-				showToast("登录失败，失败原因：无法连接服务器");
+				showToast("登录失败,无法连接服务器");
 			} else if (result.Message.contains("Value Connect")) {
-				showToast("登录失败，失败原因:连接服务器超时");
+				showToast("登录失败,连接服务器超时");
 			} else if (result.Message.contains("lang")) {
-				showToast("登录失败，失败原因:请重新选择服务器地址");
-			}
-			else {
-				showToast("登录失败，失败原因:" + result.Message);
+				showToast("登录失败，服务器地址有误，请重新选择服务器");
+			} else {
+				showToast("登录失败，" + result.Message);
 			}
 		}
 	}

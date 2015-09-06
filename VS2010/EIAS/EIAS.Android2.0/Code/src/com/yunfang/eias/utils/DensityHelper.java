@@ -3,15 +3,11 @@ package com.yunfang.eias.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 
 public class DensityHelper {
-
-    private  int W=-1;
-    private  int H=-1;
 
     private static DensityHelper densityUtil;
     private Activity context;
@@ -39,21 +35,6 @@ public class DensityHelper {
     		this.context=null;
     	}
         this.context=context;
-    }
-
-    public int getW(){
-        if(W==-1){
-            this.screenInfo();
-        }
-        return W;
-    }
-
-    public int getH(){
-        if(H==-1){
-            this.screenInfo();
-        }
-
-        return H;
     }
 
     /**
@@ -91,18 +72,6 @@ public class DensityHelper {
     public int px2sp(float pxVal){
         return (int)(pxVal/context.getResources().getDisplayMetrics().scaledDensity);
     }
-
-    /***
-     * 获取当前说及屏幕宽高
-     */
-    public void screenInfo(){
-        Display mDisplay = context.getWindowManager().getDefaultDisplay();
-        W = mDisplay.getWidth();
-        H = mDisplay.getHeight();
-        //System.out.println("("+W+"*"+H+")"+":" + this.px2dip( W)+"*"+this.px2dip(H));
-        //Log.d("ljh","("+W+"*"+H+")"+":" + this.px2dip( W)+"*"+this.px2dip(H));
-    }
-
 
     /***
      *  创建Pop对话框

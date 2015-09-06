@@ -12,6 +12,7 @@ import com.yunfang.eias.dto.TaskDataItemDTO;
 import com.yunfang.eias.dto.TaskInfoDTO;
 import com.yunfang.eias.enumObj.TaskStatus;
 import com.yunfang.eias.enumObj.TaskUploadStatusEnum;
+import com.yunfang.eias.enumObj.UrgentStatusEnum;
 import com.yunfang.eias.logic.DataLogOperator;
 import com.yunfang.eias.model.DataCategoryDefine;
 import com.yunfang.eias.model.DataDefine;
@@ -19,6 +20,7 @@ import com.yunfang.eias.model.DataFieldDefine;
 import com.yunfang.eias.model.TaskCategoryInfo;
 import com.yunfang.eias.model.TaskDataItem;
 import com.yunfang.eias.model.TaskInfo;
+import com.yunfang.eias.model.UserTaskInfo;
 import com.yunfang.framework.db.SQLiteHelper;
 import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.model.UserInfo;
@@ -61,6 +63,47 @@ public class TaskDataWorker {
 		} catch (Exception e) {
 			result.Data = 0;
 			result.Message = e.getMessage();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 查询本地数据 taskInfo
+	 *  离线勘察时，获取本地已领取任务信息
+	 *  Normal("一般",0),  Urgent("紧急",1)
+	 *  isNew =0  是否为新建，标记是否为用户自建任务，0为非自建，1为自建(枚举类型)
+	 *  Status =1 项目状态TaskStatus:待领取=0，待提交=1，已完成=2（自建任务时，状态默认为待提交，状态值为1）(枚举类型)
+	 * @author kevin 
+	 * @param currentUser 用户信息
+	 * @return ResultInfo<UserTaskInfo> 
+	 */
+	public static ResultInfo<UserTaskInfo> queryUserInfo(UserInfo currentUser) {
+		ResultInfo<UserTaskInfo> result = new ResultInfo<UserTaskInfo>();
+		UserTaskInfo userTaskInfo = new UserTaskInfo();
+		SQLiteDatabase db = null;
+		StringBuilder queryStr = new StringBuilder("select * from TaskInfo where User=?");
+		queryStr.append(" and IsNew=? and Status=?");
+		try {
+			db = SQLiteHelper.getWritableDB();
+			Cursor cursor = db.rawQuery(queryStr.toString(),new String[]{currentUser.Name,"0","1"});
+			if (cursor != null) {
+				while (cursor.moveToNext()) {
+					// TODO 统计数据
+					int urgentStatus = cursor.getInt(cursor.getColumnIndex("UrgentStatus"));
+					if (urgentStatus == UrgentStatusEnum.Normal.getIndex()) {// 正常任务
+						userTaskInfo.ReceivedNormal++;
+					} else if (urgentStatus == UrgentStatusEnum.Urgent.getIndex()) {// 异常任务
+						userTaskInfo.ReceivedUrgent++;
+					}
+					userTaskInfo.ReceivedTotals++;// 已领取总数
+				}
+				result.Data=userTaskInfo;
+			}
+		} catch (Exception e) {
+			result.Success = false;
+			result.Message = e.getMessage();
+			result.Data = null;
 		}
 
 		return result;

@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.yunfang.eias.dto.TaskInfoDTO;
 import com.yunfang.eias.enumObj.TaskStatus;
@@ -60,7 +61,7 @@ public class GetTaskListTask implements IRequestTask {
 						if (tempDTO!=null &&tempDTO.size()>0&&tempDTO.get(0)!=null)
 						{
 							for (TaskInfoDTO item : tempDTO)
-							{
+							{	
 								if(!item.equals(null)){
 									result.Data.add(item.getTaskInfo());
 								}

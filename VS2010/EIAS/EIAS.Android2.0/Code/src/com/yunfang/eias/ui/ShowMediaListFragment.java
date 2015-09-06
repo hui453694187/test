@@ -13,11 +13,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -598,6 +595,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	/**
 	 * 从媒体文件取
 	 */
+	@SuppressWarnings("unused")
 	private void getFileOfMediaLib() {
 		Intent intent = CameraUtils.startGetPicPhotoAlbum();
 		startActivityForResult(intent, taskInfoActivity.TASK_PHOTOLIB);

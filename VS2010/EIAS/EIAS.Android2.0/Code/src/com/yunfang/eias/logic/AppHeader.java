@@ -338,7 +338,8 @@ public class AppHeader {
 	 *            :不需要更新的提示信息
 	 */
 	public void downloadTipsDialog(String msg) {
-		if (!EIASApplication.IsOffline && EIASApplication.IsNetworking) {
+		//!EIASApplication.IsOffline &&   无论是否离线， 只要有网络，就提示更新信息
+		if (EIASApplication.IsNetworking) {
 			try {
 				// 如果版本不一致就下载最新的
 				if (!EIASApplication.versionInfo.LocalVersionName.equals(EIASApplication.versionInfo.ServerVersionName)) {

@@ -1,6 +1,8 @@
 package com.yunfang.eias.tables;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -244,6 +246,8 @@ public class DataDefineWorker {
 		return resultInfo;
 	}
 
+	
+	
 	/**
 	 * 根据指定id查询勘察配置基本信息表的数据
 	 * 
@@ -283,6 +287,38 @@ public class DataDefineWorker {
 		return resultInfo;
 	}
 
+	/***
+	 * 删除指定DDID 的勘察表， 和 相关联的子表
+	 * @return
+	 */
+	public static boolean deletDataDefneByDDID(List<String> ddidList){
+		
+		SQLiteDatabase db=null;
+		try{
+			db = SQLiteHelper.getReadableDB();
+			db.beginTransaction();
+			for(String ddid:ddidList){
+				db.delete(new DataDefine().getTableName(),
+						"DDID=?", 
+						new String[] { ddid});
+				db.delete(new DataFieldDefine().getTableName(),
+						"DDID=?",
+						new String[]{ddid});
+				db.delete(new DataCategoryDefine().getTableName(),
+						"DDID=?",
+						new String[]{ddid});
+			}
+			
+			// 设置事务操作成功的标志
+			db.setTransactionSuccessful();
+			db.endTransaction();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+	
 	/**
 	 * 根据CompanyID查询勘察配置基本信息表的数据
 	 * 

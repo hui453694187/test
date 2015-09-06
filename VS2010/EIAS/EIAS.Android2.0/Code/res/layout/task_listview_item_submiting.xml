@@ -299,7 +299,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/urgentFee_string"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/gray" />
 
                 <TextView
                     android:id="@+id/urgent_fee"
@@ -321,7 +321,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/liveSearchCharge_string"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/gray" />
 
                 <TextView
                     android:id="@+id/liveSearchCharge"

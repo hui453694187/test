@@ -232,7 +232,7 @@ public class TaskListMenuOperaotr {
 					tempItems.add(TaskMenuEnum.预约信息.toString());
 					tempItems.add(TaskMenuEnum.编辑内容.toString());
 					tempItems.add(TaskMenuEnum.图片补发.toString());
-					//tempItems.add(TaskMenuEnum.收费信息.toString());
+					// tempItems.add(TaskMenuEnum.收费信息.toString());
 					if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
 						tempItems.add(TaskMenuEnum.重新提交本地任务.toString());
 					}
@@ -295,7 +295,9 @@ public class TaskListMenuOperaotr {
 			}
 			break;
 		case 复制:
-			showCopyCategoriesDialog();
+			if (!hasNewDataDefines(ddid)) {
+				showCopyCategoriesDialog();
+			}
 			break;
 		case 收费信息:
 			showSetFeeDialog();
@@ -321,7 +323,9 @@ public class TaskListMenuOperaotr {
 			pastedCategories(true);
 			break;
 		case 编辑内容:
-			taskListFragment.doSomething("加载中", taskListFragment.TASK_EDIT_TASKINFO);
+			if (!hasNewDataDefines(ddid)) {
+				taskListFragment.doSomething("加载中", taskListFragment.TASK_EDIT_TASKINFO);
+			}
 			break;
 		case 领取任务:
 			taskListFragment.doSomething("加载中", taskListFragment.TASK_RECEIVETASK);
@@ -356,7 +360,9 @@ public class TaskListMenuOperaotr {
 			}
 			break;
 		case 任务匹配:
-			taskListFragment.viewModel.homeActivity.openMatchAty(taskNum, ddid);
+			if (!hasNewDataDefines(ddid)) {
+				taskListFragment.viewModel.homeActivity.openMatchAty(taskNum, ddid);
+			}
 			break;
 		case 取消提交任务:
 			MainService.removeUploadTasks(taskListFragment.viewModel.currentSelectedTask.TaskNum);
@@ -925,41 +931,40 @@ public class TaskListMenuOperaotr {
 	 *            任务信息
 	 */
 	private void commitTasks(final List<TaskInfo> submitTaskInfos) {
-		String feeMsg = "";
-		String taskReportMsg = "";
-		for (TaskInfo taskItem : submitTaskInfos) {
-			if (taskItem.Fee == null || taskItem.Fee.equals("") || taskItem.Fee.equals("null")) {
-				feeMsg += taskItem.TargetAddress + ",";
-			}
-			if (taskItem.InworkReportFinish) {
-				taskReportMsg += "[" + taskItem.TaskNum + "]";
-			}
-		}
-		if (!taskReportMsg.equals("")) {
-			taskListFragment.viewModel.homeActivity.appHeader.showDialog("提示信息", "编号为" + taskReportMsg + "的任务已经完成报告，不能继续提交");
-		} else {
-			// 判断收费是否存在
-			if (!feeMsg.equals("")) {
-				// 移除最后一个逗号
-				feeMsg = feeMsg.substring(0, feeMsg.length() - 1);
-				if (homeActivity != null) {
-					currentContext = homeActivity;
-				} else if (taskInfoActivity != null) {
-					currentContext = taskInfoActivity;
+		try {
+			String feeMsg = "";
+			String taskReportMsg = "";
+			for (TaskInfo taskItem : submitTaskInfos) {
+				if (taskItem.Fee == null || taskItem.Fee.equals("") || taskItem.Fee.equals("null")) {
+					feeMsg += taskItem.TargetAddress + ",";
 				}
-				DialogUtil.showConfirmationDialog(currentContext, feeMsg + " 的收费信息尚未填写,是否确定提交任务?", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						for (TaskInfo taskInfo : submitTaskInfos) {
-							checkTaskFile(taskInfo.DDID, taskInfo.TaskNum);
-						}
-					}
-				});
+				if (taskItem.InworkReportFinish) {
+					taskReportMsg += "[" + taskItem.TaskNum + "]";
+				}
+			}
+			if (!taskReportMsg.equals("")) {
+				taskListFragment.viewModel.homeActivity.appHeader.showDialog("提示信息", "编号为" + taskReportMsg + "的任务已经完成报告，不能继续提交");
 			} else {
-				for (TaskInfo taskInfo : submitTaskInfos) {
-					checkTaskFile(taskInfo.DDID, taskInfo.TaskNum);
+				// 判断收费是否存在
+				if (!feeMsg.equals("")) {
+					// 移除最后一个逗号
+					feeMsg = feeMsg.substring(0, feeMsg.length() - 1);
+					DialogUtil.showConfirmationDialog(currentContext, feeMsg + " 的收费信息尚未填写,是否确定提交任务?", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							for (TaskInfo taskInfo : submitTaskInfos) {
+								checkTaskFile(taskInfo.DDID, taskInfo.TaskNum);
+							}
+						}
+					});
+				} else {
+					for (TaskInfo taskInfo : submitTaskInfos) {
+						checkTaskFile(taskInfo.DDID, taskInfo.TaskNum);
+					}
 				}
 			}
+		} catch (Exception e) {
+			DataLogOperator.other("多任务提交失败(commitTasks):" + e.getMessage());
 		}
 	}
 
@@ -973,7 +978,6 @@ public class TaskListMenuOperaotr {
 	public void putTaskInfo(final Integer ddid, final String taskNum, String fee) {
 		// 判断收费是否存在
 		if (fee == null || fee.equals("") || fee.equals("null")) {
-			currentContext = homeActivity != null ? homeActivity : taskInfoActivity;
 			DialogUtil.showConfirmationDialog(currentContext, "收费信息尚未填写，是否确定提交任务?", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -988,55 +992,56 @@ public class TaskListMenuOperaotr {
 	/**
 	 * 上传任务方法
 	 * 
-	 * @param finalIsRepeat
-	 *            是否重复
 	 * @param ddid
 	 *            勘察表ID
-	 * @param unWriteItems
-	 *            不写入项
-	 * @param taskInfo
-	 *            任务信息
+	 * @param taskNum
+	 *            任务编号
 	 */
 	private void checkTaskFile(Integer ddid, String taskNum) {
-		TaskInfo taskInfo = TaskOperator.getLocTaskInfoCompleteByTaskNum(taskNum);
-		String taskRoot = EIASApplication.projectRoot + taskInfo.TaskNum;
-		// 检测任务信息是否正确
-		ArrayList<DialogTipsDTO> taskFormat = TaskOperator.taskCheckFormat(taskInfo, taskRoot);
-		// 若任务信息不正确则直接提示并返回
-		if (taskFormat != null && taskFormat.size() > 0) {
-			if (homeActivity != null) {
-				homeActivity.appHeader.showDialogResult("请修正以下信息：", taskFormat, false, null);
-			} else if (taskInfoActivity != null) {
-				taskInfoActivity.appHeader.showDialogResult("请修正以下信息：", taskFormat, false, null);
-			}
-		} else {
-			ArrayList<TaskCategoryInfo> unWriteItems = TaskOperator.checkHasValue(ddid, taskInfo);
-			if (unWriteItems.size() > 0) {
-				LayoutInflater inflater = LayoutInflater.from(currentContext);
-				View dialog_view_task_submit = inflater.inflate(R.layout.dialog_view_task_submit, null);
-				detailDialog = DialogUtil.getDetailDialog(currentContext, dialog_view_task_submit);
-				TextView dialog_taskNumInfo = (TextView) dialog_view_task_submit.findViewById(R.id.dialog_taskNumInfo);
-				Button btn_confirm = (Button) dialog_view_task_submit.findViewById(R.id.btn_confirm);
-				ListView bdialog_tipsinfo = (ListView) dialog_view_task_submit.findViewById(R.id.bdialog_tipsinfo);
-
-				taskunwriteadapter = new TaskUnWriteAdapter(currentContext, unWriteItems);
-				bdialog_tipsinfo.setAdapter(taskunwriteadapter);
-				dialog_taskNumInfo.setText("任务编号[" + taskInfo.TaskNum + "]小区名:" + taskInfo.ResidentialArea + "地址:" + taskInfo.TargetAddress);
-				btn_confirm.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						detailDialog.dismiss();
-					}
-				});
-				if (detailDialog.isShowing()) {
-					detailDialog.dismiss();
-				} else {
-					detailDialog.show();
+		try {
+			TaskInfo taskInfo = TaskOperator.getLocTaskInfoCompleteByTaskNum(taskNum);
+			String taskRoot = EIASApplication.projectRoot + taskInfo.TaskNum;
+			// 检测任务信息是否正确
+			ArrayList<DialogTipsDTO> taskFormat = TaskOperator.taskCheckFormat(taskInfo, taskRoot);
+			// 若任务信息不正确则直接提示并返回
+			if (taskFormat != null && taskFormat.size() > 0) {
+				if (homeActivity != null) {
+					homeActivity.appHeader.showDialogResult("请修正以下信息：", taskFormat, false, null);
+				} else if (taskInfoActivity != null) {
+					taskInfoActivity.appHeader.showDialogResult("请修正以下信息：", taskFormat, false, null);
 				}
 			} else {
-				taskListFragment.refreshList(taskInfo.TaskNum);
-				TaskOperator.taskSubmiting(taskInfo);
+				ArrayList<TaskCategoryInfo> unWriteItems = TaskOperator.checkHasValue(ddid, taskInfo);
+				if (unWriteItems.size() > 0) {
+					LayoutInflater inflater = LayoutInflater.from(currentContext);
+					View dialog_view_task_submit = inflater.inflate(R.layout.dialog_view_task_submit, null);
+					detailDialog = DialogUtil.getDetailDialog(currentContext, dialog_view_task_submit);
+
+					TextView dialog_taskNumInfo = (TextView) dialog_view_task_submit.findViewById(R.id.dialog_taskNumInfo);
+					Button btn_confirm = (Button) dialog_view_task_submit.findViewById(R.id.btn_confirm);
+					ListView bdialog_tipsinfo = (ListView) dialog_view_task_submit.findViewById(R.id.bdialog_tipsinfo);
+
+					taskunwriteadapter = new TaskUnWriteAdapter(currentContext, unWriteItems);
+					bdialog_tipsinfo.setAdapter(taskunwriteadapter);
+					dialog_taskNumInfo.setText("任务编号[" + taskInfo.TaskNum + "]小区名:" + taskInfo.ResidentialArea + "地址:" + taskInfo.TargetAddress);
+					btn_confirm.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							detailDialog.dismiss();
+						}
+					});
+					if (detailDialog.isShowing()) {
+						detailDialog.dismiss();
+					} else {
+						detailDialog.show();
+					}
+				} else {
+					taskListFragment.refreshList(taskInfo.TaskNum);
+					TaskOperator.taskSubmiting(taskInfo);
+				}
 			}
+		} catch (Exception e) {
+			DataLogOperator.other("检查文件(checkTaskFile):" + e.getMessage());
 		}
 	}
 
@@ -1049,7 +1054,7 @@ public class TaskListMenuOperaotr {
 	private boolean hasNewDataDefines(int ddid) {
 		for (DataDefine dataDefine : EIASApplication.currentUpdateDataDefines) {
 			if (dataDefine.DDID == ddid) {
-				taskInfoActivity.appHeader.showDialog("提示信息", "请同步勘察表[" + dataDefine.Name + "]");
+				homeActivity.appHeader.showDialog("提示信息", "请同步勘察表[" + dataDefine.Name + "]");
 				return true;
 			}
 		}
@@ -1064,7 +1069,7 @@ public class TaskListMenuOperaotr {
 	 */
 	private boolean checkTaskReportFinish(TaskInfo taskInfo) {
 		if (taskInfo.InworkReportFinish) {
-			taskListFragment.viewModel.homeActivity.appHeader.showDialog("提示信息", taskInfo.TaskNum + "已经完成报告的任务不能提交!");
+			homeActivity.appHeader.showDialog("提示信息", taskInfo.TaskNum + "已经完成报告的任务不能提交!");
 			return true;
 		}
 		return false;

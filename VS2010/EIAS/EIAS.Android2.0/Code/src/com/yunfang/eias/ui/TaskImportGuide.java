@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yunfang.eias.R;
@@ -99,7 +98,7 @@ public class TaskImportGuide extends BaseWorkerActivity {
 		viewModel.task_import_guide_name = (TextView) findViewById(R.id.task_import_guide_name);
 		viewModel.task_import_guide_use = (TextView) findViewById(R.id.task_import_guide_use);
 		viewModel.task_import_guide_ddid = (TextView) findViewById(R.id.task_import_guide_ddid);
-		viewModel.task_import_guide_fullname = (EditText) findViewById(R.id.task_import_guide_fullname);
+		viewModel.task_import_guide_fullname = (TextView) findViewById(R.id.task_import_guide_fullname);
 		viewModel.task_import_guide_select = (Button) findViewById(R.id.task_import_guide_select);
 		viewModel.task_import_guide_import = (Button) findViewById(R.id.task_import_guide_import);
 
@@ -113,6 +112,7 @@ public class TaskImportGuide extends BaseWorkerActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(TaskImportGuide.this, OpenDialogResource.class);
+				intent.putExtra("taskNum", viewModel.taskNum);
 				startActivity(intent);
 			}
 		});
@@ -128,8 +128,8 @@ public class TaskImportGuide extends BaseWorkerActivity {
 					msg = "请选择要导入的文件";
 				} else if (!file.exists()) {
 					msg = "找不到文件";
-				} else if (!fileExt.toLowerCase().equals("zip") && !fileExt.toLowerCase().equals("rar")) {
-					msg = "文件必须是zip或者rar";
+				} else if (!fileExt.toLowerCase().equals("zip")) {
+					msg = "文件必须是zip";
 				} else if (!hasFreeSize(file)) {
 					msg = "手机容量不够，请清理后再继续操作";
 				}

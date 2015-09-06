@@ -45,6 +45,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.yunfang.eias.R;
+import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.utils.DensityHelper;
 import com.yunfang.framework.base.BaseWorkerActivity;
 import com.yunfang.framework.utils.StringUtil;
@@ -192,7 +193,9 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 		if (previewPopup == null) {
 			pvPopHolder = new PreviewPopHolder();
 			densityUtil = DensityHelper.getInstance(context);
-			previewPopup = densityUtil.createPopWindows(context, R.layout.popup_preview_pic, R.color.white, densityUtil.getW(), densityUtil.getH());
+			int w = EIASApplication.deviceInfo.ScreenWeight;
+			int h = EIASApplication.deviceInfo.ScreenHeight;
+			previewPopup = densityUtil.createPopWindows(context, R.layout.popup_preview_pic, R.color.white, w, h);
 			// 初始化界面
 			previewPopup.setOnDismissListener(new OnDismissListener() {
 
@@ -374,7 +377,6 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 	/***
 	 * 返回事件
-	 * 
 	 * @param view
 	 */
 	public void onBack(View view) {

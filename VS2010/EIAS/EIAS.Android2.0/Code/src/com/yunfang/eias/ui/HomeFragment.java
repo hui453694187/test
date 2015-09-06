@@ -15,15 +15,15 @@ import android.os.StatFs;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.BroadRecordType;
@@ -35,8 +35,8 @@ import com.yunfang.eias.ui.Adapter.DataDefineListAdapter;
 import com.yunfang.eias.viewmodel.HomeViewModel;
 import com.yunfang.framework.base.BaseApplication;
 import com.yunfang.framework.base.BaseBroadcastReceiver;
-import com.yunfang.framework.base.BaseWorkerFragment;
 import com.yunfang.framework.base.BaseBroadcastReceiver.afterReceiveBroadcast;
+import com.yunfang.framework.base.BaseWorkerFragment;
 import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.utils.CameraUtils;
 import com.yunfang.framework.utils.FileUtil;
@@ -92,7 +92,7 @@ public class HomeFragment extends BaseWorkerFragment {
 	 * 新版本任务数量显示控件(括号内数字)
 	 */
 	private TextView tp_un_task_num_all, tp_en_task_num_all;
-	
+	 
 	/**
 	 * 头像
 	 */
@@ -288,8 +288,11 @@ public class HomeFragment extends BaseWorkerFragment {
 			un_task_number_all.setText(currentViewModel.currentUserTaskInfo.NonReceivedTotals+"");
 			un_urgent_task_number.setText(currentViewModel.currentUserTaskInfo.NonReceivedUrgent+"");
 			un_nomral_task_number.setText(currentViewModel.currentUserTaskInfo.NonReceivedNormal+"");
+			//已经领取总数
 			en_task_number_all.setText(currentViewModel.currentUserTaskInfo.ReceivedTotals+"");
+			//已领取紧急任务数量
 			en_urgent_task_number.setText(currentViewModel.currentUserTaskInfo.ReceivedUrgent+"");
+			//已领取常规任务数量
 			en_nomral_task_number.setText(currentViewModel.currentUserTaskInfo.ReceivedNormal+"");
 		} else {
 			if(EIASApplication.IsOffline){
@@ -306,7 +309,9 @@ public class HomeFragment extends BaseWorkerFragment {
 			en_urgent_task_number.setText(EIASApplication.DefaultHorizontalLineValue);
 			en_nomral_task_number.setText(EIASApplication.DefaultHorizontalLineValue);
 		}
-		invisibleTaskInfoByOffline();
+		//修改成离线不隐藏统计信息了
+		//invisibleTaskInfoByOffline();
+		
 	}
 
 	/**
@@ -509,8 +514,9 @@ public class HomeFragment extends BaseWorkerFragment {
 		});
 		
 		checkSDCardSize();
-		loadUserLogo(); 		
-		invisibleTaskInfoByOffline();
+		loadUserLogo();
+		//修改成离线不隐藏统计信息了 lee
+		//invisibleTaskInfoByOffline();
 		receiverMainServerCreated();
 		//HomeOperator.synchroReportInfo(currentViewModel.currentUser);
 	}
@@ -559,6 +565,7 @@ public class HomeFragment extends BaseWorkerFragment {
 	/**
 	 * 在离线的情况下隐藏部分任务信息
 	 */
+	@SuppressWarnings("unused")
 	private void invisibleTaskInfoByOffline() {
 		if(EIASApplication.IsOffline){
 			un_task.setVisibility(View.INVISIBLE);
@@ -615,7 +622,7 @@ public class HomeFragment extends BaseWorkerFragment {
 			public void onReceive(final Context context, Intent intent) {
 				String actionType =intent.getAction();		
 				switch(actionType){
-				case BroadRecordType.CHANGED_OFFLINE:
+				case BroadRecordType.CHANGED_OFFLINE:// 这里切换成离线状态
 					//删除其他页面
 					BaseApplication application = (BaseApplication) mHomeActivity.getApplication(); 
 					application.getActivityManager().popAllActivityExceptOne(mHomeActivity.getClass()); 

@@ -64,18 +64,20 @@ public class OpenDialogResource extends TabActivity {
 	/**
 	 * 
 	 * 数据初始化
-	 */	
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		String taskNum = getIntent().getStringExtra("taskNum");
 
 		setContentView(R.layout.open_dialog_list);
 		mInflater = LayoutInflater.from(this);
 		appHeader = new AppHeader(this, R.id.home_title);
-		
+
 		appHeader.visUserInfo(false);
 		appHeader.visBackView(true);
-		appHeader.setTitle("选择文件");
-		
+		appHeader.setTitle("[" + taskNum + "]选择文件");
+
 		checkBox = (CheckBox) mInflater.inflate(R.layout.open_dialog_list_item, null).findViewById(R.id.checkBox1);
 		// //////选项卡
 		tabHost = getTabHost();
@@ -105,7 +107,6 @@ public class OpenDialogResource extends TabActivity {
 				}
 			}
 		});
-
 		listSdk.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("unchecked")
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -127,7 +128,7 @@ public class OpenDialogResource extends TabActivity {
 					listSdk.setAdapter(getAdapter(info));
 				} else {
 					selectFile(f.getAbsoluteFile().toString());
-					//openFile(f);
+					// openFile(f);
 				}
 			}
 		});
@@ -152,13 +153,12 @@ public class OpenDialogResource extends TabActivity {
 					listPho.setAdapter(getAdapter(info));
 				} else {
 					selectFile(f.getAbsoluteFile().toString());
-					//openFile(f);
+					// openFile(f);
 				}
 
 			}
 		});
 	}
-	
 
 	/**
 	 * 确认选择文件
@@ -166,11 +166,10 @@ public class OpenDialogResource extends TabActivity {
 	private void selectFile(String fileFullName) {
 		Intent intent = new Intent();
 		intent.putExtra("fileFullName", fileFullName);
-		intent.setAction(BroadRecordType.TASK_IMPORT_FILE_SELECTED);			
+		intent.setAction(BroadRecordType.TASK_IMPORT_FILE_SELECTED);
 		sendBroadcast(intent);
 		finish();
 	}
-
 
 	/**
 	 * 
@@ -319,7 +318,7 @@ public class OpenDialogResource extends TabActivity {
 				}
 			});
 			itemDelete.setOnMenuItemClickListener(new OnMenuItemClickListener() {
- 
+
 				public boolean onMenuItemClick(MenuItem item) {
 					getpaths();
 					for (int i = 0; i < paths.size(); i++) {

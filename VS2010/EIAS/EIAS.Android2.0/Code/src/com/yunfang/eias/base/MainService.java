@@ -7,6 +7,7 @@ import java.util.Map;
 import com.yunfang.eias.dto.AdditionalResource;
 import com.yunfang.eias.dto.TaskInfoDTO;
 import com.yunfang.eias.enumObj.OperatorTypeEnum;
+import com.yunfang.eias.enumObj.TaskStatus;
 import com.yunfang.eias.enumObj.TaskUploadStatusEnum;
 import com.yunfang.eias.http.task.BackgroundServiceTask;
 import com.yunfang.eias.http.task.PushCoordinateTask;
@@ -176,6 +177,7 @@ public class MainService extends BaseBackgroundService {
 			if (temp != null && !uploadTasks.containsKey(temp.TaskNum)) {
 				temp.UploadStatusEnum = TaskUploadStatusEnum.Submitwating;
 				TaskOperator.saveTaskUploadStatus(TaskUploadStatusEnum.Submitwating, temp.TaskNum);
+				temp.Status=TaskStatus.Submiting;
 				uploadTasks.put(temp.TaskNum, temp);
 				Intent myIntent = new Intent();// 创建Intent对象
 				myIntent.setAction(BroadRecordType.WAIT_TO_SUBMIT);
@@ -314,8 +316,11 @@ public class MainService extends BaseBackgroundService {
 								// 若网络连接断开则直接提示并返回
 								if (isContinue(tempTask))
 									break;
+								//提交失败，状态改变为待提交
+								tempTask.Status=TaskStatus.Doing;
+								uploadTasks.put(tempTask.TaskNum, tempTask);
 								// 网络正常则提示任务提交失败
-								showNotification(tempTask.ID, tempTask.TaskNum, "提交失败:" + result.Message, "地址：" + tempTask.TargetAddress, tempTask.TaskNum + "提交失败");
+								showNotification(tempTask.ID, tempTask.TaskNum, "提交失败:服务器繁忙" , "地址：" + tempTask.TargetAddress, tempTask.TaskNum + "提交失败");
 								TaskOperator.saveTaskUploadStatus(TaskUploadStatusEnum.SubmitFailure, tempTask.TaskNum);
 								tempTask.UploadStatusEnum = TaskUploadStatusEnum.SubmitFailure;
 								isResubmit = true;
@@ -351,7 +356,7 @@ public class MainService extends BaseBackgroundService {
 						EIASApplication.SubmitingTaskNum = "";
 						sendBroadcast(myIntent);
 					} catch (Exception ex2) {
-						DataLogOperator.other(tempTask.TaskNum + ">" + ex2.getMessage());
+						DataLogOperator.other("任务提交失败" + tempTask.TaskNum + ">" + ex2.getMessage());
 					}
 				}
 			}

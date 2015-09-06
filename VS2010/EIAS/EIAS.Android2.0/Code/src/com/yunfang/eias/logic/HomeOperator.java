@@ -168,6 +168,8 @@ public class HomeOperator {
 						}
 					}
 				}
+			}else{
+				result=TaskDataWorker.queryUserInfo(userInfo);
 			}
 		} catch (Exception e) {
 			result.Success = false;

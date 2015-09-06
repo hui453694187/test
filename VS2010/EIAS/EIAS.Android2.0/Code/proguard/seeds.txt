@@ -13821,6 +13821,8 @@ com.yunfang.eias.R$anim: int popupwindow_exit
 com.yunfang.eias.R$anim: int progress_round
 com.yunfang.eias.R$anim: int push_bottom_in
 com.yunfang.eias.R$anim: int push_bottom_out
+com.yunfang.eias.R$anim: int reverse_anim
+com.yunfang.eias.R$anim: int rotating
 com.yunfang.eias.R$anim: int slide_bottom_in
 com.yunfang.eias.R$anim: int slide_left_in
 com.yunfang.eias.R$anim: int slide_left_out
@@ -13881,6 +13883,7 @@ com.yunfang.eias.R$color: int bg_item_press2
 com.yunfang.eias.R$color: int bg_update_survey_list
 com.yunfang.eias.R$color: int bg_wrap
 com.yunfang.eias.R$color: int bg_wrap_selected
+com.yunfang.eias.R$color: int black
 com.yunfang.eias.R$color: int blue
 com.yunfang.eias.R$color: int bottle_green
 com.yunfang.eias.R$color: int button_eb_color
@@ -13895,6 +13898,7 @@ com.yunfang.eias.R$color: int green
 com.yunfang.eias.R$color: int greenblack
 com.yunfang.eias.R$color: int huise
 com.yunfang.eias.R$color: int lanse
+com.yunfang.eias.R$color: int light_blue
 com.yunfang.eias.R$color: int main_menu_bg
 com.yunfang.eias.R$color: int primary_title_text_color
 com.yunfang.eias.R$color: int red
@@ -14204,6 +14208,9 @@ com.yunfang.eias.R$drawable: int icon_menu
 com.yunfang.eias.R$drawable: int icon_user
 com.yunfang.eias.R$drawable: int icon_wifi
 com.yunfang.eias.R$drawable: int import_bg1
+com.yunfang.eias.R$drawable: int load_failed
+com.yunfang.eias.R$drawable: int load_succeed
+com.yunfang.eias.R$drawable: int loading
 com.yunfang.eias.R$drawable: int loading_pc
 com.yunfang.eias.R$drawable: int loading_word
 com.yunfang.eias.R$drawable: int log_bg
@@ -14316,10 +14323,15 @@ com.yunfang.eias.R$drawable: int preference_item
 com.yunfang.eias.R$drawable: int preference_last_item
 com.yunfang.eias.R$drawable: int preference_single_item
 com.yunfang.eias.R$drawable: int progressbar
+com.yunfang.eias.R$drawable: int pull_icon_big
+com.yunfang.eias.R$drawable: int pullup_icon_big
 com.yunfang.eias.R$drawable: int quit
 com.yunfang.eias.R$drawable: int refresh_blue
 com.yunfang.eias.R$drawable: int refresh_blue2
+com.yunfang.eias.R$drawable: int refresh_failed
+com.yunfang.eias.R$drawable: int refresh_succeed
 com.yunfang.eias.R$drawable: int refresh_yellow
+com.yunfang.eias.R$drawable: int refreshing
 com.yunfang.eias.R$drawable: int search
 com.yunfang.eias.R$drawable: int setting_btn_bg
 com.yunfang.eias.R$drawable: int shape_bottom_corner_no_top_line
@@ -14511,9 +14523,7 @@ com.yunfang.eias.R$id: int et_agin_userpassword
 com.yunfang.eias.R$id: int et_new_userpassword
 com.yunfang.eias.R$id: int et_old_userpassword
 com.yunfang.eias.R$id: int et_pwd
-com.yunfang.eias.R$id: int et_setting_copyOrPaste
 com.yunfang.eias.R$id: int et_setting_maximagesize
-com.yunfang.eias.R$id: int et_setting_photo
 com.yunfang.eias.R$id: int et_setting_repeattime
 com.yunfang.eias.R$id: int et_setting_size
 com.yunfang.eias.R$id: int et_useraccount
@@ -14526,6 +14536,7 @@ com.yunfang.eias.R$id: int formvalidate
 com.yunfang.eias.R$id: int frameLayout
 com.yunfang.eias.R$id: int grid_album
 com.yunfang.eias.R$id: int gridview
+com.yunfang.eias.R$id: int head_view
 com.yunfang.eias.R$id: int header_bar_album_title
 com.yunfang.eias.R$id: int header_bar_back
 com.yunfang.eias.R$id: int header_bar_enter_selection
@@ -14634,6 +14645,10 @@ com.yunfang.eias.R$id: int llVideoDetailPlayerBottom
 com.yunfang.eias.R$id: int lltp
 com.yunfang.eias.R$id: int loading
 com.yunfang.eias.R$id: int loadingTxt
+com.yunfang.eias.R$id: int loading_icon
+com.yunfang.eias.R$id: int loadmore_view
+com.yunfang.eias.R$id: int loadstate_iv
+com.yunfang.eias.R$id: int loadstate_tv
 com.yunfang.eias.R$id: int log_back
 com.yunfang.eias.R$id: int log_concent
 com.yunfang.eias.R$id: int log_delete
@@ -14708,11 +14723,17 @@ com.yunfang.eias.R$id: int photo_show_gridView
 com.yunfang.eias.R$id: int primaryMenu
 com.yunfang.eias.R$id: int progressBar1
 com.yunfang.eias.R$id: int progressBar2
+com.yunfang.eias.R$id: int pull_icon
 com.yunfang.eias.R$id: int pull_out
+com.yunfang.eias.R$id: int pullup_icon
 com.yunfang.eias.R$id: int radioGroup
 com.yunfang.eias.R$id: int ratingBar1
+com.yunfang.eias.R$id: int rb_copy
+com.yunfang.eias.R$id: int rb_custom_camer
 com.yunfang.eias.R$id: int rb_finish
 com.yunfang.eias.R$id: int rb_home
+com.yunfang.eias.R$id: int rb_original_camer
+com.yunfang.eias.R$id: int rb_paste
 com.yunfang.eias.R$id: int rb_submit
 com.yunfang.eias.R$id: int rb_submiting
 com.yunfang.eias.R$id: int rb_survey
@@ -14720,8 +14741,11 @@ com.yunfang.eias.R$id: int rdo_taskinfo_residentialarea
 com.yunfang.eias.R$id: int receiveDateTimeTitle_Txt
 com.yunfang.eias.R$id: int receiveDateTime_Txt
 com.yunfang.eias.R$id: int recordInfo
+com.yunfang.eias.R$id: int refreshing_icon
 com.yunfang.eias.R$id: int remark_txt
 com.yunfang.eias.R$id: int residentialArea_txt
+com.yunfang.eias.R$id: int rg_setting_copyOrPaste
+com.yunfang.eias.R$id: int rg_setting_photo
 com.yunfang.eias.R$id: int right
 com.yunfang.eias.R$id: int rl2
 com.yunfang.eias.R$id: int rl3
@@ -14743,6 +14767,8 @@ com.yunfang.eias.R$id: int single_choice_auto
 com.yunfang.eias.R$id: int single_choice_cancel
 com.yunfang.eias.R$id: int single_choice_confirm
 com.yunfang.eias.R$id: int slideMenu
+com.yunfang.eias.R$id: int state_iv
+com.yunfang.eias.R$id: int state_tv
 com.yunfang.eias.R$id: int status_Txt
 com.yunfang.eias.R$id: int sub_title_select
 com.yunfang.eias.R$id: int submitTimeTitle_Txt
@@ -14771,6 +14797,7 @@ com.yunfang.eias.R$id: int task_list_title
 com.yunfang.eias.R$id: int task_list_view_linelayout
 com.yunfang.eias.R$id: int task_listview
 com.yunfang.eias.R$id: int task_listview_item_layout
+com.yunfang.eias.R$id: int task_pull_refresh_layout
 com.yunfang.eias.R$id: int task_search
 com.yunfang.eias.R$id: int taskinfo_inquiry_et
 com.yunfang.eias.R$id: int taskinfo_inquiry_layout
@@ -14894,6 +14921,7 @@ com.yunfang.eias.R$layout: int item_album_pager
 com.yunfang.eias.R$layout: int item_estimate_city
 com.yunfang.eias.R$layout: int layout_slidemenu
 com.yunfang.eias.R$layout: int left_view
+com.yunfang.eias.R$layout: int load_more
 com.yunfang.eias.R$layout: int loading_layout
 com.yunfang.eias.R$layout: int log_listview
 com.yunfang.eias.R$layout: int log_listview_item
@@ -14917,6 +14945,7 @@ com.yunfang.eias.R$layout: int picasso_grid
 com.yunfang.eias.R$layout: int picasso_grid_item
 com.yunfang.eias.R$layout: int popup_preview_pic
 com.yunfang.eias.R$layout: int popup_preview_vpg_item
+com.yunfang.eias.R$layout: int refresh_head
 com.yunfang.eias.R$layout: int right_layout
 com.yunfang.eias.R$layout: int system_setting
 com.yunfang.eias.R$layout: int task_categories
@@ -14992,16 +15021,33 @@ com.yunfang.eias.R$string: int en_task
 com.yunfang.eias.R$string: int en_urgent_task
 com.yunfang.eias.R$string: int export_dir
 com.yunfang.eias.R$string: int fee_string
+com.yunfang.eias.R$string: int head
 com.yunfang.eias.R$string: int hello_world
 com.yunfang.eias.R$string: int hint_get_data_fail
 com.yunfang.eias.R$string: int import_dir
 com.yunfang.eias.R$string: int liveSearchCharge_string
+com.yunfang.eias.R$string: int load_fail
+com.yunfang.eias.R$string: int load_succeed
+com.yunfang.eias.R$string: int loading
 com.yunfang.eias.R$string: int nomral_task
 com.yunfang.eias.R$string: int pgcommon_share
 com.yunfang.eias.R$string: int project_dir
+com.yunfang.eias.R$string: int pull_to_refresh
+com.yunfang.eias.R$string: int pullup_to_load
 com.yunfang.eias.R$string: int receiptTime_string
 com.yunfang.eias.R$string: int receiveDateTime_string
+com.yunfang.eias.R$string: int refresh_fail
+com.yunfang.eias.R$string: int refresh_succeed
+com.yunfang.eias.R$string: int refreshing
+com.yunfang.eias.R$string: int release_to_load
+com.yunfang.eias.R$string: int release_to_refresh
 com.yunfang.eias.R$string: int set_password_url
+com.yunfang.eias.R$string: int system_setting_camer_select
+com.yunfang.eias.R$string: int system_setting_copy
+com.yunfang.eias.R$string: int system_setting_custom_camer
+com.yunfang.eias.R$string: int system_setting_original_camer
+com.yunfang.eias.R$string: int system_setting_paste
+com.yunfang.eias.R$string: int system_setting_photo_select
 com.yunfang.eias.R$string: int thumbnail_dir
 com.yunfang.eias.R$string: int un_nomral_task
 com.yunfang.eias.R$string: int un_task
@@ -15558,6 +15604,11 @@ com.yunfang.eias.http.task.GetDataDefineDataTask: void setContext(byte[])
 com.yunfang.eias.http.task.GetDataDefineDataTask: com.yunfang.framework.model.ResultInfo getResponseData()
 com.yunfang.eias.http.task.GetDataDefineDataTask: com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.DataDefine)
 com.yunfang.eias.http.task.GetDataDefineDataTask: java.lang.Object getResponseData()
+com.yunfang.eias.http.task.GetDatadefinesTask: GetDatadefinesTask()
+com.yunfang.eias.http.task.GetDatadefinesTask: void setContext(byte[])
+com.yunfang.eias.http.task.GetDatadefinesTask: com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo)
+com.yunfang.eias.http.task.GetDatadefinesTask: com.yunfang.framework.model.ResultInfo getResponseData()
+com.yunfang.eias.http.task.GetDatadefinesTask: java.lang.Object getResponseData()
 com.yunfang.eias.http.task.GetFinishInworkReportTask: GetFinishInworkReportTask()
 com.yunfang.eias.http.task.GetFinishInworkReportTask: void setContext(byte[])
 com.yunfang.eias.http.task.GetFinishInworkReportTask: com.yunfang.framework.model.ResultInfo getResponseData()
@@ -15741,6 +15792,8 @@ com.yunfang.eias.logic.DataLogOperator: void fileUpload(com.yunfang.eias.model.T
 com.yunfang.eias.logic.DataLogOperator: void taskHttp(java.lang.String,java.lang.String)
 com.yunfang.eias.logic.DataLogOperator: void version(java.lang.String)
 com.yunfang.eias.logic.DataLogOperator: void other(java.lang.String)
+com.yunfang.eias.logic.DatadefinesOperator: DatadefinesOperator()
+com.yunfang.eias.logic.DatadefinesOperator: com.yunfang.framework.model.ResultInfo getNewestDatadefine(com.yunfang.framework.model.UserInfo)
 com.yunfang.eias.logic.HomeOperator: HomeOperator()
 com.yunfang.eias.logic.HomeOperator: com.yunfang.eias.model.UserTaskInfo getCurrentTaskInfos()
 com.yunfang.eias.logic.HomeOperator: java.lang.String getNetType(android.content.Context)
@@ -16119,6 +16172,7 @@ com.yunfang.eias.tables.DataDefineWorker: DataDefineWorker()
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo fillCompleteDataDefindInfos(com.yunfang.eias.model.DataDefine)
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo deleteCompleteDataDefindInfos(int)
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo queryDataDefineByDDIDOrCompanyID(int,int)
+com.yunfang.eias.tables.DataDefineWorker: boolean deletDataDefneByDDID(java.util.List)
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo queryDataDefineByCompanyID(int)
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo queryDataDefineByDDID(int)
 com.yunfang.eias.tables.DataDefineWorker: com.yunfang.framework.model.ResultInfo queryDataCategoryDefineByDDID(int)
@@ -16133,6 +16187,7 @@ com.yunfang.eias.tables.DataLogWorker: com.yunfang.framework.model.ResultInfo de
 com.yunfang.eias.tables.DataLogWorker$1: void run()
 com.yunfang.eias.tables.TaskDataWorker: TaskDataWorker()
 com.yunfang.eias.tables.TaskDataWorker: com.yunfang.framework.model.ResultInfo createdByUserTaskTotal(com.yunfang.framework.model.UserInfo)
+com.yunfang.eias.tables.TaskDataWorker: com.yunfang.framework.model.ResultInfo queryUserInfo(com.yunfang.framework.model.UserInfo)
 com.yunfang.eias.tables.TaskDataWorker: com.yunfang.framework.model.ResultInfo createCategory(com.yunfang.eias.model.DataCategoryDefine,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String)
 com.yunfang.eias.tables.TaskDataWorker: com.yunfang.framework.model.ResultInfo createLocalTask(java.lang.Boolean,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,com.yunfang.framework.model.UserInfo)
 com.yunfang.eias.tables.TaskDataWorker: com.yunfang.framework.model.ResultInfo deleteCompleteTaskDataInfos(int,java.lang.Boolean)
@@ -16534,6 +16589,7 @@ com.yunfang.eias.ui.SystemSettingActivity: java.lang.String[] copyTypeChooseItem
 com.yunfang.eias.ui.SystemSettingActivity: java.lang.String[] photoTypeChooseItem
 com.yunfang.eias.ui.SystemSettingActivity: SystemSettingActivity()
 com.yunfang.eias.ui.SystemSettingActivity: void setSpinnerItemSelectedByValue(android.widget.Spinner,java.lang.String)
+com.yunfang.eias.ui.SystemSettingActivity: void setRadioButtonSelectedByValue(android.widget.RadioGroup,java.lang.String)
 com.yunfang.eias.ui.SystemSettingActivity$1: void onClick(android.view.View)
 com.yunfang.eias.ui.TaskCategoriesFragment
 com.yunfang.eias.ui.TaskCategoriesFragment: com.yunfang.eias.viewmodel.TaskItemViewModel viewModel
@@ -16679,8 +16735,8 @@ com.yunfang.eias.ui.TaskListFragment$5: void onReceive(android.content.Context,a
 com.yunfang.eias.ui.TaskListFragment$6: boolean onTouch(android.view.View,android.view.MotionEvent)
 com.yunfang.eias.ui.TaskListFragment$7: boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long)
 com.yunfang.eias.ui.TaskListFragment$8: void onItemClick(android.widget.AdapterView,android.view.View,int,long)
-com.yunfang.eias.ui.TaskListFragment$9: void onScroll(android.widget.AbsListView,int,int,int)
-com.yunfang.eias.ui.TaskListFragment$9: void onScrollStateChanged(android.widget.AbsListView,int)
+com.yunfang.eias.ui.TaskListFragment$9: void onRefresh(com.yunfang.eias.view.PullToRefreshLayout)
+com.yunfang.eias.ui.TaskListFragment$9: void onLoadMore(com.yunfang.eias.view.PullToRefreshLayout)
 com.yunfang.eias.ui.TaskMatchActivity
 com.yunfang.eias.ui.TaskMatchActivity: com.yunfang.eias.viewmodel.TaskMatchViewModel viewModel
 com.yunfang.eias.ui.TaskMatchActivity: TaskMatchActivity()
@@ -16707,13 +16763,10 @@ com.yunfang.eias.utils.DataCheckHelper: java.io.File getFileFromBytes(byte[],jav
 com.yunfang.eias.utils.DataCheckHelper: java.io.File displayNoFile(java.io.File)
 com.yunfang.eias.utils.DensityHelper: com.yunfang.eias.utils.DensityHelper getInstance(android.app.Activity)
 com.yunfang.eias.utils.DensityHelper: void destroy()
-com.yunfang.eias.utils.DensityHelper: int getW()
-com.yunfang.eias.utils.DensityHelper: int getH()
 com.yunfang.eias.utils.DensityHelper: int dip2px(android.content.Context,float)
 com.yunfang.eias.utils.DensityHelper: int px2dip(float)
 com.yunfang.eias.utils.DensityHelper: int sp2px(float)
 com.yunfang.eias.utils.DensityHelper: int px2sp(float)
-com.yunfang.eias.utils.DensityHelper: void screenInfo()
 com.yunfang.eias.utils.DensityHelper: android.widget.PopupWindow createPopWindows(android.content.Context,int,int,int,int)
 com.yunfang.eias.utils.DownloadResultHelper: DownloadResultHelper()
 com.yunfang.eias.utils.DownloadResultHelper: void downloadComplete()
@@ -16757,6 +16810,45 @@ com.yunfang.eias.utils.OpenDialogHelper$6: void onClick(android.content.DialogIn
 com.yunfang.eias.utils.OpenDialogHelper$7: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.utils.OpenDialogHelper$8: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.utils.OpenDialogHelper$9: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.view.PullToRefreshLayout
+com.yunfang.eias.view.PullToRefreshLayout: java.lang.String TAG
+com.yunfang.eias.view.PullToRefreshLayout: int INIT
+com.yunfang.eias.view.PullToRefreshLayout: int RELEASE_TO_REFRESH
+com.yunfang.eias.view.PullToRefreshLayout: int REFRESHING
+com.yunfang.eias.view.PullToRefreshLayout: int RELEASE_TO_LOAD
+com.yunfang.eias.view.PullToRefreshLayout: int LOADING
+com.yunfang.eias.view.PullToRefreshLayout: int DONE
+com.yunfang.eias.view.PullToRefreshLayout: int SUCCEED
+com.yunfang.eias.view.PullToRefreshLayout: int FAIL
+com.yunfang.eias.view.PullToRefreshLayout: float pullDownY
+com.yunfang.eias.view.PullToRefreshLayout: float MOVE_SPEED
+com.yunfang.eias.view.PullToRefreshLayout: void setOnRefreshListener(com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener)
+com.yunfang.eias.view.PullToRefreshLayout: PullToRefreshLayout(android.content.Context)
+com.yunfang.eias.view.PullToRefreshLayout: PullToRefreshLayout(android.content.Context,android.util.AttributeSet)
+com.yunfang.eias.view.PullToRefreshLayout: PullToRefreshLayout(android.content.Context,android.util.AttributeSet,int)
+com.yunfang.eias.view.PullToRefreshLayout: void refreshFinish(int)
+com.yunfang.eias.view.PullToRefreshLayout: void loadmoreFinish(int)
+com.yunfang.eias.view.PullToRefreshLayout: boolean dispatchTouchEvent(android.view.MotionEvent)
+com.yunfang.eias.view.PullToRefreshLayout: void autoRefresh()
+com.yunfang.eias.view.PullToRefreshLayout: void autoLoad()
+com.yunfang.eias.view.PullToRefreshLayout$1: void handleMessage(android.os.Message)
+com.yunfang.eias.view.PullToRefreshLayout$2: void handleMessage(android.os.Message)
+com.yunfang.eias.view.PullToRefreshLayout$3: void handleMessage(android.os.Message)
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer: PullToRefreshLayout$MyTimer(com.yunfang.eias.view.PullToRefreshLayout,android.os.Handler)
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer: void schedule(long)
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer: void cancel()
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer$MyTask: PullToRefreshLayout$MyTimer$MyTask(com.yunfang.eias.view.PullToRefreshLayout$MyTimer,android.os.Handler)
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer$MyTask: void run()
+com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener: void onRefresh(com.yunfang.eias.view.PullToRefreshLayout)
+com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener: void onLoadMore(com.yunfang.eias.view.PullToRefreshLayout)
+com.yunfang.eias.view.Pullable: boolean canPullDown()
+com.yunfang.eias.view.Pullable: boolean canPullUp()
+com.yunfang.eias.view.PullableListView
+com.yunfang.eias.view.PullableListView: PullableListView(android.content.Context)
+com.yunfang.eias.view.PullableListView: PullableListView(android.content.Context,android.util.AttributeSet)
+com.yunfang.eias.view.PullableListView: PullableListView(android.content.Context,android.util.AttributeSet,int)
+com.yunfang.eias.view.PullableListView: boolean canPullDown()
+com.yunfang.eias.view.PullableListView: boolean canPullUp()
 com.yunfang.eias.viewmodel.BaiduMapViewModel
 com.yunfang.eias.viewmodel.BaiduMapViewModel: boolean isFirstLoad
 com.yunfang.eias.viewmodel.BaiduMapViewModel: float currentZoomLevel
@@ -16835,7 +16927,7 @@ com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.TextView tas
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.TextView task_import_guide_ddid
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.TextView task_import_guide_use
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.TextView task_import_guide_name
-com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.EditText task_import_guide_fullname
+com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.TextView task_import_guide_fullname
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.Button task_import_guide_select
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: android.widget.Button task_import_guide_import
 com.yunfang.eias.viewmodel.TaskImportGuideViewModel: com.yunfang.eias.logic.AppHeader appHeader

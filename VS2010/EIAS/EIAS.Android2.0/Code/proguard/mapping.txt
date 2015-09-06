@@ -14004,6 +14004,8 @@ com.yunfang.eias.R$anim -> com.yunfang.eias.R$anim:
     int progress_round -> progress_round
     int push_bottom_in -> push_bottom_in
     int push_bottom_out -> push_bottom_out
+    int reverse_anim -> reverse_anim
+    int rotating -> rotating
     int slide_bottom_in -> slide_bottom_in
     int slide_left_in -> slide_left_in
     int slide_left_out -> slide_left_out
@@ -14061,6 +14063,7 @@ com.yunfang.eias.R$color -> com.yunfang.eias.R$color:
     int bg_update_survey_list -> bg_update_survey_list
     int bg_wrap -> bg_wrap
     int bg_wrap_selected -> bg_wrap_selected
+    int black -> black
     int blue -> blue
     int bottle_green -> bottle_green
     int button_eb_color -> button_eb_color
@@ -14075,6 +14078,7 @@ com.yunfang.eias.R$color -> com.yunfang.eias.R$color:
     int greenblack -> greenblack
     int huise -> huise
     int lanse -> lanse
+    int light_blue -> light_blue
     int main_menu_bg -> main_menu_bg
     int primary_title_text_color -> primary_title_text_color
     int red -> red
@@ -14382,6 +14386,9 @@ com.yunfang.eias.R$drawable -> com.yunfang.eias.R$drawable:
     int icon_user -> icon_user
     int icon_wifi -> icon_wifi
     int import_bg1 -> import_bg1
+    int load_failed -> load_failed
+    int load_succeed -> load_succeed
+    int loading -> loading
     int loading_pc -> loading_pc
     int loading_word -> loading_word
     int log_bg -> log_bg
@@ -14494,10 +14501,15 @@ com.yunfang.eias.R$drawable -> com.yunfang.eias.R$drawable:
     int preference_last_item -> preference_last_item
     int preference_single_item -> preference_single_item
     int progressbar -> progressbar
+    int pull_icon_big -> pull_icon_big
+    int pullup_icon_big -> pullup_icon_big
     int quit -> quit
     int refresh_blue -> refresh_blue
     int refresh_blue2 -> refresh_blue2
+    int refresh_failed -> refresh_failed
+    int refresh_succeed -> refresh_succeed
     int refresh_yellow -> refresh_yellow
+    int refreshing -> refreshing
     int search -> search
     int setting_btn_bg -> setting_btn_bg
     int shape_bottom_corner_no_top_line -> shape_bottom_corner_no_top_line
@@ -14688,9 +14700,7 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int et_new_userpassword -> et_new_userpassword
     int et_old_userpassword -> et_old_userpassword
     int et_pwd -> et_pwd
-    int et_setting_copyOrPaste -> et_setting_copyOrPaste
     int et_setting_maximagesize -> et_setting_maximagesize
-    int et_setting_photo -> et_setting_photo
     int et_setting_repeattime -> et_setting_repeattime
     int et_setting_size -> et_setting_size
     int et_useraccount -> et_useraccount
@@ -14703,6 +14713,7 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int frameLayout -> frameLayout
     int grid_album -> grid_album
     int gridview -> gridview
+    int head_view -> head_view
     int header_bar_album_title -> header_bar_album_title
     int header_bar_back -> header_bar_back
     int header_bar_enter_selection -> header_bar_enter_selection
@@ -14811,6 +14822,10 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int lltp -> lltp
     int loading -> loading
     int loadingTxt -> loadingTxt
+    int loading_icon -> loading_icon
+    int loadmore_view -> loadmore_view
+    int loadstate_iv -> loadstate_iv
+    int loadstate_tv -> loadstate_tv
     int log_back -> log_back
     int log_concent -> log_concent
     int log_delete -> log_delete
@@ -14885,11 +14900,17 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int primaryMenu -> primaryMenu
     int progressBar1 -> progressBar1
     int progressBar2 -> progressBar2
+    int pull_icon -> pull_icon
     int pull_out -> pull_out
+    int pullup_icon -> pullup_icon
     int radioGroup -> radioGroup
     int ratingBar1 -> ratingBar1
+    int rb_copy -> rb_copy
+    int rb_custom_camer -> rb_custom_camer
     int rb_finish -> rb_finish
     int rb_home -> rb_home
+    int rb_original_camer -> rb_original_camer
+    int rb_paste -> rb_paste
     int rb_submit -> rb_submit
     int rb_submiting -> rb_submiting
     int rb_survey -> rb_survey
@@ -14897,8 +14918,11 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int receiveDateTimeTitle_Txt -> receiveDateTimeTitle_Txt
     int receiveDateTime_Txt -> receiveDateTime_Txt
     int recordInfo -> recordInfo
+    int refreshing_icon -> refreshing_icon
     int remark_txt -> remark_txt
     int residentialArea_txt -> residentialArea_txt
+    int rg_setting_copyOrPaste -> rg_setting_copyOrPaste
+    int rg_setting_photo -> rg_setting_photo
     int right -> right
     int rl2 -> rl2
     int rl3 -> rl3
@@ -14920,6 +14944,8 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int single_choice_cancel -> single_choice_cancel
     int single_choice_confirm -> single_choice_confirm
     int slideMenu -> slideMenu
+    int state_iv -> state_iv
+    int state_tv -> state_tv
     int status_Txt -> status_Txt
     int sub_title_select -> sub_title_select
     int submitTimeTitle_Txt -> submitTimeTitle_Txt
@@ -14948,6 +14974,7 @@ com.yunfang.eias.R$id -> com.yunfang.eias.R$id:
     int task_list_view_linelayout -> task_list_view_linelayout
     int task_listview -> task_listview
     int task_listview_item_layout -> task_listview_item_layout
+    int task_pull_refresh_layout -> task_pull_refresh_layout
     int task_search -> task_search
     int taskinfo_inquiry_et -> taskinfo_inquiry_et
     int taskinfo_inquiry_layout -> taskinfo_inquiry_layout
@@ -15070,6 +15097,7 @@ com.yunfang.eias.R$layout -> com.yunfang.eias.R$layout:
     int item_estimate_city -> item_estimate_city
     int layout_slidemenu -> layout_slidemenu
     int left_view -> left_view
+    int load_more -> load_more
     int loading_layout -> loading_layout
     int log_listview -> log_listview
     int log_listview_item -> log_listview_item
@@ -15093,6 +15121,7 @@ com.yunfang.eias.R$layout -> com.yunfang.eias.R$layout:
     int picasso_grid_item -> picasso_grid_item
     int popup_preview_pic -> popup_preview_pic
     int popup_preview_vpg_item -> popup_preview_vpg_item
+    int refresh_head -> refresh_head
     int right_layout -> right_layout
     int system_setting -> system_setting
     int task_categories -> task_categories
@@ -15166,16 +15195,33 @@ com.yunfang.eias.R$string -> com.yunfang.eias.R$string:
     int en_urgent_task -> en_urgent_task
     int export_dir -> export_dir
     int fee_string -> fee_string
+    int head -> head
     int hello_world -> hello_world
     int hint_get_data_fail -> hint_get_data_fail
     int import_dir -> import_dir
     int liveSearchCharge_string -> liveSearchCharge_string
+    int load_fail -> load_fail
+    int load_succeed -> load_succeed
+    int loading -> loading
     int nomral_task -> nomral_task
     int pgcommon_share -> pgcommon_share
     int project_dir -> project_dir
+    int pull_to_refresh -> pull_to_refresh
+    int pullup_to_load -> pullup_to_load
     int receiptTime_string -> receiptTime_string
     int receiveDateTime_string -> receiveDateTime_string
+    int refresh_fail -> refresh_fail
+    int refresh_succeed -> refresh_succeed
+    int refreshing -> refreshing
+    int release_to_load -> release_to_load
+    int release_to_refresh -> release_to_refresh
     int set_password_url -> set_password_url
+    int system_setting_camer_select -> system_setting_camer_select
+    int system_setting_copy -> system_setting_copy
+    int system_setting_custom_camer -> system_setting_custom_camer
+    int system_setting_original_camer -> system_setting_original_camer
+    int system_setting_paste -> system_setting_paste
+    int system_setting_photo_select -> system_setting_photo_select
     int thumbnail_dir -> thumbnail_dir
     int un_nomral_task -> un_nomral_task
     int un_task -> un_task
@@ -15313,24 +15359,24 @@ com.yunfang.eias.base.EIASApplication -> com.yunfang.eias.base.EIASApplication:
     java.lang.String tips_unconcention -> tips_unconcention
     234:270:java.lang.String getSystemSetting(java.lang.String) -> getSystemSetting
     280:293:void onCreate() -> onCreate
-    299:318:void initFinalString() -> a
-    324:335:void createHideDir() -> b
-    341:367:void getDeviceInfo() -> c
-    373:373:com.yunfang.framework.base.BaseApplication getInstance() -> getInstance
-    381:389:void getAndroidVersionInfo() -> getAndroidVersionInfo
-    401:401:com.yunfang.framework.model.UserInfo getCurrentUser() -> getCurrentUser
-    409:419:void startService() -> d
-    427:433:boolean isServiceRunning() -> e
-    458:475:void receiverMainServerCreated() -> receiverMainServerCreated
-    481:488:void initLocationHelper() -> initLocationHelper
-    494:504:void pushLatlag(double,double) -> pushLatlag
-    515:521:float getTouch_DISTANCE() -> getTouch_DISTANCE
-    531:531:boolean isTablet(android.content.Context) -> isTablet
+    305:327:void initFinalString() -> a
+    333:344:void createHideDir() -> b
+    350:376:void getDeviceInfo() -> c
+    382:382:com.yunfang.framework.base.BaseApplication getInstance() -> getInstance
+    390:398:void getAndroidVersionInfo() -> getAndroidVersionInfo
+    410:410:com.yunfang.framework.model.UserInfo getCurrentUser() -> getCurrentUser
+    418:428:void startService() -> d
+    436:442:boolean isServiceRunning() -> e
+    467:484:void receiverMainServerCreated() -> receiverMainServerCreated
+    490:497:void initLocationHelper() -> initLocationHelper
+    503:513:void pushLatlag(double,double) -> pushLatlag
+    524:530:float getTouch_DISTANCE() -> getTouch_DISTANCE
+    540:540:boolean isTablet(android.content.Context) -> isTablet
 com.yunfang.eias.base.EIASApplication$1 -> com.yunfang.eias.base.a:
     com.yunfang.eias.base.EIASApplication this$0 -> a
-    464:473:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    473:482:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.yunfang.eias.base.EIASApplication$2 -> com.yunfang.eias.base.b:
-    485:486:void onSelected(com.baidu.location.BDLocation) -> onSelected
+    494:495:void onSelected(com.baidu.location.BDLocation) -> onSelected
 com.yunfang.eias.base.MainService -> com.yunfang.eias.base.MainService:
     int TASK_SUMIT -> TASK_SUMIT
     int RESTARTTASK_SUMIT -> RESTARTTASK_SUMIT
@@ -15764,57 +15810,63 @@ com.yunfang.eias.http.task.CheckVersionTask -> com.yunfang.eias.http.task.a:
     byte[] mData -> a
     51:52:void setContext(byte[]) -> setContext
     57:81:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
-    90:110:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo) -> request
-    121:141:com.yunfang.framework.model.ResultInfo downLoadLastVersion(com.yunfang.framework.model.UserInfo) -> downLoadLastVersion
-    148:179:int downFile(java.lang.String,java.lang.String) -> downFile
+    90:113:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo) -> request
+    124:144:com.yunfang.framework.model.ResultInfo downLoadLastVersion(com.yunfang.framework.model.UserInfo) -> downLoadLastVersion
+    151:182:int downFile(java.lang.String,java.lang.String) -> downFile
     1:1:java.lang.Object getResponseData() -> getResponseData
 com.yunfang.eias.http.task.CheckVersionTask$1 -> com.yunfang.eias.http.task.b:
     com.yunfang.eias.http.task.CheckVersionTask this$0 -> a
     java.lang.String val$httpUrl -> b
-    127:134:void run() -> run
+    130:137:void run() -> run
 com.yunfang.eias.http.task.GetDataDefineDataTask -> com.yunfang.eias.http.task.c:
     byte[] mData -> a
     31:32:void setContext(byte[]) -> setContext
     37:63:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     73:90:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.DataDefine) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.GetFinishInworkReportTask -> com.yunfang.eias.http.task.d:
+com.yunfang.eias.http.task.GetDatadefinesTask -> com.yunfang.eias.http.task.d:
+    byte[] mData -> a
+    34:35:void setContext(byte[]) -> setContext
+    47:66:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo) -> request
+    75:109:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
+    1:1:java.lang.Object getResponseData() -> getResponseData
+com.yunfang.eias.http.task.GetFinishInworkReportTask -> com.yunfang.eias.http.task.e:
     byte[] mData -> a
     34:35:void setContext(byte[]) -> setContext
     40:65:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     78:94:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,java.lang.String) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.GetHomeInfoTask -> com.yunfang.eias.http.task.e:
+com.yunfang.eias.http.task.GetHomeInfoTask -> com.yunfang.eias.http.task.f:
     byte[] mData -> a
     31:32:void setContext(byte[]) -> setContext
     37:81:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     90:107:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.GetTaskInfoTask -> com.yunfang.eias.http.task.f:
+com.yunfang.eias.http.task.GetTaskInfoTask -> com.yunfang.eias.http.task.g:
     byte[] mData -> a
     30:31:void setContext(byte[]) -> setContext
     41:61:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.TaskInfo) -> request
     70:103:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.GetTaskListTask -> com.yunfang.eias.http.task.g:
+com.yunfang.eias.http.task.GetTaskListTask -> com.yunfang.eias.http.task.h:
     byte[] mData -> a
-    36:37:void setContext(byte[]) -> setContext
-    42:88:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
-    101:121:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.enumObj.TaskStatus,java.lang.String,int,int) -> request
+    37:38:void setContext(byte[]) -> setContext
+    43:90:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
+    103:123:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.enumObj.TaskStatus,java.lang.String,int,int) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.GetTaskSearchListTask -> com.yunfang.eias.http.task.h:
+com.yunfang.eias.http.task.GetTaskSearchListTask -> com.yunfang.eias.http.task.i:
     byte[] mData -> a
     41:42:void setContext(byte[]) -> setContext
     50:82:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     103:120:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,java.lang.String,long,int,int) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.OnlineLoginTask -> com.yunfang.eias.http.task.i:
+com.yunfang.eias.http.task.OnlineLoginTask -> com.yunfang.eias.http.task.j:
     byte[] mData -> a
     41:66:com.yunfang.framework.model.ResultInfo request(java.lang.String,java.lang.String,java.lang.String) -> request
     71:72:void setContext(byte[]) -> setContext
     77:108:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.PushCoordinateTask -> com.yunfang.eias.http.task.j:
+com.yunfang.eias.http.task.PushCoordinateTask -> com.yunfang.eias.http.task.k:
     byte[] mData -> a
     32:33:void setContext(byte[]) -> setContext
     43:67:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,double,double) -> request
@@ -15833,31 +15885,31 @@ com.yunfang.eias.http.task.ResidentialDetailDTO -> com.yunfang.eias.http.task.Re
     java.lang.String PropertyFee -> PropertyFee
     java.lang.String VolumeFraction -> VolumeFraction
     java.lang.String Name -> Name
-com.yunfang.eias.http.task.SetAppointmentTask -> com.yunfang.eias.http.task.k:
+com.yunfang.eias.http.task.SetAppointmentTask -> com.yunfang.eias.http.task.l:
     byte[] mData -> a
     34:35:void setContext(byte[]) -> setContext
     40:65:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     79:100:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.SetTaskFeeTask -> com.yunfang.eias.http.task.l:
+com.yunfang.eias.http.task.SetTaskFeeTask -> com.yunfang.eias.http.task.m:
     byte[] mData -> a
     34:35:void setContext(byte[]) -> setContext
     40:65:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     75:94:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.TaskInfo) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.SetTaskPauseTask -> com.yunfang.eias.http.task.m:
+com.yunfang.eias.http.task.SetTaskPauseTask -> com.yunfang.eias.http.task.n:
     byte[] mData -> a
     34:35:void setContext(byte[]) -> setContext
     40:66:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     76:93:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.TaskInfo) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.SubmitTaskInfoTask -> com.yunfang.eias.http.task.n:
+com.yunfang.eias.http.task.SubmitTaskInfoTask -> com.yunfang.eias.http.task.o:
     byte[] mData -> a
     31:32:void setContext(byte[]) -> setContext
     44:69:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.dto.TaskInfoDTO,boolean) -> request
     78:100:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.UploadFileTask -> com.yunfang.eias.http.task.o:
+com.yunfang.eias.http.task.UploadFileTask -> com.yunfang.eias.http.task.p:
     byte[] mData -> a
     52:53:void setContext(byte[]) -> setContext
     65:102:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.TaskInfo,java.util.ArrayList,boolean) -> request
@@ -15867,13 +15919,13 @@ com.yunfang.eias.http.task.UploadFileTask -> com.yunfang.eias.http.task.o:
     227:248:java.lang.String retrieveInputStream(org.apache.http.HttpEntity) -> retrieveInputStream
     257:275:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.UploadLogInfoTask -> com.yunfang.eias.http.task.p:
+com.yunfang.eias.http.task.UploadLogInfoTask -> com.yunfang.eias.http.task.q:
     byte[] mData -> a
     41:42:void setContext(byte[]) -> setContext
     47:64:com.yunfang.framework.model.ResultInfo getResponseData() -> getResponseData
     68:85:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.DataLog) -> request
     1:1:java.lang.Object getResponseData() -> getResponseData
-com.yunfang.eias.http.task.UploadUserInfoTask -> com.yunfang.eias.http.task.q:
+com.yunfang.eias.http.task.UploadUserInfoTask -> com.yunfang.eias.http.task.r:
     byte[] mData -> a
     37:38:void setContext(byte[]) -> setContext
     47:61:com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.framework.dto.UserInfoDTO) -> request
@@ -15948,10 +16000,10 @@ com.yunfang.eias.logic.AppHeader -> com.yunfang.eias.logic.AppHeader:
     295:300:void visMapView(java.lang.Boolean) -> visMapView
     306:311:void visUserInfo(java.lang.Boolean) -> visUserInfo
     319:330:void visNetFlag(java.lang.Boolean) -> visNetFlag
-    341:372:void downloadTipsDialog(java.lang.String) -> downloadTipsDialog
-    376:428:java.lang.Boolean checkSDCardHasSize() -> checkSDCardHasSize
-    432:465:void showDialog(java.lang.String,java.lang.String) -> showDialog
-    480:526:void showDialogResult(java.lang.String,java.util.ArrayList,boolean,android.view.View$OnClickListener) -> showDialogResult
+    342:373:void downloadTipsDialog(java.lang.String) -> downloadTipsDialog
+    377:429:java.lang.Boolean checkSDCardHasSize() -> checkSDCardHasSize
+    433:466:void showDialog(java.lang.String,java.lang.String) -> showDialog
+    481:527:void showDialogResult(java.lang.String,java.util.ArrayList,boolean,android.view.View$OnClickListener) -> showDialogResult
     113:113:android.content.Context access$0(com.yunfang.eias.logic.AppHeader) -> a
     108:108:com.yunfang.eias.logic.AppHeaderMenu access$1(com.yunfang.eias.logic.AppHeader) -> b
     83:83:android.widget.TextView access$2(com.yunfang.eias.logic.AppHeader) -> c
@@ -15968,18 +16020,18 @@ com.yunfang.eias.logic.AppHeader$3 -> com.yunfang.eias.logic.c:
     182:199:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.yunfang.eias.logic.AppHeader$4 -> com.yunfang.eias.logic.d:
     com.yunfang.eias.logic.AppHeader this$0 -> a
-    350:358:void onClick(android.content.DialogInterface,int) -> onClick
+    351:359:void onClick(android.content.DialogInterface,int) -> onClick
 com.yunfang.eias.logic.AppHeader$5 -> com.yunfang.eias.logic.e:
     com.yunfang.eias.logic.AppHeader this$0 -> a
     android.app.Dialog val$dialog_checksdcard -> b
-    417:418:void onClick(android.view.View) -> onClick
+    418:419:void onClick(android.view.View) -> onClick
 com.yunfang.eias.logic.AppHeader$6 -> com.yunfang.eias.logic.f:
     com.yunfang.eias.logic.AppHeader this$0 -> a
     android.app.Dialog val$dialog_checksdcard -> b
-    457:458:void onClick(android.view.View) -> onClick
+    458:459:void onClick(android.view.View) -> onClick
 com.yunfang.eias.logic.AppHeader$7 -> com.yunfang.eias.logic.g:
     com.yunfang.eias.logic.AppHeader this$0 -> a
-    518:519:void onClick(android.view.View) -> onClick
+    519:520:void onClick(android.view.View) -> onClick
 com.yunfang.eias.logic.AppHeaderMenu -> com.yunfang.eias.logic.AppHeaderMenu:
     java.lang.String openActivityName -> openActivityName
     android.widget.Button pop_btn_login -> a
@@ -16061,18 +16113,20 @@ com.yunfang.eias.logic.DataLogOperator -> com.yunfang.eias.logic.l:
     583:589:void taskHttp(java.lang.String,java.lang.String) -> taskHttp
     599:607:void version(java.lang.String) -> version
     617:621:void other(java.lang.String) -> other
-com.yunfang.eias.logic.HomeOperator -> com.yunfang.eias.logic.m:
+com.yunfang.eias.logic.DatadefinesOperator -> com.yunfang.eias.logic.m:
+    29:71:com.yunfang.framework.model.ResultInfo getNewestDatadefine(com.yunfang.framework.model.UserInfo) -> getNewestDatadefine
+com.yunfang.eias.logic.HomeOperator -> com.yunfang.eias.logic.n:
     33:43:com.yunfang.eias.model.UserTaskInfo getCurrentTaskInfos() -> getCurrentTaskInfos
     53:54:java.lang.String getNetType(android.content.Context) -> getNetType
     65:77:com.yunfang.framework.model.ResultInfo fillAllDataDefines(com.yunfang.framework.model.UserInfo,java.util.ArrayList) -> fillAllDataDefines
     90:117:com.yunfang.framework.model.ResultInfo fillOneDataDefine(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.DataDefine) -> fillOneDataDefine
     126:128:com.yunfang.framework.model.UserInfo getUsrInfo() -> getUsrInfo
-    140:176:com.yunfang.framework.model.ResultInfo getHomeData(com.yunfang.framework.model.UserInfo) -> getHomeData
-    183:208:void synchroReportInfo(com.yunfang.framework.model.UserInfo) -> synchroReportInfo
-com.yunfang.eias.logic.HomeOperator$1 -> com.yunfang.eias.logic.n:
+    140:178:com.yunfang.framework.model.ResultInfo getHomeData(com.yunfang.framework.model.UserInfo) -> getHomeData
+    185:210:void synchroReportInfo(com.yunfang.framework.model.UserInfo) -> synchroReportInfo
+com.yunfang.eias.logic.HomeOperator$1 -> com.yunfang.eias.logic.o:
     com.yunfang.framework.model.UserInfo val$userInfo -> a
-    188:205:void run() -> run
-com.yunfang.eias.logic.IntroductionOperator -> com.yunfang.eias.logic.o:
+    190:207:void run() -> run
+com.yunfang.eias.logic.IntroductionOperator -> com.yunfang.eias.logic.p:
     int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$IntroductionTypeEnum -> a
     28:48:com.yunfang.framework.model.ResultInfo getDatas(com.yunfang.eias.enumObj.IntroductionTypeEnum) -> getDatas
     56:66:java.util.ArrayList getAbountMain() -> b
@@ -16125,13 +16179,13 @@ com.yunfang.eias.logic.TaskInfoMenuOperaotr -> com.yunfang.eias.logic.TaskInfoMe
     324:338:java.util.ArrayList getCanBeDeleteCategory(java.lang.Boolean) -> b
     343:344:void setDialog(int) -> setDialog
     135:135:void access$0(com.yunfang.eias.logic.TaskInfoMenuOperaotr,java.lang.String) -> a
-com.yunfang.eias.logic.TaskInfoMenuOperaotr$1 -> com.yunfang.eias.logic.p:
+com.yunfang.eias.logic.TaskInfoMenuOperaotr$1 -> com.yunfang.eias.logic.q:
     com.yunfang.eias.logic.TaskInfoMenuOperaotr this$0 -> a
     237:239:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskInfoMenuOperaotr$2 -> com.yunfang.eias.logic.q:
+com.yunfang.eias.logic.TaskInfoMenuOperaotr$2 -> com.yunfang.eias.logic.r:
     com.yunfang.eias.logic.TaskInfoMenuOperaotr this$0 -> a
     293:294:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskItemControlOperator -> com.yunfang.eias.logic.r:
+com.yunfang.eias.logic.TaskItemControlOperator -> com.yunfang.eias.logic.s:
     com.yunfang.eias.ui.TaskInfoActivity mActivity -> b
     android.widget.LinearLayout viewLayout -> c
     java.util.ArrayList defineItems -> d
@@ -16152,59 +16206,61 @@ com.yunfang.eias.logic.TaskItemControlOperator -> com.yunfang.eias.logic.r:
     359:421:void createCBO(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> b
     431:475:android.widget.ScrollView buildMutiChoiseLayout(java.lang.String[],boolean[]) -> a
     487:498:android.widget.CheckBox buildCheckBox(boolean[],boolean,java.lang.String) -> a
-    509:522:void createTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> c
-    532:545:void createMutilTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> d
-    571:596:void createDateTimeTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> e
-    623:659:void changeValueEvent(java.lang.String,java.lang.String) -> a
-    672:694:void changeItemValue(java.util.ArrayList) -> a
-    704:735:void createBaiduPositionTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> f
-    746:821:void createBaiduMapTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> g
-    831:855:void createUserNameTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> h
-    865:893:void createUserPhoneTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> i
-    901:961:java.util.ArrayList getInputDatas(java.lang.Integer,java.lang.Integer) -> getInputDatas
-    973:975:java.lang.String mkResourceDir(java.lang.String,java.lang.String) -> mkResourceDir
-    989:1018:com.yunfang.framework.model.ResultInfo checkItemDataFormat(java.util.ArrayList,java.util.ArrayList) -> checkItemDataFormat
-    622:622:void access$0(com.yunfang.eias.logic.TaskItemControlOperator,java.lang.String,java.lang.String) -> a
+    509:525:void createTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> c
+    535:550:void createMutilTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> d
+    576:606:void createDateTimeTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> e
+    633:669:void changeValueEvent(java.lang.String,java.lang.String) -> a
+    682:704:void changeItemValue(java.util.ArrayList) -> a
+    714:745:void createBaiduPositionTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> f
+    756:831:void createBaiduMapTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> g
+    841:868:void createUserNameTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> h
+    878:912:void createUserPhoneTextBox(com.yunfang.eias.model.DataFieldDefine,android.widget.LinearLayout,java.lang.String) -> i
+    920:980:java.util.ArrayList getInputDatas(java.lang.Integer,java.lang.Integer) -> getInputDatas
+    992:994:java.lang.String mkResourceDir(java.lang.String,java.lang.String) -> mkResourceDir
+    1008:1037:com.yunfang.framework.model.ResultInfo checkItemDataFormat(java.util.ArrayList,java.util.ArrayList) -> checkItemDataFormat
+    632:632:void access$0(com.yunfang.eias.logic.TaskItemControlOperator,java.lang.String,java.lang.String) -> a
     124:124:void access$1(com.yunfang.eias.logic.TaskItemControlOperator,java.lang.Boolean) -> a
     69:69:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$DataItemType() -> a
     74:74:com.yunfang.eias.ui.TaskInfoActivity access$3(com.yunfang.eias.logic.TaskItemControlOperator) -> a
     430:430:android.widget.ScrollView access$4(com.yunfang.eias.logic.TaskItemControlOperator,java.lang.String[],boolean[]) -> a
     108:108:android.widget.LinearLayout$LayoutParams access$5(com.yunfang.eias.logic.TaskItemControlOperator) -> b
-com.yunfang.eias.logic.TaskItemControlOperator$1 -> com.yunfang.eias.logic.s:
+com.yunfang.eias.logic.TaskItemControlOperator$1 -> com.yunfang.eias.logic.t:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     259:275:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
     280:280:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
-com.yunfang.eias.logic.TaskItemControlOperator$10 -> com.yunfang.eias.logic.t:
+com.yunfang.eias.logic.TaskItemControlOperator$10 -> com.yunfang.eias.logic.u:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     android.widget.Button val$et -> b
     com.yunfang.eias.model.DataFieldDefine val$finalF -> c
-    758:806:void onClick(android.view.View) -> onClick
-    755:755:com.yunfang.eias.logic.TaskItemControlOperator access$0(com.yunfang.eias.logic.TaskItemControlOperator$10) -> a
-com.yunfang.eias.logic.TaskItemControlOperator$10$1 -> com.yunfang.eias.logic.u:
+    768:816:void onClick(android.view.View) -> onClick
+    765:765:com.yunfang.eias.logic.TaskItemControlOperator access$0(com.yunfang.eias.logic.TaskItemControlOperator$10) -> a
+com.yunfang.eias.logic.TaskItemControlOperator$10$1 -> com.yunfang.eias.logic.v:
     com.yunfang.eias.logic.TaskItemControlOperator$10 this$1 -> a
     android.widget.Button val$et -> b
     com.yunfang.eias.model.DataFieldDefine val$finalF -> c
     android.widget.Button val$tempView -> d
     android.app.Dialog val$dialog -> e
-    773:788:void onSelected(com.baidu.location.BDLocation) -> onSelected
-    792:793:void onCancel() -> onCancel
-    798:798:void onGetGeoCodeResult(com.baidu.mapapi.search.geocode.GeoCodeResult) -> onGetGeoCodeResult
-    803:803:void onMapStatusChange(com.baidu.mapapi.map.MapStatus) -> onMapStatusChange
-com.yunfang.eias.logic.TaskItemControlOperator$11 -> com.yunfang.eias.logic.v:
+    783:798:void onSelected(com.baidu.location.BDLocation) -> onSelected
+    802:803:void onCancel() -> onCancel
+    808:808:void onGetGeoCodeResult(com.baidu.mapapi.search.geocode.GeoCodeResult) -> onGetGeoCodeResult
+    813:813:void onMapStatusChange(com.baidu.mapapi.map.MapStatus) -> onMapStatusChange
+com.yunfang.eias.logic.TaskItemControlOperator$11 -> com.yunfang.eias.logic.w:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    842:848:void onFocusChange(android.view.View,boolean) -> onFocusChange
-com.yunfang.eias.logic.TaskItemControlOperator$12 -> com.yunfang.eias.logic.w:
+    com.yunfang.eias.model.DataFieldDefine val$f -> b
+    852:861:void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.yunfang.eias.logic.TaskItemControlOperator$12 -> com.yunfang.eias.logic.x:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    880:886:void onFocusChange(android.view.View,boolean) -> onFocusChange
-com.yunfang.eias.logic.TaskItemControlOperator$2 -> com.yunfang.eias.logic.x:
+    com.yunfang.eias.model.DataFieldDefine val$f -> b
+    893:905:void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.yunfang.eias.logic.TaskItemControlOperator$2 -> com.yunfang.eias.logic.y:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    553:554:void afterTextChanged(android.text.Editable) -> afterTextChanged
-    557:557:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
-    561:561:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
-com.yunfang.eias.logic.TaskItemControlOperator$3 -> com.yunfang.eias.logic.y:
+    558:559:void afterTextChanged(android.text.Editable) -> afterTextChanged
+    562:562:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
+    566:566:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
+com.yunfang.eias.logic.TaskItemControlOperator$3 -> com.yunfang.eias.logic.z:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    604:613:void onFocusChange(android.view.View,boolean) -> onFocusChange
-com.yunfang.eias.logic.TaskItemControlOperator$4 -> com.yunfang.eias.logic.z:
+    614:623:void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.yunfang.eias.logic.TaskItemControlOperator$4 -> com.yunfang.eias.logic.aa:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     android.widget.Spinner val$sp -> b
     java.lang.String[] val$arr -> c
@@ -16212,19 +16268,19 @@ com.yunfang.eias.logic.TaskItemControlOperator$4 -> com.yunfang.eias.logic.z:
     323:323:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     327:327:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     331:335:void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.yunfang.eias.logic.TaskItemControlOperator$5 -> com.yunfang.eias.logic.aa:
+com.yunfang.eias.logic.TaskItemControlOperator$5 -> com.yunfang.eias.logic.ab:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     java.lang.String[] val$arr -> b
     android.widget.Button val$selectBtn -> c
     369:416:void onClick(android.view.View) -> onClick
     366:366:com.yunfang.eias.logic.TaskItemControlOperator access$0(com.yunfang.eias.logic.TaskItemControlOperator$5) -> a
-com.yunfang.eias.logic.TaskItemControlOperator$5$1 -> com.yunfang.eias.logic.ab:
+com.yunfang.eias.logic.TaskItemControlOperator$5$1 -> com.yunfang.eias.logic.ac:
     com.yunfang.eias.logic.TaskItemControlOperator$5 this$1 -> a
     java.lang.String[] val$arr -> b
     boolean[] val$checkedItems -> c
     android.widget.Button val$selectBtn -> d
     395:412:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskItemControlOperator$6 -> com.yunfang.eias.logic.ac:
+com.yunfang.eias.logic.TaskItemControlOperator$6 -> com.yunfang.eias.logic.ad:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     java.lang.String[] val$arrItems -> b
     android.widget.CheckBox val$cb -> c
@@ -16232,23 +16288,24 @@ com.yunfang.eias.logic.TaskItemControlOperator$6 -> com.yunfang.eias.logic.ac:
     453:453:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     457:457:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     461:462:void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.yunfang.eias.logic.TaskItemControlOperator$7 -> com.yunfang.eias.logic.ad:
+com.yunfang.eias.logic.TaskItemControlOperator$7 -> com.yunfang.eias.logic.ae:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
     boolean[] val$checkedItems -> b
     495:496:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.yunfang.eias.logic.TaskItemControlOperator$8 -> com.yunfang.eias.logic.ae:
+com.yunfang.eias.logic.TaskItemControlOperator$8 -> com.yunfang.eias.logic.af:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    579:588:void onFocusChange(android.view.View,boolean) -> onFocusChange
-com.yunfang.eias.logic.TaskItemControlOperator$9 -> com.yunfang.eias.logic.af:
+    com.yunfang.eias.model.DataFieldDefine val$f -> b
+    584:598:void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.yunfang.eias.logic.TaskItemControlOperator$9 -> com.yunfang.eias.logic.ag:
     com.yunfang.eias.logic.TaskItemControlOperator this$0 -> a
-    712:730:void onFocusChange(android.view.View,boolean) -> onFocusChange
-    708:708:com.yunfang.eias.logic.TaskItemControlOperator access$0(com.yunfang.eias.logic.TaskItemControlOperator$9) -> a
-com.yunfang.eias.logic.TaskItemControlOperator$9$1 -> com.yunfang.eias.logic.ag:
+    722:740:void onFocusChange(android.view.View,boolean) -> onFocusChange
+    718:718:com.yunfang.eias.logic.TaskItemControlOperator access$0(com.yunfang.eias.logic.TaskItemControlOperator$9) -> a
+com.yunfang.eias.logic.TaskItemControlOperator$9$1 -> com.yunfang.eias.logic.ah:
     com.yunfang.eias.logic.TaskItemControlOperator$9 this$1 -> a
     android.widget.EditText val$temp -> b
     java.lang.String val$inputValue -> c
     java.lang.String val$inputKey -> d
-    722:724:void onSelected(com.baidu.location.BDLocation) -> onSelected
+    732:734:void onSelected(com.baidu.location.BDLocation) -> onSelected
 com.yunfang.eias.logic.TaskListMenuOperaotr -> com.yunfang.eias.logic.TaskListMenuOperaotr:
     java.lang.String[] menuItems -> a
     java.lang.String title -> b
@@ -16268,30 +16325,30 @@ com.yunfang.eias.logic.TaskListMenuOperaotr -> com.yunfang.eias.logic.TaskListMe
     int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum -> o
     171:183:void showDialog() -> showDialog
     191:276:java.lang.Boolean setMenuItems() -> c
-    285:401:void menuItemClick(int) -> a
-    407:408:void additionalPictrue() -> d
-    414:421:void deleteTaskInfoDialog() -> e
-    427:461:void showPauseDialog() -> f
-    469:520:void showSetFeeDialog() -> g
-    528:628:void showAppointmentDialog(com.yunfang.eias.enumObj.TaskMenuEnum) -> a
-    631:635:void resizePikcer(android.widget.FrameLayout) -> resizePikcer
-    644:659:java.util.List findNumberPicker(android.view.ViewGroup) -> a
-    666:669:void resizeNumberPicker(android.widget.NumberPicker) -> a
-    675:710:void pastedCategories(java.lang.Boolean) -> a
-    716:794:void showCurrentSelectedTaskInfo() -> h
-    800:801:void taskExportInfo() -> i
-    807:808:void taskImportInfo() -> j
-    816:869:void showCopyCategoriesDialog() -> k
-    875:882:void setDoingTaskinfoMenuCopyValue(java.util.HashMap) -> a
-    892:909:void loadSuitableDialog(android.view.View) -> a
-    928:964:void commitTasks(java.util.List) -> a
-    975:986:void putTaskInfo(java.lang.Integer,java.lang.String,java.lang.String) -> putTaskInfo
-    1001:1041:void checkTaskFile(java.lang.Integer,java.lang.String) -> a
-    1050:1056:boolean hasNewDataDefines(int) -> b
-    1066:1070:boolean checkTaskReportFinish(com.yunfang.eias.model.TaskInfo) -> a
-    1081:1082:void removeTaskResource() -> l
-    1092:1094:void queryFinishReport() -> m
-    1104:1106:void queryFinishTask() -> n
+    285:407:void menuItemClick(int) -> a
+    413:414:void additionalPictrue() -> d
+    420:427:void deleteTaskInfoDialog() -> e
+    433:467:void showPauseDialog() -> f
+    475:526:void showSetFeeDialog() -> g
+    534:634:void showAppointmentDialog(com.yunfang.eias.enumObj.TaskMenuEnum) -> a
+    637:641:void resizePikcer(android.widget.FrameLayout) -> resizePikcer
+    650:665:java.util.List findNumberPicker(android.view.ViewGroup) -> a
+    672:675:void resizeNumberPicker(android.widget.NumberPicker) -> a
+    681:716:void pastedCategories(java.lang.Boolean) -> a
+    722:800:void showCurrentSelectedTaskInfo() -> h
+    806:807:void taskExportInfo() -> i
+    813:814:void taskImportInfo() -> j
+    822:875:void showCopyCategoriesDialog() -> k
+    881:888:void setDoingTaskinfoMenuCopyValue(java.util.HashMap) -> a
+    898:915:void loadSuitableDialog(android.view.View) -> a
+    935:969:void commitTasks(java.util.List) -> a
+    980:990:void putTaskInfo(java.lang.Integer,java.lang.String,java.lang.String) -> putTaskInfo
+    1002:1046:void checkTaskFile(java.lang.Integer,java.lang.String) -> a
+    1055:1061:boolean hasNewDataDefines(int) -> b
+    1071:1075:boolean checkTaskReportFinish(com.yunfang.eias.model.TaskInfo) -> a
+    1086:1087:void removeTaskResource() -> l
+    1097:1099:void queryFinishReport() -> m
+    1109:1111:void queryFinishTask() -> n
     284:284:void access$0(com.yunfang.eias.logic.TaskListMenuOperaotr,int) -> a
     64:64:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> a
     64:64:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum() -> b
@@ -16301,57 +16358,57 @@ com.yunfang.eias.logic.TaskListMenuOperaotr -> com.yunfang.eias.logic.TaskListMe
     103:103:android.app.Dialog access$6(com.yunfang.eias.logic.TaskListMenuOperaotr) -> d
     124:124:android.widget.PopupWindow access$7(com.yunfang.eias.logic.TaskListMenuOperaotr) -> e
     113:113:java.util.LinkedHashMap access$8(com.yunfang.eias.logic.TaskListMenuOperaotr) -> f
-    874:874:void access$9(com.yunfang.eias.logic.TaskListMenuOperaotr,java.util.HashMap) -> a
+    880:880:void access$9(com.yunfang.eias.logic.TaskListMenuOperaotr,java.util.HashMap) -> a
     139:139:android.content.Context access$10(com.yunfang.eias.logic.TaskListMenuOperaotr) -> g
     1000:1000:void access$11(com.yunfang.eias.logic.TaskListMenuOperaotr,java.lang.Integer,java.lang.String) -> a
-com.yunfang.eias.logic.TaskListMenuOperaotr$1 -> com.yunfang.eias.logic.ah:
+com.yunfang.eias.logic.TaskListMenuOperaotr$1 -> com.yunfang.eias.logic.ai:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     177:178:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$10 -> com.yunfang.eias.logic.ai:
+com.yunfang.eias.logic.TaskListMenuOperaotr$10 -> com.yunfang.eias.logic.aj:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     android.widget.EditText val$dialog_view_appointment_date -> b
-    591:592:void onDateChanged(android.widget.DatePicker,int,int,int) -> onDateChanged
-com.yunfang.eias.logic.TaskListMenuOperaotr$11 -> com.yunfang.eias.logic.aj:
+    597:598:void onDateChanged(android.widget.DatePicker,int,int,int) -> onDateChanged
+com.yunfang.eias.logic.TaskListMenuOperaotr$11 -> com.yunfang.eias.logic.ak:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     java.lang.Boolean val$isCopyToNewTask -> b
-    694:705:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$12 -> com.yunfang.eias.logic.ak:
+    700:711:void onClick(android.content.DialogInterface,int) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$12 -> com.yunfang.eias.logic.al:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    785:786:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$13 -> com.yunfang.eias.logic.al:
+    791:792:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$13 -> com.yunfang.eias.logic.am:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    838:858:void onSelected(android.util.SparseBooleanArray) -> onSelected
-com.yunfang.eias.logic.TaskListMenuOperaotr$14 -> com.yunfang.eias.logic.am:
+    844:864:void onSelected(android.util.SparseBooleanArray) -> onSelected
+com.yunfang.eias.logic.TaskListMenuOperaotr$14 -> com.yunfang.eias.logic.an:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    864:865:void onCancel() -> onCancel
-com.yunfang.eias.logic.TaskListMenuOperaotr$15 -> com.yunfang.eias.logic.an:
+    870:871:void onCancel() -> onCancel
+com.yunfang.eias.logic.TaskListMenuOperaotr$15 -> com.yunfang.eias.logic.ao:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     java.util.List val$submitTaskInfos -> b
-    953:956:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$16 -> com.yunfang.eias.logic.ao:
+    955:958:void onClick(android.content.DialogInterface,int) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$16 -> com.yunfang.eias.logic.ap:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     java.lang.Integer val$ddid -> b
     java.lang.String val$taskNum -> c
-    980:981:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$17 -> com.yunfang.eias.logic.ap:
+    984:985:void onClick(android.content.DialogInterface,int) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$17 -> com.yunfang.eias.logic.aq:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    1028:1029:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$2 -> com.yunfang.eias.logic.aq:
+    1030:1031:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$2 -> com.yunfang.eias.logic.ar:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    417:419:void onClick(android.content.DialogInterface,int) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$3 -> com.yunfang.eias.logic.ar:
+    423:425:void onClick(android.content.DialogInterface,int) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$3 -> com.yunfang.eias.logic.as:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    447:451:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$4 -> com.yunfang.eias.logic.as:
+    453:457:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$4 -> com.yunfang.eias.logic.at:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    456:457:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$5 -> com.yunfang.eias.logic.at:
+    462:463:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$5 -> com.yunfang.eias.logic.au:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    491:501:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$6 -> com.yunfang.eias.logic.au:
+    497:507:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$6 -> com.yunfang.eias.logic.av:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    506:507:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$7 -> com.yunfang.eias.logic.av:
+    512:513:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$7 -> com.yunfang.eias.logic.aw:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     android.widget.EditText val$dialog_view_appointment_name -> b
     android.widget.EditText val$dialog_view_appointment_phone -> c
@@ -16359,14 +16416,14 @@ com.yunfang.eias.logic.TaskListMenuOperaotr$7 -> com.yunfang.eias.logic.av:
     android.widget.EditText val$dialog_view_appointment_time -> e
     android.widget.EditText val$dialog_view_appointment_remark -> f
     com.yunfang.eias.enumObj.TaskMenuEnum val$menu -> g
-    561:572:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$8 -> com.yunfang.eias.logic.aw:
+    567:578:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$8 -> com.yunfang.eias.logic.ax:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
-    577:578:void onClick(android.view.View) -> onClick
-com.yunfang.eias.logic.TaskListMenuOperaotr$9 -> com.yunfang.eias.logic.ax:
+    583:584:void onClick(android.view.View) -> onClick
+com.yunfang.eias.logic.TaskListMenuOperaotr$9 -> com.yunfang.eias.logic.ay:
     com.yunfang.eias.logic.TaskListMenuOperaotr this$0 -> a
     android.widget.EditText val$dialog_view_appointment_time -> b
-    583:584:void onTimeChanged(android.widget.TimePicker,int,int) -> onTimeChanged
+    589:590:void onTimeChanged(android.widget.TimePicker,int,int) -> onTimeChanged
 com.yunfang.eias.logic.TaskOperator -> com.yunfang.eias.logic.TaskOperator:
     java.lang.String KEY_ADDITIONAL -> KEY_ADDITIONAL
     java.lang.String KEY_ADDITIONAL_RESOURCE -> KEY_ADDITIONAL_RESOURCE
@@ -16425,20 +16482,20 @@ com.yunfang.eias.logic.TaskOperator -> com.yunfang.eias.logic.TaskOperator:
     2028:2084:java.util.ArrayList taskCheckFormat(com.yunfang.eias.dto.TaskInfoDTO,java.lang.String) -> a
     2098:2143:com.yunfang.framework.model.ResultInfo taskExportCheck(java.lang.String) -> taskExportCheck
     2152:2191:com.yunfang.framework.model.ResultInfo taskExport(java.lang.String) -> taskExport
-    2206:2284:com.yunfang.framework.model.ResultInfo taskImport(java.lang.String,com.yunfang.eias.viewmodel.TaskImportGuideViewModel) -> taskImport
-    2300:2312:com.yunfang.eias.dto.AdditionalResource getAdditional(java.lang.String) -> getAdditional
-    2320:2353:void saveAdditional(java.lang.String,java.lang.String,boolean) -> saveAdditional
-    2360:2376:void removeAdditional(java.lang.String) -> removeAdditional
-    2382:2395:void additionalResource(com.yunfang.eias.model.TaskInfo) -> additionalResource
-    2406:2444:void setItemDefaultValue(com.yunfang.eias.model.TaskInfo) -> setItemDefaultValue
-    2449:2460:void updateFinishCount(com.yunfang.eias.model.TaskInfo) -> b
-    2463:2478:java.util.ArrayList geTaskCategoryInfos(com.yunfang.eias.model.TaskInfo) -> c
-    2489:2496:int getBaseCategoryID(java.util.ArrayList,int) -> a
-    2509:2513:void removeTaskResource(com.yunfang.eias.model.TaskInfo) -> removeTaskResource
+    2206:2281:com.yunfang.framework.model.ResultInfo taskImport(java.lang.String,com.yunfang.eias.viewmodel.TaskImportGuideViewModel) -> taskImport
+    2297:2309:com.yunfang.eias.dto.AdditionalResource getAdditional(java.lang.String) -> getAdditional
+    2317:2350:void saveAdditional(java.lang.String,java.lang.String,boolean) -> saveAdditional
+    2357:2373:void removeAdditional(java.lang.String) -> removeAdditional
+    2379:2392:void additionalResource(com.yunfang.eias.model.TaskInfo) -> additionalResource
+    2403:2441:void setItemDefaultValue(com.yunfang.eias.model.TaskInfo) -> setItemDefaultValue
+    2446:2457:void updateFinishCount(com.yunfang.eias.model.TaskInfo) -> b
+    2460:2475:java.util.ArrayList geTaskCategoryInfos(com.yunfang.eias.model.TaskInfo) -> c
+    2486:2493:int getBaseCategoryID(java.util.ArrayList,int) -> a
+    2506:2510:void removeTaskResource(com.yunfang.eias.model.TaskInfo) -> removeTaskResource
     75:75:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> a
     75:75:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$CategoryType() -> b
     75:75:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$OperatorTypeEnum() -> c
-com.yunfang.eias.logic.UserInfoOperator -> com.yunfang.eias.logic.ay:
+com.yunfang.eias.logic.UserInfoOperator -> com.yunfang.eias.logic.az:
     42:67:com.yunfang.framework.model.ResultInfo changePassword(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> changePassword
     80:94:com.yunfang.framework.model.ResultInfo passwordAuthenticate(java.lang.String,java.lang.String,java.lang.String) -> a
     105:124:com.yunfang.framework.dto.UserInfoDTO getImageToView(android.content.Intent,java.lang.String,java.lang.String) -> getImageToView
@@ -16647,21 +16704,22 @@ com.yunfang.eias.model.UserTaskInfo -> com.yunfang.eias.model.UserTaskInfo:
     int NonReceivedNormal -> NonReceivedNormal
     int NonReceivedUrgent -> NonReceivedUrgent
 com.yunfang.eias.tables.DataDefineWorker -> com.yunfang.eias.b.a:
-    30:68:com.yunfang.framework.model.ResultInfo fillCompleteDataDefindInfos(com.yunfang.eias.model.DataDefine) -> fillCompleteDataDefindInfos
-    81:96:void deleteExcessFields(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataCategoryDefine) -> a
-    108:122:void resetDataFieldDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataFieldDefine) -> a
-    134:157:void deleteExcessCategories(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataDefine) -> a
-    169:183:void resetDataCategoryDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataCategoryDefine) -> b
-    197:210:long resetDataDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataDefine) -> b
-    223:244:com.yunfang.framework.model.ResultInfo deleteCompleteDataDefindInfos(int) -> deleteCompleteDataDefindInfos
-    257:283:com.yunfang.framework.model.ResultInfo queryDataDefineByDDIDOrCompanyID(int,int) -> queryDataDefineByDDIDOrCompanyID
-    294:320:com.yunfang.framework.model.ResultInfo queryDataDefineByCompanyID(int) -> queryDataDefineByCompanyID
-    331:353:com.yunfang.framework.model.ResultInfo queryDataDefineByDDID(int) -> queryDataDefineByDDID
-    364:388:com.yunfang.framework.model.ResultInfo queryDataCategoryDefineByDDID(int) -> queryDataCategoryDefineByDDID
-    401:425:com.yunfang.framework.model.ResultInfo queryDataFieldDefineByID(int,int) -> queryDataFieldDefineByID
-    435:457:com.yunfang.framework.model.ResultInfo getDataCategoryDefineByCategoryId(java.lang.Integer) -> getDataCategoryDefineByCategoryId
-    468:514:com.yunfang.framework.model.ResultInfo getCompleteDataDefine(java.lang.Integer) -> getCompleteDataDefine
-    523:541:com.yunfang.framework.model.ResultInfo getHasDefaultItem(int) -> getHasDefaultItem
+    32:70:com.yunfang.framework.model.ResultInfo fillCompleteDataDefindInfos(com.yunfang.eias.model.DataDefine) -> fillCompleteDataDefindInfos
+    83:98:void deleteExcessFields(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataCategoryDefine) -> a
+    110:124:void resetDataFieldDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataFieldDefine) -> a
+    136:159:void deleteExcessCategories(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataDefine) -> a
+    171:185:void resetDataCategoryDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataCategoryDefine) -> b
+    199:212:long resetDataDefine(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.DataDefine) -> b
+    225:246:com.yunfang.framework.model.ResultInfo deleteCompleteDataDefindInfos(int) -> deleteCompleteDataDefindInfos
+    261:287:com.yunfang.framework.model.ResultInfo queryDataDefineByDDIDOrCompanyID(int,int) -> queryDataDefineByDDIDOrCompanyID
+    296:319:boolean deletDataDefneByDDID(java.util.List) -> deletDataDefneByDDID
+    330:356:com.yunfang.framework.model.ResultInfo queryDataDefineByCompanyID(int) -> queryDataDefineByCompanyID
+    367:389:com.yunfang.framework.model.ResultInfo queryDataDefineByDDID(int) -> queryDataDefineByDDID
+    400:424:com.yunfang.framework.model.ResultInfo queryDataCategoryDefineByDDID(int) -> queryDataCategoryDefineByDDID
+    437:461:com.yunfang.framework.model.ResultInfo queryDataFieldDefineByID(int,int) -> queryDataFieldDefineByID
+    471:493:com.yunfang.framework.model.ResultInfo getDataCategoryDefineByCategoryId(java.lang.Integer) -> getDataCategoryDefineByCategoryId
+    504:550:com.yunfang.framework.model.ResultInfo getCompleteDataDefine(java.lang.Integer) -> getCompleteDataDefine
+    559:577:com.yunfang.framework.model.ResultInfo getHasDefaultItem(int) -> getHasDefaultItem
 com.yunfang.eias.tables.DataLogWorker -> com.yunfang.eias.b.b:
     38:71:com.yunfang.framework.model.ResultInfo createDataLog(com.yunfang.framework.model.UserInfo,java.lang.String,com.yunfang.eias.enumObj.OperatorTypeEnum) -> createDataLog
     94:142:com.yunfang.framework.model.ResultInfo getDataLogs(int,int,java.lang.String,com.yunfang.framework.model.UserInfo,int) -> getDataLogs
@@ -16674,44 +16732,45 @@ com.yunfang.eias.tables.DataLogWorker$1 -> com.yunfang.eias.b.c:
     44:69:void run() -> run
 com.yunfang.eias.tables.TaskDataWorker -> com.yunfang.eias.b.d:
     int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$DataItemType -> a
-    45:66:com.yunfang.framework.model.ResultInfo createdByUserTaskTotal(com.yunfang.framework.model.UserInfo) -> createdByUserTaskTotal
-    82:130:com.yunfang.framework.model.ResultInfo createCategory(com.yunfang.eias.model.DataCategoryDefine,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String) -> createCategory
-    160:201:com.yunfang.framework.model.ResultInfo createLocalTask(java.lang.Boolean,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,com.yunfang.framework.model.UserInfo) -> createLocalTask
-    217:240:com.yunfang.framework.model.ResultInfo deleteCompleteTaskDataInfos(int,java.lang.Boolean) -> deleteCompleteTaskDataInfos
-    255:302:java.util.ArrayList fillCategories(com.yunfang.eias.model.DataCategoryDefine,java.lang.Integer,java.lang.Integer) -> a
-    313:347:com.yunfang.framework.model.ResultInfo fillCompleteTaskDataInfos(com.yunfang.eias.model.TaskInfo) -> fillCompleteTaskDataInfos
-    361:372:java.lang.Integer getDefineTotal(java.util.ArrayList,java.lang.Integer) -> a
-    384:396:java.util.ArrayList getTaskCategories(java.lang.Integer) -> getTaskCategories
-    407:420:java.lang.String getTaskDataItemDefaultValue(com.yunfang.eias.model.DataFieldDefine) -> a
-    429:440:com.yunfang.eias.model.TaskCategoryInfo getTaskCategoryInfo(java.lang.Boolean,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String) -> getTaskCategoryInfo
-    453:467:com.yunfang.framework.model.ResultInfo getTaskInfoById(java.lang.Integer,java.lang.Boolean) -> getTaskInfoById
-    506:547:com.yunfang.framework.model.ResultInfo queryCreatedByUserTaskInfoes(com.yunfang.framework.model.UserInfo,java.lang.Integer,java.lang.Integer,com.yunfang.eias.enumObj.TaskStatus,java.lang.Integer,java.lang.String) -> queryCreatedByUserTaskInfoes
-    558:581:com.yunfang.framework.model.ResultInfo queryOneTaskCategoryInfo(int) -> queryOneTaskCategoryInfo
-    596:634:com.yunfang.framework.model.ResultInfo queryTaskCategories(java.lang.Integer,java.lang.Boolean,java.lang.Boolean) -> queryTaskCategories
-    658:696:com.yunfang.framework.model.ResultInfo queryTaskDataItemsByID(int,int,int,java.lang.Boolean) -> queryTaskDataItemsByID
-    709:728:com.yunfang.framework.model.ResultInfo queryTaskInfo(java.lang.Integer,java.lang.Boolean) -> queryTaskInfo
-    738:750:com.yunfang.framework.model.ResultInfo queryTaskInfoByTaskNum(java.lang.String) -> queryTaskInfoByTaskNum
-    769:819:com.yunfang.framework.model.ResultInfo queryTaskInfoes(int,int,java.lang.String,com.yunfang.framework.model.UserInfo,com.yunfang.eias.enumObj.TaskStatus,java.lang.Boolean) -> queryTaskInfoes
-    834:858:com.yunfang.framework.model.ResultInfo queryOneTaskDataItems(int,int,java.lang.String) -> queryOneTaskDataItems
-    876:938:com.yunfang.framework.model.ResultInfo resetDataDefine(java.lang.Integer,com.yunfang.framework.model.ResultInfo,com.yunfang.framework.model.ResultInfo,java.util.ArrayList,java.lang.Boolean) -> a
-    958:987:com.yunfang.framework.model.ResultInfo updateTaskCategoryInfos(java.lang.Integer,android.database.sqlite.SQLiteDatabase,java.util.ArrayList,com.yunfang.eias.model.DataCategoryDefine,java.util.ArrayList) -> a
-    999:1030:com.yunfang.framework.model.ResultInfo resetTaskCategoryInfo(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskCategoryInfo) -> a
-    1042:1064:com.yunfang.framework.model.ResultInfo resetTaskDataItem(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskDataItem) -> a
-    1079:1090:long resetTaskInfo(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskInfo) -> a
-    1101:1128:com.yunfang.framework.model.ResultInfo saveManyTaskCategoryInfo(java.util.ArrayList) -> saveManyTaskCategoryInfo
-    1141:1178:com.yunfang.framework.model.ResultInfo saveManyTaskDataItem(java.util.ArrayList) -> saveManyTaskDataItem
-    1191:1255:com.yunfang.framework.model.ResultInfo setDataDefineFinishCount(com.yunfang.framework.model.ResultInfo,java.util.ArrayList,java.lang.Boolean) -> a
-    1265:1280:java.util.ArrayList filterDataItem(java.util.ArrayList,java.util.ArrayList) -> filterDataItem
-    1291:1316:java.util.ArrayList setOrderTaskCategoryInfos(java.lang.Integer,java.util.ArrayList) -> a
-    1327:1342:com.yunfang.framework.model.ResultInfo updateOneTaskCategoryInfo(com.yunfang.eias.model.TaskCategoryInfo) -> updateOneTaskCategoryInfo
-    1357:1379:com.yunfang.framework.model.ResultInfo getCompleteTaskInfoById(java.lang.Integer,java.lang.Boolean) -> getCompleteTaskInfoById
-    1390:1407:com.yunfang.framework.model.ResultInfo getCompleteTaskInfoByTaskNum(java.lang.String) -> getCompleteTaskInfoByTaskNum
-    1418:1438:java.util.ArrayList getCompleteTaskCategories(java.lang.Integer,java.lang.Boolean) -> a
-    1455:1479:com.yunfang.framework.model.ResultInfo deleteCategoryInfo(com.yunfang.eias.model.TaskInfo,com.yunfang.eias.model.TaskCategoryInfo) -> deleteCategoryInfo
-    1495:1554:com.yunfang.framework.model.ResultInfo submitedUpdateTaskInfo(com.yunfang.eias.dto.TaskInfoDTO,java.lang.Boolean) -> submitedUpdateTaskInfo
-    1567:1596:com.yunfang.framework.model.ResultInfo getLastDateByReport(com.yunfang.framework.model.UserInfo) -> getLastDateByReport
-    1607:1637:com.yunfang.framework.model.ResultInfo synchroReportInfo(java.lang.String,java.lang.String) -> synchroReportInfo
-    35:35:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$DataItemType() -> a
+    47:68:com.yunfang.framework.model.ResultInfo createdByUserTaskTotal(com.yunfang.framework.model.UserInfo) -> createdByUserTaskTotal
+    82:109:com.yunfang.framework.model.ResultInfo queryUserInfo(com.yunfang.framework.model.UserInfo) -> queryUserInfo
+    125:173:com.yunfang.framework.model.ResultInfo createCategory(com.yunfang.eias.model.DataCategoryDefine,java.lang.Integer,java.lang.Boolean,java.lang.Integer,java.lang.String) -> createCategory
+    203:244:com.yunfang.framework.model.ResultInfo createLocalTask(java.lang.Boolean,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,com.yunfang.framework.model.UserInfo) -> createLocalTask
+    260:283:com.yunfang.framework.model.ResultInfo deleteCompleteTaskDataInfos(int,java.lang.Boolean) -> deleteCompleteTaskDataInfos
+    298:345:java.util.ArrayList fillCategories(com.yunfang.eias.model.DataCategoryDefine,java.lang.Integer,java.lang.Integer) -> a
+    356:390:com.yunfang.framework.model.ResultInfo fillCompleteTaskDataInfos(com.yunfang.eias.model.TaskInfo) -> fillCompleteTaskDataInfos
+    404:415:java.lang.Integer getDefineTotal(java.util.ArrayList,java.lang.Integer) -> a
+    427:439:java.util.ArrayList getTaskCategories(java.lang.Integer) -> getTaskCategories
+    450:463:java.lang.String getTaskDataItemDefaultValue(com.yunfang.eias.model.DataFieldDefine) -> a
+    472:483:com.yunfang.eias.model.TaskCategoryInfo getTaskCategoryInfo(java.lang.Boolean,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String) -> getTaskCategoryInfo
+    496:510:com.yunfang.framework.model.ResultInfo getTaskInfoById(java.lang.Integer,java.lang.Boolean) -> getTaskInfoById
+    549:590:com.yunfang.framework.model.ResultInfo queryCreatedByUserTaskInfoes(com.yunfang.framework.model.UserInfo,java.lang.Integer,java.lang.Integer,com.yunfang.eias.enumObj.TaskStatus,java.lang.Integer,java.lang.String) -> queryCreatedByUserTaskInfoes
+    601:624:com.yunfang.framework.model.ResultInfo queryOneTaskCategoryInfo(int) -> queryOneTaskCategoryInfo
+    639:677:com.yunfang.framework.model.ResultInfo queryTaskCategories(java.lang.Integer,java.lang.Boolean,java.lang.Boolean) -> queryTaskCategories
+    701:739:com.yunfang.framework.model.ResultInfo queryTaskDataItemsByID(int,int,int,java.lang.Boolean) -> queryTaskDataItemsByID
+    752:771:com.yunfang.framework.model.ResultInfo queryTaskInfo(java.lang.Integer,java.lang.Boolean) -> queryTaskInfo
+    781:793:com.yunfang.framework.model.ResultInfo queryTaskInfoByTaskNum(java.lang.String) -> queryTaskInfoByTaskNum
+    812:862:com.yunfang.framework.model.ResultInfo queryTaskInfoes(int,int,java.lang.String,com.yunfang.framework.model.UserInfo,com.yunfang.eias.enumObj.TaskStatus,java.lang.Boolean) -> queryTaskInfoes
+    877:901:com.yunfang.framework.model.ResultInfo queryOneTaskDataItems(int,int,java.lang.String) -> queryOneTaskDataItems
+    919:981:com.yunfang.framework.model.ResultInfo resetDataDefine(java.lang.Integer,com.yunfang.framework.model.ResultInfo,com.yunfang.framework.model.ResultInfo,java.util.ArrayList,java.lang.Boolean) -> a
+    1001:1030:com.yunfang.framework.model.ResultInfo updateTaskCategoryInfos(java.lang.Integer,android.database.sqlite.SQLiteDatabase,java.util.ArrayList,com.yunfang.eias.model.DataCategoryDefine,java.util.ArrayList) -> a
+    1042:1073:com.yunfang.framework.model.ResultInfo resetTaskCategoryInfo(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskCategoryInfo) -> a
+    1085:1107:com.yunfang.framework.model.ResultInfo resetTaskDataItem(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskDataItem) -> a
+    1122:1133:long resetTaskInfo(android.database.sqlite.SQLiteDatabase,com.yunfang.eias.model.TaskInfo) -> a
+    1144:1171:com.yunfang.framework.model.ResultInfo saveManyTaskCategoryInfo(java.util.ArrayList) -> saveManyTaskCategoryInfo
+    1184:1221:com.yunfang.framework.model.ResultInfo saveManyTaskDataItem(java.util.ArrayList) -> saveManyTaskDataItem
+    1234:1298:com.yunfang.framework.model.ResultInfo setDataDefineFinishCount(com.yunfang.framework.model.ResultInfo,java.util.ArrayList,java.lang.Boolean) -> a
+    1308:1323:java.util.ArrayList filterDataItem(java.util.ArrayList,java.util.ArrayList) -> filterDataItem
+    1334:1359:java.util.ArrayList setOrderTaskCategoryInfos(java.lang.Integer,java.util.ArrayList) -> a
+    1370:1385:com.yunfang.framework.model.ResultInfo updateOneTaskCategoryInfo(com.yunfang.eias.model.TaskCategoryInfo) -> updateOneTaskCategoryInfo
+    1400:1422:com.yunfang.framework.model.ResultInfo getCompleteTaskInfoById(java.lang.Integer,java.lang.Boolean) -> getCompleteTaskInfoById
+    1433:1450:com.yunfang.framework.model.ResultInfo getCompleteTaskInfoByTaskNum(java.lang.String) -> getCompleteTaskInfoByTaskNum
+    1461:1481:java.util.ArrayList getCompleteTaskCategories(java.lang.Integer,java.lang.Boolean) -> a
+    1498:1522:com.yunfang.framework.model.ResultInfo deleteCategoryInfo(com.yunfang.eias.model.TaskInfo,com.yunfang.eias.model.TaskCategoryInfo) -> deleteCategoryInfo
+    1538:1597:com.yunfang.framework.model.ResultInfo submitedUpdateTaskInfo(com.yunfang.eias.dto.TaskInfoDTO,java.lang.Boolean) -> submitedUpdateTaskInfo
+    1610:1639:com.yunfang.framework.model.ResultInfo getLastDateByReport(com.yunfang.framework.model.UserInfo) -> getLastDateByReport
+    1650:1680:com.yunfang.framework.model.ResultInfo synchroReportInfo(java.lang.String,java.lang.String) -> synchroReportInfo
+    37:37:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$DataItemType() -> a
 com.yunfang.eias.ui.AboutActivity -> com.yunfang.eias.ui.AboutActivity:
     com.yunfang.eias.logic.AppHeader header -> header
     39:43:void onCreate(android.os.Bundle) -> onCreate
@@ -17149,12 +17208,12 @@ com.yunfang.eias.ui.DataLogActivity -> com.yunfang.eias.ui.DataLogActivity:
     161:237:void setListener() -> b
     247:251:void loadData() -> loadData
     262:286:void handleBackgroundMessage(android.os.Message) -> a
-    294:328:void handleUiMessage(android.os.Message) -> b
-    338:350:void showData() -> c
-    356:370:void showTaskInfoes() -> d
-    377:381:void onDestroy() -> onDestroy
-    395:395:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-    404:404:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    294:332:void handleUiMessage(android.os.Message) -> b
+    342:354:void showData() -> c
+    360:374:void showTaskInfoes() -> d
+    381:385:void onDestroy() -> onDestroy
+    399:399:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    408:408:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
     37:37:com.yunfang.framework.base.BaseWorkerFragmentActivity$BackgroundHandler access$0(com.yunfang.eias.ui.DataLogActivity) -> a
 com.yunfang.eias.ui.DataLogActivity$1 -> com.yunfang.eias.ui.g:
     com.yunfang.eias.ui.DataLogActivity this$0 -> a
@@ -17242,54 +17301,53 @@ com.yunfang.eias.ui.HomeFragment -> com.yunfang.eias.ui.HomeFragment:
     161:182:void handlerBackgroundHandler(android.os.Message) -> a
     187:245:void handUiMessage(android.os.Message) -> b
     257:270:void showData() -> a
-    276:310:void showUserTaskInfo() -> b
-    316:347:void showDataDefineList() -> c
-    353:356:void binDataDefinesAdapter() -> d
-    364:364:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    369:372:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    377:379:void onResume() -> onResume
-    386:516:void initView() -> e
-    524:557:void checkSDCardSize() -> f
-    563:569:void invisibleTaskInfoByOffline() -> g
-    575:582:void loadUserLogo() -> h
-    600:604:void loadData() -> i
-    610:631:void receiverMainServerCreated() -> receiverMainServerCreated
+    276:315:void showUserTaskInfo() -> b
+    321:352:void showDataDefineList() -> c
+    358:361:void binDataDefinesAdapter() -> d
+    369:369:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    374:377:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    382:384:void onResume() -> onResume
+    391:522:void initView() -> e
+    530:563:void checkSDCardSize() -> f
+    582:589:void loadUserLogo() -> g
+    607:611:void loadData() -> h
+    617:638:void receiverMainServerCreated() -> receiverMainServerCreated
     56:56:com.yunfang.eias.ui.HomeActivity access$0(com.yunfang.eias.ui.HomeFragment) -> a
-    599:599:void access$1(com.yunfang.eias.ui.HomeFragment) -> b
+    606:606:void access$1(com.yunfang.eias.ui.HomeFragment) -> b
     61:61:android.view.View access$2(com.yunfang.eias.ui.HomeFragment) -> c
     50:50:com.yunfang.framework.base.BaseWorkerFragment$BackgroundHandler access$3(com.yunfang.eias.ui.HomeFragment) -> d
     129:129:android.view.View access$4(com.yunfang.eias.ui.HomeFragment) -> e
     129:129:void access$5(com.yunfang.eias.ui.HomeFragment,android.view.View) -> a
 com.yunfang.eias.ui.HomeFragment$1 -> com.yunfang.eias.ui.n:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    591:591:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    598:598:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.yunfang.eias.ui.HomeFragment$2 -> com.yunfang.eias.ui.o:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    394:395:void onClick(android.view.View) -> onClick
+    399:400:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.HomeFragment$3 -> com.yunfang.eias.ui.p:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    402:421:void onClick(android.view.View) -> onClick
-    399:399:com.yunfang.eias.ui.HomeFragment access$0(com.yunfang.eias.ui.HomeFragment$3) -> a
+    407:426:void onClick(android.view.View) -> onClick
+    404:404:com.yunfang.eias.ui.HomeFragment access$0(com.yunfang.eias.ui.HomeFragment$3) -> a
 com.yunfang.eias.ui.HomeFragment$3$1 -> com.yunfang.eias.ui.q:
     com.yunfang.eias.ui.HomeFragment$3 this$1 -> a
-    409:414:void onClick(android.content.DialogInterface,int) -> onClick
+    414:419:void onClick(android.content.DialogInterface,int) -> onClick
 com.yunfang.eias.ui.HomeFragment$4 -> com.yunfang.eias.ui.r:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    451:451:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    456:456:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.yunfang.eias.ui.HomeFragment$5 -> com.yunfang.eias.ui.s:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    460:500:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    456:456:com.yunfang.eias.ui.HomeFragment access$0(com.yunfang.eias.ui.HomeFragment$5) -> a
+    465:505:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    461:461:com.yunfang.eias.ui.HomeFragment access$0(com.yunfang.eias.ui.HomeFragment$5) -> a
 com.yunfang.eias.ui.HomeFragment$5$1 -> com.yunfang.eias.ui.t:
     com.yunfang.eias.ui.HomeFragment$5 this$1 -> a
     com.yunfang.eias.model.DataDefine val$updateDataDefine -> b
-    488:494:void onClick(android.content.DialogInterface,int) -> onClick
+    493:499:void onClick(android.content.DialogInterface,int) -> onClick
 com.yunfang.eias.ui.HomeFragment$6 -> com.yunfang.eias.ui.u:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    505:508:void onClick(android.view.View) -> onClick
+    510:513:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.HomeFragment$7 -> com.yunfang.eias.ui.v:
     com.yunfang.eias.ui.HomeFragment this$0 -> a
-    616:629:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    623:636:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.yunfang.eias.ui.IntroductionActivity -> com.yunfang.eias.ui.IntroductionActivity:
     int TASK_GETDATA -> TASK_GETDATA
     java.lang.String[] spinnerTypes -> spinnerTypes
@@ -17321,6 +17379,7 @@ com.yunfang.eias.ui.IntroductionActivity$2 -> com.yunfang.eias.ui.x:
 com.yunfang.eias.ui.LoginActivity -> com.yunfang.eias.ui.LoginActivity:
     int TASK_ONLINE_LOGIN -> i
     int TASK_OFFLINE_LOGIN -> j
+    int TASK_ONLINE_GET_NEWEST_DATADEFINES -> k
     android.widget.EditText txtUserAccount -> a
     android.widget.EditText txtUserPwd -> b
     android.widget.CheckBox cbIsAuto -> c
@@ -17329,23 +17388,24 @@ com.yunfang.eias.ui.LoginActivity -> com.yunfang.eias.ui.LoginActivity:
     android.widget.Button buttonOffline -> f
     com.yunfang.framework.view.ComboBox comboboxServer -> g
     android.widget.TextView txtAPPPageSize -> h
-    30:34:void onCreate(android.os.Bundle) -> onCreate
-    38:39:void onResume() -> onResume
-    43:44:void onDestroy() -> onDestroy
-    77:140:void init() -> a
-    146:150:void login() -> b
-    158:178:void handleBackgroundMessage(android.os.Message) -> a
-    183:196:void handleUiMessage(android.os.Message) -> b
-    208:223:void afterLogined(com.yunfang.framework.model.ResultInfo,int) -> a
-    230:234:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    26:26:com.yunfang.framework.base.BaseWorkerActivity$BackgroundHandler access$0(com.yunfang.eias.ui.LoginActivity) -> a
-    145:145:void access$1(com.yunfang.eias.ui.LoginActivity) -> b
+    32:36:void onCreate(android.os.Bundle) -> onCreate
+    40:41:void onResume() -> onResume
+    45:46:void onDestroy() -> onDestroy
+    83:146:void init() -> a
+    152:156:void login() -> b
+    159:163:void getNewesDatadefines() -> c
+    171:194:void handleBackgroundMessage(android.os.Message) -> a
+    199:217:void handleUiMessage(android.os.Message) -> b
+    229:248:void afterLogined(com.yunfang.framework.model.ResultInfo,int) -> a
+    255:259:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    28:28:com.yunfang.framework.base.BaseWorkerActivity$BackgroundHandler access$0(com.yunfang.eias.ui.LoginActivity) -> a
+    151:151:void access$1(com.yunfang.eias.ui.LoginActivity) -> b
 com.yunfang.eias.ui.LoginActivity$1 -> com.yunfang.eias.ui.y:
     com.yunfang.eias.ui.LoginActivity this$0 -> a
-    87:95:void onClick(android.view.View) -> onClick
+    93:101:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.LoginActivity$2 -> com.yunfang.eias.ui.z:
     com.yunfang.eias.ui.LoginActivity this$0 -> a
-    102:107:void onClick(android.view.View) -> onClick
+    108:113:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.LogoActivity -> com.yunfang.eias.ui.LogoActivity:
     android.widget.ImageView iv_logo -> a
     18:48:void onCreate(android.os.Bundle) -> onCreate
@@ -17394,62 +17454,62 @@ com.yunfang.eias.ui.MultiSelectAlbumActivity -> com.yunfang.eias.ui.MultiSelectA
     com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter previewAdt -> v
     java.util.Map tempFloderMap -> w
     com.yunfang.eias.utils.DensityHelper densityUtil -> x
-    103:114:void onCreate(android.os.Bundle) -> onCreate
-    120:128:void initImageLoader() -> a
-    134:155:void initView() -> b
-    191:267:void initPreviewPop(int,java.util.List) -> a
-    381:382:void onBack(android.view.View) -> onBack
-    391:399:void confirm(android.view.View) -> confirm
-    407:413:void previewSelect(android.view.View) -> previewSelect
-    421:428:void select(android.view.View) -> select
-    434:437:void showListAnimation() -> showListAnimation
-    443:461:void hideListAnimation() -> hideListAnimation
-    466:466:void handleBackgroundMessage(android.os.Message) -> a
-    472:507:void getAllAlbumPath() -> c
-    662:676:void chackImg(android.view.View,com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem,android.widget.TextView) -> a
-    680:688:void setConfirmText(boolean,android.widget.TextView) -> a
-    744:745:void onDestroy() -> onDestroy
-    70:70:com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> a
-    190:190:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity,int,java.util.List) -> a
-    76:76:java.util.List access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> b
-    70:70:void access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity,com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> a
-    87:87:com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> c
-    61:61:android.widget.Button access$5(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> d
-    85:85:com.yunfang.eias.ui.MultiSelectAlbumActivity access$6(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> e
-    90:90:com.nostra13.universalimageloader.core.ImageLoader access$7(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> f
-    92:92:com.nostra13.universalimageloader.core.DisplayImageOptions access$8(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> g
-    59:59:android.widget.TextView access$9(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> h
-    661:661:void access$10(com.yunfang.eias.ui.MultiSelectAlbumActivity,android.view.View,com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem,android.widget.TextView) -> a
-    74:74:java.util.List access$11(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> i
-    679:679:void access$12(com.yunfang.eias.ui.MultiSelectAlbumActivity,boolean,android.widget.TextView) -> a
-    94:94:android.widget.PopupWindow access$13(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> j
-    95:95:com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder access$14(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> k
-    65:65:android.widget.ListView access$15(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> l
+    104:115:void onCreate(android.os.Bundle) -> onCreate
+    121:129:void initImageLoader() -> a
+    135:156:void initView() -> b
+    192:270:void initPreviewPop(int,java.util.List) -> a
+    383:384:void onBack(android.view.View) -> onBack
+    393:401:void confirm(android.view.View) -> confirm
+    409:415:void previewSelect(android.view.View) -> previewSelect
+    423:430:void select(android.view.View) -> select
+    436:439:void showListAnimation() -> showListAnimation
+    445:463:void hideListAnimation() -> hideListAnimation
+    468:468:void handleBackgroundMessage(android.os.Message) -> a
+    474:509:void getAllAlbumPath() -> c
+    664:678:void chackImg(android.view.View,com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem,android.widget.TextView) -> a
+    682:690:void setConfirmText(boolean,android.widget.TextView) -> a
+    746:747:void onDestroy() -> onDestroy
+    71:71:com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> a
+    191:191:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity,int,java.util.List) -> a
+    77:77:java.util.List access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> b
+    71:71:void access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity,com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> a
+    88:88:com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> c
+    62:62:android.widget.Button access$5(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> d
+    86:86:com.yunfang.eias.ui.MultiSelectAlbumActivity access$6(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> e
+    91:91:com.nostra13.universalimageloader.core.ImageLoader access$7(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> f
+    93:93:com.nostra13.universalimageloader.core.DisplayImageOptions access$8(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> g
+    60:60:android.widget.TextView access$9(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> h
+    663:663:void access$10(com.yunfang.eias.ui.MultiSelectAlbumActivity,android.view.View,com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem,android.widget.TextView) -> a
+    75:75:java.util.List access$11(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> i
+    681:681:void access$12(com.yunfang.eias.ui.MultiSelectAlbumActivity,boolean,android.widget.TextView) -> a
+    95:95:android.widget.PopupWindow access$13(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> j
+    96:96:com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder access$14(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> k
+    66:66:android.widget.ListView access$15(com.yunfang.eias.ui.MultiSelectAlbumActivity) -> l
 com.yunfang.eias.ui.MultiSelectAlbumActivity$1 -> com.yunfang.eias.ui.ac:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    201:203:void onDismiss() -> onDismiss
+    204:206:void onDismiss() -> onDismiss
 com.yunfang.eias.ui.MultiSelectAlbumActivity$2 -> com.yunfang.eias.ui.ad:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    214:215:void onClick(android.view.View) -> onClick
+    217:218:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.MultiSelectAlbumActivity$3 -> com.yunfang.eias.ui.ae:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    220:224:void onClick(android.view.View) -> onClick
+    223:227:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.MultiSelectAlbumActivity$4 -> com.yunfang.eias.ui.af:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    237:244:void onPageSelected(int) -> onPageSelected
-    248:248:void onPageScrolled(int,float,int) -> onPageScrolled
-    252:252:void onPageScrollStateChanged(int) -> onPageScrollStateChanged
+    240:247:void onPageSelected(int) -> onPageSelected
+    251:251:void onPageScrolled(int,float,int) -> onPageScrolled
+    255:255:void onPageScrollStateChanged(int) -> onPageScrollStateChanged
 com.yunfang.eias.ui.MultiSelectAlbumActivity$5 -> com.yunfang.eias.ui.ag:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    449:449:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
-    453:453:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-    458:459:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    451:451:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+    455:455:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    460:461:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
 com.yunfang.eias.ui.MultiSelectAlbumActivity$AlbumFolderAdapter -> com.yunfang.eias.ui.ah:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    699:699:int getCount() -> getCount
-    704:704:java.lang.Object getItem(int) -> getItem
-    709:709:long getItemId(int) -> getItemId
-    714:731:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    701:701:int getCount() -> getCount
+    706:706:java.lang.Object getItem(int) -> getItem
+    711:711:long getItemId(int) -> getItemId
+    716:733:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.yunfang.eias.ui.MultiSelectAlbumActivity$AlbumFolderAdapter$ViewHolder -> com.yunfang.eias.ui.ai:
     android.widget.ImageView headImg -> a
     android.widget.ImageView chooseImg -> b
@@ -17462,41 +17522,41 @@ com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage -> com.yunfang.eias.ui.
     java.lang.String firstImg -> d
     java.util.List imgList -> e
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    529:529:java.lang.String getDir() -> getDir
-    533:536:void setDir(java.lang.String) -> setDir
-    539:539:java.lang.String getFloderName() -> getFloderName
-    543:543:java.lang.String getFirstImg() -> getFirstImg
-    547:548:void setFirstImg(java.lang.String) -> setFirstImg
-    551:551:java.util.List getImgList() -> getImgList
-    556:557:void setImgList(java.util.List) -> setImgList
-    521:521:java.util.List access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> a
-    519:519:java.lang.String access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> b
-    519:519:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage,java.lang.String) -> a
+    531:531:java.lang.String getDir() -> getDir
+    535:538:void setDir(java.lang.String) -> setDir
+    541:541:java.lang.String getFloderName() -> getFloderName
+    545:545:java.lang.String getFirstImg() -> getFirstImg
+    549:550:void setFirstImg(java.lang.String) -> setFirstImg
+    553:553:java.util.List getImgList() -> getImgList
+    558:559:void setImgList(java.util.List) -> setImgList
+    523:523:java.util.List access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> a
+    521:521:java.lang.String access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage) -> b
+    521:521:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$FolderImage,java.lang.String) -> a
 com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter -> com.yunfang.eias.ui.ak:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    608:608:int getCount() -> getCount
-    613:613:java.lang.Object getItem(int) -> getItem
-    618:618:long getItemId(int) -> getItemId
-    623:646:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    604:604:com.yunfang.eias.ui.MultiSelectAlbumActivity access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter) -> a
+    610:610:int getCount() -> getCount
+    615:615:java.lang.Object getItem(int) -> getItem
+    620:620:long getItemId(int) -> getItemId
+    625:648:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    606:606:com.yunfang.eias.ui.MultiSelectAlbumActivity access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter) -> a
 com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$1 -> com.yunfang.eias.ui.al:
     com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter this$1 -> a
     com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem val$imgPath -> b
-    640:642:void onClick(android.view.View) -> onClick
+    642:644:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder -> com.yunfang.eias.ui.am:
     android.widget.ImageView imgItem -> b
     android.widget.Button checkBut -> c
     com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter this$1 -> a
-    650:650:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder,android.widget.ImageView) -> a
-    651:651:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder,android.widget.Button) -> a
-    650:650:android.widget.ImageView access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder) -> a
-    651:651:android.widget.Button access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder) -> b
+    652:652:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder,android.widget.ImageView) -> a
+    653:653:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder,android.widget.Button) -> a
+    652:652:android.widget.ImageView access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder) -> a
+    653:653:android.widget.Button access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity$GirdViewAdapter$ViewHolder) -> b
 com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem -> com.yunfang.eias.ui.an:
     java.lang.String path -> b
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    572:572:java.lang.String getPath() -> getPath
-    581:585:boolean equals(java.lang.Object) -> equals
-    593:593:int hashCode() -> hashCode
+    574:574:java.lang.String getPath() -> getPath
+    583:587:boolean equals(java.lang.Object) -> equals
+    595:595:int hashCode() -> hashCode
 com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder -> com.yunfang.eias.ui.ao:
     android.support.v4.view.ViewPager previewVp -> b
     android.widget.Button backBnt -> c
@@ -17504,34 +17564,34 @@ com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder -> com.yunfang.eia
     android.widget.TextView countTv -> e
     android.widget.TextView confirmTv -> f
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    370:370:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.support.v4.view.ViewPager) -> a
-    371:371:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.Button) -> a
-    371:371:void access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.Button) -> b
-    372:372:void access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.TextView) -> a
-    372:372:void access$5(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.TextView) -> b
-    371:371:android.widget.Button access$6(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> a
-    371:371:android.widget.Button access$7(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> b
-    370:370:android.support.v4.view.ViewPager access$8(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> c
-    372:372:android.widget.TextView access$9(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> d
-    372:372:android.widget.TextView access$10(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> e
+    373:373:void access$1(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.support.v4.view.ViewPager) -> a
+    374:374:void access$2(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.Button) -> a
+    374:374:void access$3(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.Button) -> b
+    375:375:void access$4(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.TextView) -> a
+    375:375:void access$5(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder,android.widget.TextView) -> b
+    374:374:android.widget.Button access$6(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> a
+    374:374:android.widget.Button access$7(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> b
+    373:373:android.support.v4.view.ViewPager access$8(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> c
+    375:375:android.widget.TextView access$9(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> d
+    375:375:android.widget.TextView access$10(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewPopHolder) -> e
 com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter -> com.yunfang.eias.ui.ap:
     android.util.SparseArray sparseList -> b
     java.util.List currenImgList -> c
     int mChildCount -> d
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    295:300:void setCurrenImgList(java.util.List) -> a
-    304:306:void notifyDataSetChanged() -> notifyDataSetChanged
-    310:314:int getItemPosition(java.lang.Object) -> getItemPosition
-    319:319:int getCount() -> getCount
-    329:329:com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem getItemByPostion(int) -> getItemByPostion
-    334:339:java.lang.Object instantiateItem(android.view.View,int) -> instantiateItem
-    344:347:void destroyItem(android.view.View,int,java.lang.Object) -> destroyItem
-    351:354:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> destroyItem
-    358:358:boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
-    294:294:void access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter,java.util.List) -> a
+    298:303:void setCurrenImgList(java.util.List) -> a
+    307:309:void notifyDataSetChanged() -> notifyDataSetChanged
+    313:317:int getItemPosition(java.lang.Object) -> getItemPosition
+    322:322:int getCount() -> getCount
+    332:332:com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem getItemByPostion(int) -> getItemByPostion
+    337:342:java.lang.Object instantiateItem(android.view.View,int) -> instantiateItem
+    347:350:void destroyItem(android.view.View,int,java.lang.Object) -> destroyItem
+    354:357:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> destroyItem
+    361:361:boolean isViewFromObject(android.view.View,java.lang.Object) -> isViewFromObject
+    297:297:void access$0(com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter,java.util.List) -> a
 com.yunfang.eias.ui.MultiSelectAlbumActivity$ViewOnItemClick -> com.yunfang.eias.ui.aq:
     com.yunfang.eias.ui.MultiSelectAlbumActivity this$0 -> a
-    167:184:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    168:185:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.yunfang.eias.ui.OpenDialogResource -> com.yunfang.eias.ui.OpenDialogResource:
     int NONE -> b
     int COPY -> COPY
@@ -17552,23 +17612,23 @@ com.yunfang.eias.ui.OpenDialogResource -> com.yunfang.eias.ui.OpenDialogResource
     java.lang.String fpath -> m
     java.lang.String key -> n
     com.yunfang.eias.logic.AppHeader appHeader -> appHeader
-    69:160:void onCreate(android.os.Bundle) -> onCreate
+    69:161:void onCreate(android.os.Bundle) -> onCreate
     167:172:void selectFile(java.lang.String) -> a
-    181:340:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    347:361:void getpaths() -> a
-    364:401:void setCheckBox(boolean) -> a
-    404:409:android.widget.ListAdapter getAdapter(java.lang.String) -> b
-    413:418:android.widget.ListAdapter getAdapter(java.lang.String,java.lang.String) -> a
-    422:427:java.lang.String getSearchkey(java.lang.String) -> getSearchkey
-    431:435:void flush() -> flush
-    442:451:void openFile(java.io.File) -> openFile
-    460:477:java.lang.String getMIMEType(java.io.File) -> getMIMEType
+    180:339:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    346:360:void getpaths() -> a
+    363:400:void setCheckBox(boolean) -> a
+    403:408:android.widget.ListAdapter getAdapter(java.lang.String) -> b
+    412:417:android.widget.ListAdapter getAdapter(java.lang.String,java.lang.String) -> a
+    421:426:java.lang.String getSearchkey(java.lang.String) -> getSearchkey
+    430:434:void flush() -> flush
+    441:450:void openFile(java.io.File) -> openFile
+    459:476:java.lang.String getMIMEType(java.io.File) -> getMIMEType
     52:52:android.view.Menu access$0(com.yunfang.eias.ui.OpenDialogResource) -> a
-    363:363:void access$1(com.yunfang.eias.ui.OpenDialogResource,boolean) -> a
+    362:362:void access$1(com.yunfang.eias.ui.OpenDialogResource,boolean) -> a
     51:51:void access$2(com.yunfang.eias.ui.OpenDialogResource,int) -> a
     51:51:int access$3(com.yunfang.eias.ui.OpenDialogResource) -> b
     56:56:void access$4(com.yunfang.eias.ui.OpenDialogResource,java.lang.String) -> a
-    403:403:android.widget.ListAdapter access$5(com.yunfang.eias.ui.OpenDialogResource,java.lang.String) -> b
+    402:402:android.widget.ListAdapter access$5(com.yunfang.eias.ui.OpenDialogResource,java.lang.String) -> b
     166:166:void access$6(com.yunfang.eias.ui.OpenDialogResource,java.lang.String) -> c
     53:53:com.yunfang.eias.utils.OpenDialogHelper access$7(com.yunfang.eias.ui.OpenDialogResource) -> c
     56:56:java.lang.String access$8(com.yunfang.eias.ui.OpenDialogResource) -> d
@@ -17576,40 +17636,40 @@ com.yunfang.eias.ui.OpenDialogResource -> com.yunfang.eias.ui.OpenDialogResource
     55:55:int access$10(com.yunfang.eias.ui.OpenDialogResource) -> f
     50:50:java.util.List access$11(com.yunfang.eias.ui.OpenDialogResource) -> g
     55:55:void access$12(com.yunfang.eias.ui.OpenDialogResource,int) -> b
-    346:346:void access$13(com.yunfang.eias.ui.OpenDialogResource) -> h
+    345:345:void access$13(com.yunfang.eias.ui.OpenDialogResource) -> h
 com.yunfang.eias.ui.OpenDialogResource$1 -> com.yunfang.eias.ui.ar:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    101:106:void onTabChanged(java.lang.String) -> onTabChanged
+    103:108:void onTabChanged(java.lang.String) -> onTabChanged
 com.yunfang.eias.ui.OpenDialogResource$10 -> com.yunfang.eias.ui.as:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    314:318:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    313:317:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$11 -> com.yunfang.eias.ui.at:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    324:333:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    323:332:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$2 -> com.yunfang.eias.ui.au:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    112:132:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    113:133:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.yunfang.eias.ui.OpenDialogResource$3 -> com.yunfang.eias.ui.av:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    137:158:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    138:159:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.yunfang.eias.ui.OpenDialogResource$4 -> com.yunfang.eias.ui.aw:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    201:202:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    200:201:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$5 -> com.yunfang.eias.ui.ax:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    208:210:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    207:209:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$6 -> com.yunfang.eias.ui.ay:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    216:232:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    215:231:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$7 -> com.yunfang.eias.ui.az:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    239:280:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    238:279:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$8 -> com.yunfang.eias.ui.ba:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    294:296:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    293:295:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.OpenDialogResource$9 -> com.yunfang.eias.ui.bb:
     com.yunfang.eias.ui.OpenDialogResource this$0 -> a
-    304:308:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
+    303:307:boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 com.yunfang.eias.ui.ShowAudioFragment -> com.yunfang.eias.ui.ShowAudioFragment:
     android.media.MediaPlayer mediaPlayer -> c
     android.media.MediaRecorder mediaRecorder -> d
@@ -17737,84 +17797,84 @@ com.yunfang.eias.ui.ShowMediaListFragment -> com.yunfang.eias.ui.ShowMediaListFr
     android.widget.AdapterView$OnItemClickListener mediaGridOnItemClickListener -> y
     android.widget.AdapterView$OnItemLongClickListener mediaGridOnItemLongClickListener -> z
     android.view.View$OnClickListener backOnClickListener -> A
-    283:285:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    295:297:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    303:305:void initView() -> a
-    312:446:void getControls() -> b
-    452:460:void refreshMediaList() -> c
-    586:596:void getFileOfNewMeida() -> d
-    612:740:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    749:763:void saveBitmap(java.lang.String,android.graphics.Bitmap) -> saveBitmap
-    781:818:void handlerBackgroundHandler(android.os.Message) -> a
-    824:842:void getMedias() -> getMedias
-    852:897:void getCurrentMedias(com.yunfang.framework.model.ResultInfo,java.lang.String,com.yunfang.framework.model.ResultInfo) -> a
-    907:940:void getCurrentAdditional(com.yunfang.framework.model.ResultInfo,java.lang.String,com.yunfang.framework.model.ResultInfo) -> b
-    950:950:boolean haslike(com.yunfang.eias.model.DataCategoryDefine,com.yunfang.eias.model.TaskCategoryInfo) -> a
-    958:988:void handUiMessage(android.os.Message) -> b
-    994:994:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-    1001:1001:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
-    1007:1011:void saveAndMovePreviousCategory() -> e
-    1017:1021:void saveAndMoveNextCategory() -> f
-    1031:1037:void setDataCategoryDefine(java.lang.Integer) -> a
-    1040:1046:void enterEdit() -> g
-    1049:1057:void leaveEdit() -> h
-    1063:1121:void showSelectDialog() -> i
-    176:176:void access$0(com.yunfang.eias.ui.ShowMediaListFragment,int) -> a
-    86:86:com.yunfang.eias.ui.TaskInfoActivity access$1(com.yunfang.eias.ui.ShowMediaListFragment) -> a
-    81:81:com.yunfang.eias.enumObj.CategoryType access$2(com.yunfang.eias.ui.ShowMediaListFragment) -> b
-    585:585:void access$3(com.yunfang.eias.ui.ShowMediaListFragment) -> c
-    1039:1039:void access$4(com.yunfang.eias.ui.ShowMediaListFragment) -> d
-    74:74:com.yunfang.framework.base.BaseWorkerFragment$BackgroundHandler access$5(com.yunfang.eias.ui.ShowMediaListFragment) -> e
-    1006:1006:void access$6(com.yunfang.eias.ui.ShowMediaListFragment) -> f
-    1016:1016:void access$7(com.yunfang.eias.ui.ShowMediaListFragment) -> g
-    1048:1048:void access$8(com.yunfang.eias.ui.ShowMediaListFragment) -> h
-    1062:1062:void access$9(com.yunfang.eias.ui.ShowMediaListFragment) -> i
+    280:282:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    292:294:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    300:302:void initView() -> a
+    309:443:void getControls() -> b
+    449:457:void refreshMediaList() -> c
+    583:593:void getFileOfNewMeida() -> d
+    610:738:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    747:761:void saveBitmap(java.lang.String,android.graphics.Bitmap) -> saveBitmap
+    779:816:void handlerBackgroundHandler(android.os.Message) -> a
+    822:840:void getMedias() -> getMedias
+    850:895:void getCurrentMedias(com.yunfang.framework.model.ResultInfo,java.lang.String,com.yunfang.framework.model.ResultInfo) -> a
+    905:938:void getCurrentAdditional(com.yunfang.framework.model.ResultInfo,java.lang.String,com.yunfang.framework.model.ResultInfo) -> b
+    948:948:boolean haslike(com.yunfang.eias.model.DataCategoryDefine,com.yunfang.eias.model.TaskCategoryInfo) -> a
+    956:986:void handUiMessage(android.os.Message) -> b
+    992:992:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    999:999:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    1005:1009:void saveAndMovePreviousCategory() -> e
+    1015:1019:void saveAndMoveNextCategory() -> f
+    1029:1035:void setDataCategoryDefine(java.lang.Integer) -> a
+    1038:1044:void enterEdit() -> g
+    1047:1055:void leaveEdit() -> h
+    1061:1119:void showSelectDialog() -> i
+    173:173:void access$0(com.yunfang.eias.ui.ShowMediaListFragment,int) -> a
+    83:83:com.yunfang.eias.ui.TaskInfoActivity access$1(com.yunfang.eias.ui.ShowMediaListFragment) -> a
+    78:78:com.yunfang.eias.enumObj.CategoryType access$2(com.yunfang.eias.ui.ShowMediaListFragment) -> b
+    582:582:void access$3(com.yunfang.eias.ui.ShowMediaListFragment) -> c
+    1037:1037:void access$4(com.yunfang.eias.ui.ShowMediaListFragment) -> d
+    71:71:com.yunfang.framework.base.BaseWorkerFragment$BackgroundHandler access$5(com.yunfang.eias.ui.ShowMediaListFragment) -> e
+    1004:1004:void access$6(com.yunfang.eias.ui.ShowMediaListFragment) -> f
+    1014:1014:void access$7(com.yunfang.eias.ui.ShowMediaListFragment) -> g
+    1046:1046:void access$8(com.yunfang.eias.ui.ShowMediaListFragment) -> h
+    1060:1060:void access$9(com.yunfang.eias.ui.ShowMediaListFragment) -> i
 com.yunfang.eias.ui.ShowMediaListFragment$1 -> com.yunfang.eias.ui.bh:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    472:504:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    510:518:void getFileOfNewMeida2() -> a
+    469:501:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    507:515:void getFileOfNewMeida2() -> a
 com.yunfang.eias.ui.ShowMediaListFragment$10 -> com.yunfang.eias.ui.bi:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    413:428:void onClick(android.view.View) -> onClick
+    410:425:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$11 -> com.yunfang.eias.ui.bj:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    433:444:void onClick(android.view.View) -> onClick
+    430:441:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$13 -> com.yunfang.eias.ui.bk:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    1075:1078:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    1073:1076:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.yunfang.eias.ui.ShowMediaListFragment$14 -> com.yunfang.eias.ui.bl:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
     android.widget.AutoCompleteTextView val$single_choice_auto -> b
     android.app.Dialog val$detailDialog -> c
-    1086:1106:void onClick(android.view.View) -> onClick
+    1084:1104:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$15 -> com.yunfang.eias.ui.bm:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
     android.app.Dialog val$detailDialog -> b
-    1112:1113:void onClick(android.view.View) -> onClick
+    1110:1111:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$2 -> com.yunfang.eias.ui.bn:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    527:554:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
+    524:551:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
 com.yunfang.eias.ui.ShowMediaListFragment$3 -> com.yunfang.eias.ui.bo:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    771:775:void onClick(android.view.View) -> onClick
+    769:773:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$4 -> com.yunfang.eias.ui.bp:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    328:329:void onClick(android.view.View) -> onClick
+    325:326:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$5 -> com.yunfang.eias.ui.bq:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    367:368:void onClick(android.view.View) -> onClick
+    364:365:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$6 -> com.yunfang.eias.ui.br:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    376:377:void onClick(android.view.View) -> onClick
+    373:374:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$7 -> com.yunfang.eias.ui.bs:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    385:386:void onClick(android.view.View) -> onClick
+    382:383:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$8 -> com.yunfang.eias.ui.bt:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    394:395:void onClick(android.view.View) -> onClick
+    391:392:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.ShowMediaListFragment$9 -> com.yunfang.eias.ui.bu:
     com.yunfang.eias.ui.ShowMediaListFragment this$0 -> a
-    401:407:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    398:404:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.yunfang.eias.ui.ShowPhotoFragment -> com.yunfang.eias.ui.ShowPhotoFragment:
     com.yunfang.eias.ui.TaskInfoActivity taskInfoActivity -> b
     com.yunfang.eias.viewmodel.MediaFileViewModel vm -> c
@@ -17948,20 +18008,21 @@ com.yunfang.eias.ui.SystemSettingActivity -> com.yunfang.eias.ui.SystemSettingAc
     android.widget.EditText et_setting_repeattime -> c
     android.widget.EditText et_setting_size -> d
     android.widget.Button btn_changesubmit -> e
-    android.widget.Spinner et_setting_copyOrPaste -> f
-    android.widget.Spinner et_setting_photo -> g
+    android.widget.RadioGroup rg_setting_copyOrPaste -> f
+    android.widget.RadioGroup rg_setting_photo -> g
     android.view.View$OnClickListener btnClickLister -> h
-    89:93:void onCreate(android.os.Bundle) -> onCreate
-    100:127:void init() -> a
-    136:144:void setSpinnerItemSelectedByValue(android.widget.Spinner,java.lang.String) -> setSpinnerItemSelectedByValue
-    161:165:void changeSubmit() -> b
-    172:182:java.lang.String formatVerification() -> c
-    193:229:void handleBackgroundMessage(android.os.Message) -> a
-    237:252:void handleUiMessage(android.os.Message) -> b
-    160:160:void access$0(com.yunfang.eias.ui.SystemSettingActivity) -> a
+    97:101:void onCreate(android.os.Bundle) -> onCreate
+    107:141:void init() -> a
+    150:158:void setSpinnerItemSelectedByValue(android.widget.Spinner,java.lang.String) -> setSpinnerItemSelectedByValue
+    166:174:void setRadioButtonSelectedByValue(android.widget.RadioGroup,java.lang.String) -> setRadioButtonSelectedByValue
+    191:195:void changeSubmit() -> b
+    202:212:java.lang.String formatVerification() -> c
+    223:264:void handleBackgroundMessage(android.os.Message) -> a
+    272:287:void handleUiMessage(android.os.Message) -> b
+    190:190:void access$0(com.yunfang.eias.ui.SystemSettingActivity) -> a
 com.yunfang.eias.ui.SystemSettingActivity$1 -> com.yunfang.eias.ui.cf:
     com.yunfang.eias.ui.SystemSettingActivity this$0 -> a
-    149:154:void onClick(android.view.View) -> onClick
+    179:184:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskCategoriesFragment -> com.yunfang.eias.ui.TaskCategoriesFragment:
     android.widget.ListView listView -> a
     com.yunfang.eias.ui.Adapter.TaskCategoryInfoAdapter adapter -> b
@@ -18012,9 +18073,9 @@ com.yunfang.eias.ui.TaskCategoriesFragment$6 -> com.yunfang.eias.ui.cl:
 com.yunfang.eias.ui.TaskImportGuide -> com.yunfang.eias.ui.TaskImportGuide:
     com.yunfang.eias.viewmodel.TaskImportGuideViewModel viewModel -> a
     int TASK_IMPORT_CHECK -> TASK_IMPORT_CHECK
-    65:71:void onCreate(android.os.Bundle) -> onCreate
-    78:81:void onDestroy() -> onDestroy
-    87:184:void init() -> a
+    64:70:void onCreate(android.os.Bundle) -> onCreate
+    77:80:void onDestroy() -> onDestroy
+    86:184:void init() -> a
     194:201:void doWork(java.lang.String,int,java.lang.Object) -> a
     208:218:void handleBackgroundMessage(android.os.Message) -> a
     226:236:void handleUiMessage(android.os.Message) -> b
@@ -18022,7 +18083,7 @@ com.yunfang.eias.ui.TaskImportGuide -> com.yunfang.eias.ui.TaskImportGuide:
     193:193:void access$0(com.yunfang.eias.ui.TaskImportGuide,java.lang.String,int,java.lang.Object) -> a
 com.yunfang.eias.ui.TaskImportGuide$1 -> com.yunfang.eias.ui.cm:
     com.yunfang.eias.ui.TaskImportGuide this$0 -> a
-    115:117:void onClick(android.view.View) -> onClick
+    114:117:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskImportGuide$2 -> com.yunfang.eias.ui.cn:
     com.yunfang.eias.ui.TaskImportGuide this$0 -> a
     123:143:void onClick(android.view.View) -> onClick
@@ -18184,15 +18245,17 @@ com.yunfang.eias.ui.TaskItemsFragment$5 -> com.yunfang.eias.ui.cy:
     426:427:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskListFragment -> com.yunfang.eias.ui.TaskListFragment:
     android.widget.ListView task_listview -> a
-    android.widget.EditText serach_editText -> b
-    android.widget.Button serachBtn -> c
-    android.widget.Button reload_btn -> d
+    com.yunfang.eias.view.PullToRefreshLayout taskPullTorefreshLayout -> b
+    boolean isLoad -> c
+    android.widget.EditText serach_editText -> d
+    android.widget.ImageView serachBtn -> e
+    android.widget.Button reload_btn -> f
     android.view.View mView -> mView
     com.yunfang.eias.viewmodel.TaskListViewModel viewModel -> viewModel
     android.widget.TextView titleTextView -> titleTextView
-    android.widget.LinearLayout taskSearch -> e
-    com.yunfang.eias.ui.Adapter.TaskListViewAdapter taskListViewAdapter -> f
-    com.yunfang.framework.base.BaseBroadcastReceiver broadcastReceiver -> g
+    android.widget.LinearLayout taskSearch -> g
+    com.yunfang.eias.ui.Adapter.TaskListViewAdapter taskListViewAdapter -> m
+    com.yunfang.framework.base.BaseBroadcastReceiver broadcastReceiver -> n
     int TASK_GETTASKINFOES -> TASK_GETTASKINFOES
     int TASK_RECEIVETASK -> TASK_RECEIVETASK
     int TASK_SETFEEINFO -> TASK_SETFEEINFO
@@ -18210,69 +18273,71 @@ com.yunfang.eias.ui.TaskListFragment -> com.yunfang.eias.ui.TaskListFragment:
     int TASK_APPOINTMENT -> TASK_APPOINTMENT
     int TASK_REMOVE_RESOURCE -> TASK_REMOVE_RESOURCE
     com.yunfang.eias.ui.HomeFragment homeFragment -> homeFragment
-    int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum -> m
-    int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus -> n
-    216:217:void setTitle(java.lang.String) -> a
-    223:223:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    228:231:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    242:375:void handlerBackgroundHandler(android.os.Message) -> a
-    383:660:void handUiMessage(android.os.Message) -> b
-    669:697:void addTaskInfoe(com.yunfang.framework.model.ResultInfo) -> a
-    706:719:void filterTaskInfo(java.util.ArrayList) -> a
-    722:730:void showSubmitingStatus() -> c
-    740:752:void showData() -> d
-    758:791:void showTaskInfoes() -> e
-    797:803:void refreshList(java.lang.String) -> refreshList
-    813:914:void initView() -> f
-    923:930:void setDoingTaskinfoMenuCopyValue(com.yunfang.eias.logic.TaskListMenuOperaotr) -> a
-    934:936:void onDestroy() -> onDestroy
-    942:1065:void initTaskList(com.yunfang.eias.logic.TaskListMenuOperaotr) -> b
-    1068:1075:void startTaskInfo(int,int,java.lang.String) -> a
-    1088:1098:com.yunfang.framework.model.ResultInfo openTaskInfo(int,int,java.lang.String) -> b
-    1112:1122:com.yunfang.framework.model.ResultInfo openTaskInfo(int,int,java.lang.String,boolean) -> a
-    1129:1133:void loadData() -> loadData
-    1144:1150:void doSomething(java.lang.String,int) -> doSomething
-    1161:1168:void doSomething(java.lang.String,int,java.lang.Object) -> doSomething
-    1178:1178:void submitTaskInfo() -> submitTaskInfo
-    1188:1217:com.yunfang.framework.model.ResultInfo showCreateNewTaskActivity() -> showCreateNewTaskActivity
-    1228:1233:java.lang.String getDataDefineName(int) -> a
-    1240:1261:void synchroReportInfo() -> g
-    68:68:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum() -> a
-    68:68:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> b
-    114:114:com.yunfang.eias.ui.Adapter.TaskListViewAdapter access$2(com.yunfang.eias.ui.TaskListFragment) -> a
-    1067:1067:void access$3(com.yunfang.eias.ui.TaskListFragment,int,int,java.lang.String) -> a
+    int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum -> o
+    int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus -> p
+    222:223:void setTitle(java.lang.String) -> a
+    230:230:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    235:238:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    249:382:void handlerBackgroundHandler(android.os.Message) -> a
+    390:670:void handUiMessage(android.os.Message) -> b
+    679:707:void addTaskInfoe(com.yunfang.framework.model.ResultInfo) -> a
+    716:729:void filterTaskInfo(java.util.ArrayList) -> a
+    732:740:void showSubmitingStatus() -> c
+    750:762:void showData() -> d
+    768:801:void showTaskInfoes() -> e
+    807:813:void refreshList(java.lang.String) -> refreshList
+    823:925:void initView() -> f
+    934:941:void setDoingTaskinfoMenuCopyValue(com.yunfang.eias.logic.TaskListMenuOperaotr) -> a
+    945:947:void onDestroy() -> onDestroy
+    953:1139:void initTaskList(com.yunfang.eias.logic.TaskListMenuOperaotr) -> b
+    1142:1149:void startTaskInfo(int,int,java.lang.String) -> a
+    1162:1172:com.yunfang.framework.model.ResultInfo openTaskInfo(int,int,java.lang.String) -> b
+    1186:1196:com.yunfang.framework.model.ResultInfo openTaskInfo(int,int,java.lang.String,boolean) -> a
+    1203:1209:void loadData() -> loadData
+    1220:1226:void doSomething(java.lang.String,int) -> doSomething
+    1237:1244:void doSomething(java.lang.String,int,java.lang.Object) -> doSomething
+    1254:1254:void submitTaskInfo() -> submitTaskInfo
+    1264:1293:com.yunfang.framework.model.ResultInfo showCreateNewTaskActivity() -> showCreateNewTaskActivity
+    1304:1309:java.lang.String getDataDefineName(int) -> a
+    1316:1337:void synchroReportInfo() -> g
+    70:70:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskMenuEnum() -> a
+    70:70:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> b
+    120:120:com.yunfang.eias.ui.Adapter.TaskListViewAdapter access$2(com.yunfang.eias.ui.TaskListFragment) -> a
+    1141:1141:void access$3(com.yunfang.eias.ui.TaskListFragment,int,int,java.lang.String) -> a
+    80:80:void access$4(com.yunfang.eias.ui.TaskListFragment,boolean) -> a
+    76:76:android.widget.ListView access$5(com.yunfang.eias.ui.TaskListFragment) -> b
 com.yunfang.eias.ui.TaskListFragment$1 -> com.yunfang.eias.ui.cz:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    584:585:void onClick(android.view.View) -> onClick
+    591:592:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskListFragment$2 -> com.yunfang.eias.ui.da:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    823:825:void onClick(android.view.View) -> onClick
+    833:835:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskListFragment$3 -> com.yunfang.eias.ui.db:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    836:843:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    846:853:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.yunfang.eias.ui.TaskListFragment$4 -> com.yunfang.eias.ui.dc:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    877:879:void onClick(android.view.View) -> onClick
+    887:889:void onClick(android.view.View) -> onClick
 com.yunfang.eias.ui.TaskListFragment$5 -> com.yunfang.eias.ui.dd:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    894:912:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    904:923:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.yunfang.eias.ui.TaskListFragment$6 -> com.yunfang.eias.ui.de:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    948:948:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    961:961:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.yunfang.eias.ui.TaskListFragment$7 -> com.yunfang.eias.ui.df:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
     com.yunfang.eias.logic.TaskListMenuOperaotr val$menuOperator -> b
-    956:971:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
+    969:984:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
 com.yunfang.eias.ui.TaskListFragment$8 -> com.yunfang.eias.ui.dg:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
     com.yunfang.eias.logic.TaskListMenuOperaotr val$menuOperator -> b
     int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus -> c
-    982:1008:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    978:978:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> a
+    997:1023:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    993:993:int[] $SWITCH_TABLE$com$yunfang$eias$enumObj$TaskStatus() -> a
 com.yunfang.eias.ui.TaskListFragment$9 -> com.yunfang.eias.ui.dh:
     com.yunfang.eias.ui.TaskListFragment this$0 -> a
-    1023:1023:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-    1026:1062:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    1031:1046:void onRefresh(com.yunfang.eias.view.PullToRefreshLayout) -> onRefresh
+    1052:1083:void onLoadMore(com.yunfang.eias.view.PullToRefreshLayout) -> onLoadMore
 com.yunfang.eias.ui.TaskMatchActivity -> com.yunfang.eias.ui.TaskMatchActivity:
     com.yunfang.eias.viewmodel.TaskMatchViewModel viewModel -> viewModel
     com.yunfang.eias.logic.AppHeader appHeader -> b
@@ -18371,20 +18436,15 @@ com.yunfang.eias.utils.DataCheckHelper -> com.yunfang.eias.utils.a:
     186:204:java.io.File getFileFromBytes(byte[],java.lang.String) -> getFileFromBytes
     212:235:java.io.File displayNoFile(java.io.File) -> displayNoFile
 com.yunfang.eias.utils.DensityHelper -> com.yunfang.eias.utils.b:
-    int W -> a
-    int H -> b
-    com.yunfang.eias.utils.DensityHelper densityUtil -> c
-    android.app.Activity context -> d
-    20:26:com.yunfang.eias.utils.DensityHelper getInstance(android.app.Activity) -> getInstance
-    31:32:void destroy() -> destroy
-    45:48:int getW() -> getW
-    52:56:int getH() -> getH
-    63:64:int dip2px(android.content.Context,float) -> dip2px
-    71:72:int px2dip(float) -> px2dip
-    82:82:int sp2px(float) -> sp2px
-    92:92:int px2sp(float) -> px2sp
-    99:104:void screenInfo() -> screenInfo
-    122:128:android.widget.PopupWindow createPopWindows(android.content.Context,int,int,int,int) -> createPopWindows
+    com.yunfang.eias.utils.DensityHelper densityUtil -> a
+    android.app.Activity context -> b
+    16:22:com.yunfang.eias.utils.DensityHelper getInstance(android.app.Activity) -> getInstance
+    27:28:void destroy() -> destroy
+    44:45:int dip2px(android.content.Context,float) -> dip2px
+    52:53:int px2dip(float) -> px2dip
+    63:63:int sp2px(float) -> sp2px
+    73:73:int px2sp(float) -> px2sp
+    91:97:android.widget.PopupWindow createPopWindows(android.content.Context,int,int,int,int) -> createPopWindows
 com.yunfang.eias.utils.DownloadResultHelper -> com.yunfang.eias.utils.c:
     30:40:void downloadComplete() -> downloadComplete
     49:49:void notificationClicked() -> notificationClicked
@@ -18481,6 +18541,107 @@ com.yunfang.eias.utils.OpenDialogHelper$8 -> com.yunfang.eias.utils.t:
 com.yunfang.eias.utils.OpenDialogHelper$9 -> com.yunfang.eias.utils.u:
     com.yunfang.eias.utils.OpenDialogHelper this$0 -> a
     330:330:void onClick(android.content.DialogInterface,int) -> onClick
+com.yunfang.eias.view.PullToRefreshLayout -> com.yunfang.eias.view.PullToRefreshLayout:
+    java.lang.String TAG -> TAG
+    int INIT -> INIT
+    int RELEASE_TO_REFRESH -> RELEASE_TO_REFRESH
+    int REFRESHING -> REFRESHING
+    int RELEASE_TO_LOAD -> RELEASE_TO_LOAD
+    int LOADING -> LOADING
+    int DONE -> DONE
+    int state -> b
+    com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener mListener -> c
+    int SUCCEED -> SUCCEED
+    int FAIL -> FAIL
+    float downY -> d
+    float lastY -> e
+    float pullDownY -> pullDownY
+    float pullUpY -> f
+    float refreshDist -> g
+    float loadmoreDist -> h
+    com.yunfang.eias.view.PullToRefreshLayout$MyTimer timer -> i
+    float MOVE_SPEED -> MOVE_SPEED
+    boolean isLayout -> j
+    boolean isTouch -> k
+    float radio -> l
+    android.view.animation.RotateAnimation rotateAnimation -> m
+    android.view.animation.RotateAnimation refreshingAnimation -> n
+    android.view.View refreshView -> o
+    android.view.View pullView -> p
+    android.view.View refreshingView -> q
+    android.view.View refreshStateImageView -> r
+    android.widget.TextView refreshStateTextView -> s
+    android.view.View loadmoreView -> t
+    android.view.View pullUpView -> u
+    android.view.View loadingView -> v
+    android.view.View loadStateImageView -> w
+    android.widget.TextView loadStateTextView -> x
+    android.view.View pullableView -> y
+    int mEvents -> z
+    boolean canPullDown -> A
+    boolean canPullUp -> B
+    android.os.Handler updateHandler -> a
+    173:174:void setOnRefreshListener(com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener) -> setOnRefreshListener
+    196:205:void initView(android.content.Context) -> a
+    209:210:void hide() -> a
+    221:258:void refreshFinish(int) -> refreshFinish
+    268:303:void loadmoreFinish(int) -> loadmoreFinish
+    307:352:void changeState(int) -> a
+    359:361:void releasePull() -> b
+    371:497:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
+    551:553:void autoRefresh() -> autoRefresh
+    560:566:void autoLoad() -> autoLoad
+    571:582:void initView() -> c
+    588:613:void onLayout(boolean,int,int,int,int) -> onLayout
+    57:57:float access$0(com.yunfang.eias.view.PullToRefreshLayout) -> a
+    70:70:boolean access$1(com.yunfang.eias.view.PullToRefreshLayout) -> b
+    44:44:int access$2(com.yunfang.eias.view.PullToRefreshLayout) -> c
+    60:60:float access$3(com.yunfang.eias.view.PullToRefreshLayout) -> d
+    64:64:com.yunfang.eias.view.PullToRefreshLayout$MyTimer access$4(com.yunfang.eias.view.PullToRefreshLayout) -> e
+    62:62:float access$5(com.yunfang.eias.view.PullToRefreshLayout) -> f
+    57:57:void access$6(com.yunfang.eias.view.PullToRefreshLayout,float) -> a
+    82:82:android.view.View access$7(com.yunfang.eias.view.PullToRefreshLayout) -> g
+    305:305:void access$8(com.yunfang.eias.view.PullToRefreshLayout,int) -> a
+    93:93:android.view.View access$9(com.yunfang.eias.view.PullToRefreshLayout) -> h
+    46:46:com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener access$10(com.yunfang.eias.view.PullToRefreshLayout) -> i
+    207:207:void access$11(com.yunfang.eias.view.PullToRefreshLayout) -> j
+com.yunfang.eias.view.PullToRefreshLayout$1 -> com.yunfang.eias.view.a:
+    com.yunfang.eias.view.PullToRefreshLayout this$0 -> a
+    119:167:void handleMessage(android.os.Message) -> handleMessage
+com.yunfang.eias.view.PullToRefreshLayout$2 -> com.yunfang.eias.view.b:
+    com.yunfang.eias.view.PullToRefreshLayout this$0 -> a
+    249:251:void handleMessage(android.os.Message) -> handleMessage
+com.yunfang.eias.view.PullToRefreshLayout$3 -> com.yunfang.eias.view.c:
+    com.yunfang.eias.view.PullToRefreshLayout this$0 -> a
+    294:296:void handleMessage(android.os.Message) -> handleMessage
+com.yunfang.eias.view.PullToRefreshLayout$AutoRefreshAndLoadTask -> com.yunfang.eias.view.d:
+    com.yunfang.eias.view.PullToRefreshLayout this$0 -> a
+    511:523:java.lang.String doInBackground(java.lang.Integer[]) -> a
+    529:534:void onPostExecute(java.lang.String) -> a
+    539:542:void onProgressUpdate(java.lang.Float[]) -> a
+    1:1:void onPostExecute(java.lang.Object) -> onPostExecute
+    1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+    1:1:void onProgressUpdate(java.lang.Object[]) -> onProgressUpdate
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer -> com.yunfang.eias.view.e:
+    android.os.Handler handler -> b
+    java.util.Timer timer -> c
+    com.yunfang.eias.view.PullToRefreshLayout$MyTimer$MyTask mTask -> d
+    com.yunfang.eias.view.PullToRefreshLayout this$0 -> a
+    629:636:void schedule(long) -> schedule
+    640:645:void cancel() -> cancel
+com.yunfang.eias.view.PullToRefreshLayout$MyTimer$MyTask -> com.yunfang.eias.view.f:
+    android.os.Handler handler -> b
+    com.yunfang.eias.view.PullToRefreshLayout$MyTimer this$1 -> a
+    659:660:void run() -> run
+com.yunfang.eias.view.PullToRefreshLayout$OnRefreshListener -> com.yunfang.eias.view.g:
+    void onRefresh(com.yunfang.eias.view.PullToRefreshLayout) -> onRefresh
+    void onLoadMore(com.yunfang.eias.view.PullToRefreshLayout) -> onLoadMore
+com.yunfang.eias.view.Pullable -> com.yunfang.eias.view.h:
+    boolean canPullDown() -> canPullDown
+    boolean canPullUp() -> canPullUp
+com.yunfang.eias.view.PullableListView -> com.yunfang.eias.view.PullableListView:
+    23:30:boolean canPullDown() -> canPullDown
+    35:43:boolean canPullUp() -> canPullUp
 com.yunfang.eias.viewmodel.BaiduMapViewModel -> com.yunfang.eias.viewmodel.BaiduMapViewModel:
     boolean isFirstLoad -> isFirstLoad
     float currentZoomLevel -> currentZoomLevel
@@ -18553,7 +18714,7 @@ com.yunfang.eias.viewmodel.TaskImportGuideViewModel -> com.yunfang.eias.viewmode
     android.widget.TextView task_import_guide_ddid -> task_import_guide_ddid
     android.widget.TextView task_import_guide_use -> task_import_guide_use
     android.widget.TextView task_import_guide_name -> task_import_guide_name
-    android.widget.EditText task_import_guide_fullname -> task_import_guide_fullname
+    android.widget.TextView task_import_guide_fullname -> task_import_guide_fullname
     android.widget.Button task_import_guide_select -> task_import_guide_select
     android.widget.Button task_import_guide_import -> task_import_guide_import
     com.yunfang.eias.logic.AppHeader appHeader -> appHeader

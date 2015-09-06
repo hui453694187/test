@@ -957,14 +957,14 @@ public class TaskOperator {
 										if (copy.exists() && paste.exists()) {
 											if (!DataCheckHelper.fileEquals(copy, paste)) {
 												if (!pastedItem.Value.contains(fileItem)) {
-													pastedItem.Value += MediaDataInfo.Semicolon + fileItem;
+													pastedItem.Value += fileItem + MediaDataInfo.Semicolon;
 												}
 											} else {
 												copiedItem.Value = copiedItem.Value.replaceAll(fileItem + MediaDataInfo.Semicolon, "");
 											}
 										}
 									} else {
-										pastedItem.Value += fileItem;
+										pastedItem.Value += fileItem + MediaDataInfo.Semicolon;
 									}
 								}
 								pastedItem.onUpdate("ID=" + pastedItem.ID);
@@ -2248,12 +2248,9 @@ public class TaskOperator {
 					result.Data.addAll(taskCheckFormat(importTaskInfoDto, output));
 					// 如果没有文件就 开始导入 覆盖 把导入的文件覆盖到 android端 资源文件不覆盖 而是累加
 					if (result.Data.size() <= 0) {
-						ResultInfo<ArrayList<TaskCategoryInfo>> categoriesResult = TaskDataWorker.queryTaskCategories(viewModel.androidTaskInfo.IsNew ? viewModel.androidTaskInfo.ID
-								: viewModel.androidTaskInfo.TaskID, viewModel.androidTaskInfo.IsNew, false);
-						ArrayList<TaskCategoryInfo> categories = categoriesResult.Data;
 						HashMap<String, String> selectedCategoryItems = new HashMap<String, String>();
-						if (ListUtil.hasData(categories)) {
-							for (TaskCategoryInfo item : categories) {
+						if (ListUtil.hasData(viewModel.zipTaskInfo.Categories)) {
+							for (TaskCategoryInfo item : viewModel.zipTaskInfo.Categories) {
 								selectedCategoryItems.put(String.valueOf(item.ID), item.RemarkName);
 							}
 							EIASApplication.isImporting = true;

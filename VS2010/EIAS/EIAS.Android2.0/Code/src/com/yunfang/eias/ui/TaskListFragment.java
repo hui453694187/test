@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +19,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -51,6 +50,8 @@ import com.yunfang.eias.model.TaskInfo;
 import com.yunfang.eias.tables.DataDefineWorker;
 import com.yunfang.eias.tables.TaskDataWorker;
 import com.yunfang.eias.ui.Adapter.TaskListViewAdapter;
+import com.yunfang.eias.view.PullToRefreshLayout;
+import com.yunfang.eias.view.PullToRefreshLayout.OnRefreshListener;
 import com.yunfang.eias.viewmodel.TaskListViewModel;
 import com.yunfang.framework.base.BaseBroadcastReceiver;
 import com.yunfang.framework.base.BaseBroadcastReceiver.afterReceiveBroadcast;
@@ -73,6 +74,10 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 * 待勘察任务对应的ListView
 	 * */
 	private ListView task_listview;
+
+	private PullToRefreshLayout taskPullTorefreshLayout;
+
+	private boolean isLoad;
 
 	/**
 	 * 任务查询输入框
@@ -219,6 +224,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 
 	// {{ 基类创建重载方法
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.task_fragment, null);
@@ -658,6 +664,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 		if (viewModel.homeActivity != null && colseLoading) {
 			viewModel.homeActivity.loadingWorker.closeLoading();
 		}
+		if (isLoad) {// 刷新中， 取消刷新
+			taskPullTorefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+		}
 	}
 
 	/**
@@ -723,9 +732,13 @@ public class TaskListFragment extends BaseWorkerFragment {
 		LinkedHashMap<String, TaskInfo> uploadTasks = MainService.getUploadTasks();
 		if (uploadTasks.size() > 0) {
 			for (TaskInfo element : viewModel.taskInfoes) {
-				if (uploadTasks.containsKey(element.TaskNum)) {
+				TaskInfo tempTask=uploadTasks.get(element.TaskNum);
+				if(uploadTasks.containsKey(element.TaskNum)&&tempTask.Status==TaskStatus.Submiting){
 					element.Status = TaskStatus.Submiting;
 				}
+				/*if (uploadTasks.containsKey(element.TaskNum) && uploadTasks.get(element.TaskNum).Status != TaskStatus.Submiting) {
+					element.Status = TaskStatus.Submiting;
+				}*/
 			}
 		}
 	}
@@ -905,6 +918,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 					if (msg != null && msg != "" && msg.equals("true")) {
 						viewModel.hideOfflineMsg = true;
 					}
+					viewModel.currentIndex = 1;
 					loadData();
 					break;
 				default:
@@ -940,6 +954,8 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 * 填充任务列表
 	 */
 	private void initTaskList(final TaskListMenuOperaotr menuOperator) {
+		taskPullTorefreshLayout = (PullToRefreshLayout) mView.findViewById(R.id.task_pull_refresh_layout);
+
 		task_listview = (ListView) mView.findViewById(R.id.task_listview);
 
 		// 监听触摸事件
@@ -974,95 +990,137 @@ public class TaskListFragment extends BaseWorkerFragment {
 
 		});
 
-		if (viewModel.taskStatus != TaskStatus.Submiting) {
-			// 监听点击事件
-			task_listview.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-					// 记录点击的位置
-					taskListViewAdapter.setSelectedPosition(position);
-					taskListViewAdapter.notifyDataSetChanged();
-					if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
-						viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
-						if (viewModel.taskStatus != null) {
-							switch (viewModel.taskStatus) {
-							case Todo:
-								// 记录长按的位置
-								taskListViewAdapter.setSelectedPosition(position);
-								taskListViewAdapter.notifyDataSetChanged();
-								viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
-								menuOperator.showDialog();
-								break;
-							case Doing:
-							case Done:
-								if (viewModel.currentSelectedTask.Status != TaskStatus.Submiting) {									
-									startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
-								}else{
-									viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
-								}
-								break;
-							default:
-								break;
-							}
-						}
-					}
-				}
-			});
-
-			// 监听滚动加载数据
-			task_listview.setOnScrollListener(new OnScrollListener() {
-
-				public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-					if (firstVisibleItem == 0) {// 滑到顶部
-
-					} else {
-
-					}
-					if (visibleItemCount + firstVisibleItem == totalItemCount) {// 滑到底部
-
-					}
-				}
-
-				public void onScrollStateChanged(AbsListView view, int scrollState) {
-					if (viewModel.taskStatus != TaskStatus.Submiting) {
-						switch (scrollState) {
-						case OnScrollListener.SCROLL_STATE_IDLE:// 当屏幕停止滚动时
-							viewModel.listItemCurrentPosition = view.getLastVisiblePosition();
-							int vc = view.getCount();
-							if (viewModel.listItemCurrentPosition == vc - 1) {
-								int temp = 0;
-								if (EIASApplication.IsOffline) {
-									temp = (Integer) (viewModel.localTotal / viewModel.pageSize);
-									temp += viewModel.localTotal % viewModel.pageSize > 0 ? 1 : 0;
-								} else {
-									temp = (Integer) ((viewModel.remoteTotal + viewModel.localTotal) / viewModel.pageSize);
-									temp += (viewModel.remoteTotal + viewModel.localTotal) % viewModel.pageSize > 0 ? 1 : 0;
-								}
-								if (viewModel.currentIndex == temp) {
-									showToast("已经是最后一页信息");
-									if (viewModel.localTotal % viewModel.pageSize == 0) {
-										viewModel.currentIndex = temp + 1;
-									}
-								} else {
-									viewModel.currentIndex++;
-									loadData();
-								}
+		// Log.d("lee",viewModel.taskStatus+"--"+TaskStatus.Submiting);
+		// if (viewModel.taskStatus != TaskStatus.Submiting) {
+		// Log.d("lee","设置监听");
+		// 监听点击事件
+		task_listview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+				// 记录点击的位置
+				taskListViewAdapter.setSelectedPosition(position);
+				taskListViewAdapter.notifyDataSetChanged();
+				if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
+					viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
+					if (viewModel.taskStatus != null) {
+						switch (viewModel.taskStatus) {
+						case Todo:
+							// 记录长按的位置
+							taskListViewAdapter.setSelectedPosition(position);
+							taskListViewAdapter.notifyDataSetChanged();
+							viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
+							menuOperator.showDialog();
+							break;
+						case Doing:
+						case Done:
+							if (viewModel.currentSelectedTask.Status != TaskStatus.Submiting) {
+								startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
 							} else {
+								viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
 							}
 							break;
-						case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 当屏幕滚动且用户使用的触碰或手指还在屏幕上时
-
-							break;
-						case OnScrollListener.SCROLL_STATE_FLING:// 由于用户的操作，屏幕产生惯性滑动时
-							if (view.getLastVisiblePosition() == view.getCount()) {
-								viewModel.homeActivity.loadingWorker.showLoading("数据加载中...");
-							}
+						default:
 							break;
 						}
 					}
 				}
-			});
-		}
+			}
+		});
+		// 监听下拉刷新， 上啦加载更多
+		taskPullTorefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+				// 刷新列表
+				viewModel.currentIndex = 1;
+				isLoad = true;
+				loadData();
+
+				/*
+				 * // 加载操作 new Handler() {
+				 * 
+				 * @Override public void handleMessage(Message msg) {
+				 * 
+				 * pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED
+				 * ); } }.sendEmptyMessageDelayed(0, 2000);
+				 */
+
+			}
+
+			@Override
+			public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
+				// Log.d("lee","加载更多");
+				// 加载操作
+				isLoad = true;
+
+				int temp = 0;
+				if (EIASApplication.IsOffline) {
+					temp = (Integer) (viewModel.localTotal / viewModel.pageSize);
+					temp += viewModel.localTotal % viewModel.pageSize > 0 ? 1 : 0;
+				} else {
+					temp = (Integer) ((viewModel.remoteTotal + viewModel.localTotal) / viewModel.pageSize);
+					temp += (viewModel.remoteTotal + viewModel.localTotal) % viewModel.pageSize > 0 ? 1 : 0;
+				}
+				if (viewModel.currentIndex == temp) {
+					showToast("已经是最后一页信息");
+					if (viewModel.localTotal % viewModel.pageSize == 0) {
+						viewModel.currentIndex = temp + 1;
+					}
+					isLoad = false;
+					pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+				} else {
+					viewModel.currentIndex++;
+					viewModel.listItemCurrentPosition = task_listview.getLastVisiblePosition();
+					loadData();
+				}
+				/*
+				 * new Handler() {
+				 * 
+				 * @Override public void handleMessage(Message msg) {
+				 * pullToRefreshLayout
+				 * .loadmoreFinish(PullToRefreshLayout.SUCCEED); }
+				 * }.sendEmptyMessageDelayed(0, 2000);
+				 */
+
+			}
+		});
+		/*
+		 * // 监听滚动加载数据 task_listview.setOnScrollListener(new OnScrollListener()
+		 * {
+		 * 
+		 * public void onScroll(AbsListView view, int firstVisibleItem, int
+		 * visibleItemCount, int totalItemCount) { if (firstVisibleItem == 0)
+		 * {// 滑到顶部
+		 * 
+		 * } else {
+		 * 
+		 * } if (visibleItemCount + firstVisibleItem == totalItemCount) {// 滑到底部
+		 * 
+		 * } }
+		 * 
+		 * public void onScrollStateChanged(AbsListView view, int scrollState) {
+		 * if (viewModel.taskStatus != TaskStatus.Submiting) { switch
+		 * (scrollState) { case OnScrollListener.SCROLL_STATE_IDLE:// 当屏幕停止滚动时
+		 * viewModel.listItemCurrentPosition = view.getLastVisiblePosition();
+		 * int vc = view.getCount(); if (viewModel.listItemCurrentPosition == vc
+		 * - 1) {// 滚动到最后一项 int temp = 0; if (EIASApplication.IsOffline) { temp
+		 * = (Integer) (viewModel.localTotal / viewModel.pageSize); temp +=
+		 * viewModel.localTotal % viewModel.pageSize > 0 ? 1 : 0; } else { temp
+		 * = (Integer) ((viewModel.remoteTotal + viewModel.localTotal) /
+		 * viewModel.pageSize); temp += (viewModel.remoteTotal +
+		 * viewModel.localTotal) % viewModel.pageSize > 0 ? 1 : 0; } if
+		 * (viewModel.currentIndex == temp) { showToast("已经是最后一页信息"); if
+		 * (viewModel.localTotal % viewModel.pageSize == 0) {
+		 * viewModel.currentIndex = temp + 1; } } else {
+		 * viewModel.currentIndex++; loadData(); } } else { } break; case
+		 * OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:// 当屏幕滚动且用户使用的触碰或手指还在屏幕上时
+		 * 
+		 * break; case OnScrollListener.SCROLL_STATE_FLING:// 由于用户的操作，屏幕产生惯性滑动时
+		 * if (view.getLastVisiblePosition() == view.getCount()) {
+		 * viewModel.homeActivity.loadingWorker.showLoading("数据加载中..."); }
+		 * break; } } } });
+		 */
+		// }
 	}
 
 	private void startTaskInfo(int taskId, int identityId, String taskNum) {
@@ -1127,7 +1185,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 * 加载数据
 	 * */
 	public void loadData() {
-		viewModel.homeActivity.loadingWorker.showLoading("数据加载中...");
+		if (viewModel.taskInfoes == null || viewModel.taskInfoes.size() <= 0) {
+			viewModel.homeActivity.loadingWorker.showLoading("数据加载中...");
+		}
 		Message TaskMsg = new Message();
 		TaskMsg.what = TASK_GETTASKINFOES;
 		mBackgroundHandler.sendMessage(TaskMsg);

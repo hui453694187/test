@@ -11,7 +11,7 @@
 		android:orientation="vertical" >
 		<include layout="@layout/task_list_title_layout" />
 		<include
-			android:id="@+id/task_listview"
+			android:id="@+id/task_pull_refresh_layout"
 			layout="@layout/task_listview" />
 	</LinearLayout>
 	<LinearLayout

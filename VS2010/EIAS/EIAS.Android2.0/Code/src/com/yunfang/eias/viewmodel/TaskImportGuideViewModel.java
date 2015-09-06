@@ -1,7 +1,6 @@
 package com.yunfang.eias.viewmodel;
 
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yunfang.eias.logic.AppHeader;
@@ -90,7 +89,7 @@ public class TaskImportGuideViewModel extends ViewModelBase {
 	/**
 	 * 选择文件完整路径
 	 */
-	public EditText  task_import_guide_fullname;
+	public TextView  task_import_guide_fullname;
 	
 	/**
 	 * 选择按钮

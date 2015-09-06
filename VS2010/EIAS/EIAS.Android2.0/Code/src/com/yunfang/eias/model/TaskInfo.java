@@ -253,7 +253,7 @@ public class TaskInfo extends TableWorkerBase {
 	/**
 	 * 加急费用
 	 */
-	public Double UrgentFee;
+	public double UrgentFee;
 	
 	// 加急费用 end 2015-7-24
 	
@@ -262,12 +262,12 @@ public class TaskInfo extends TableWorkerBase {
 	/**
 	 * 应收费用
 	 */
-	public Double AdjustFee;
+	public double AdjustFee;
 	
 	/**
 	 * 预收费用
 	 */
-	public Double LiveSearchCharge;
+	public double LiveSearchCharge;
 	
 	// 2015-8-5 end
 		

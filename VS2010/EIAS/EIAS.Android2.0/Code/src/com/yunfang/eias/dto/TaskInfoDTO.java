@@ -230,17 +230,17 @@ public class TaskInfoDTO {
 	/**
 	 * 加急金额 2015-7-24
 	 */
-	public Double UrgentFee;
+	public double UrgentFee;
 	
 	/**
 	 * 加急金额 2015-8-5
 	 */
-	public Double AdjustFee;
+	public double AdjustFee;
 	
 	/**
 	 * 加急金额 2015-7-24
 	 */
-	public Double LiveSearchCharge;
+	public double LiveSearchCharge;
 	
 	/**
 	 * 任务下的分类信息

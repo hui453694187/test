@@ -327,22 +327,22 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 				}
 			}
 			// 加急费用
-			if (holder.urgent_fee != null && item.UrgentFee != null) {
+			if (holder.urgent_fee != null && item.UrgentFee >0) {
 				if (item.UrgentFee <= 0) {
 					holder.urgent_fee.setTextColor(EIASApplication.getInstance().getResources().getColor(R.color.gray));
 				}
-				holder.urgent_fee.setText(item.UrgentFee.toString());
+				holder.urgent_fee.setText(String.valueOf(item.UrgentFee));
 			}
 			// 预收费用
-			if (holder.liveSearchCharge != null && item.LiveSearchCharge != null) {
+			if (holder.liveSearchCharge != null && item.LiveSearchCharge >0) {
 				if (item.LiveSearchCharge <= 0) {
 					holder.liveSearchCharge.setTextColor(EIASApplication.getInstance().getResources().getColor(R.color.gray));
 				}
-				holder.liveSearchCharge.setText(item.LiveSearchCharge.toString());
+				holder.liveSearchCharge.setText(String.valueOf(item.LiveSearchCharge));
 			}
 			// 加急收费金额的容器
 			if (holder.rl_urgent_fee != null) {
-				if (item.UrgentFee > 0 || item.LiveSearchCharge > 0) {
+				if ((item.UrgentFee >0 && item.UrgentFee  > 0) || (item.LiveSearchCharge >0 && item.LiveSearchCharge > 0)) {
 					holder.rl_urgent_fee.setVisibility(View.VISIBLE);
 				}
 			}
