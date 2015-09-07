@@ -297,7 +297,8 @@ public class EIASApplication extends BaseApplication {
 	 */
 	private void initFinalString() {
 		
-		/*Services.put("本地测试服务器", "http://192.168.3.66:8099");
+		Services.put("本地测试服务器", "http://192.168.3.66:8099");//本地测试服务器
+		/*
 		Services.put("分公司服务器1(外业)", "http://182.92.219.161:18099");
 		Services.put("分公司服务器2(勘图)", "http://182.92.161.16:18099");		
 		Services.put("总公司服务器1(外业)", "http://182.92.161.16:8099")

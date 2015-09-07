@@ -188,7 +188,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	/**
 	 * 自定义图库
 	 */
-	public static final int TASK_ALBUM=100;
+	public static final int TASK_ALBUM = 100;
 	/**
 	 * 图库
 	 * */
@@ -526,11 +526,11 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {
-						//跳转到 选择图片界面
-						Intent i=new Intent();
+						// 跳转到 选择图片界面
+						Intent i = new Intent();
 						i.setClass(taskInfoActivity, MultiSelectAlbumActivity.class);
-						startActivityForResult(i,TASK_ALBUM);
-						//getFileOfMediaLib();
+						startActivityForResult(i, TASK_ALBUM);
+						// getFileOfMediaLib();
 					} else {
 						if (!taskInfoActivity.meidaListAdapter.getVisCheck()) {
 							enterEdit();
@@ -611,18 +611,15 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		if (resultCode == taskInfoActivity.RESULT_OK) {
 			Boolean isContinue = false;
 			if (mediaFile != null) {
-				mediaInfo = new MediaDataInfo("请选择类型", mediaFile);
+				if(!hasDefaultSelect()||mediaInfo==null){
+					mediaInfo = new MediaDataInfo("请选择类型", mediaFile);
+				}
 			}
 			switch (requestCode) {
-			case TASK_PHOTO:
+			case TASK_PHOTO:// 系统相机拍照返回
 				if (mediaInfo != null) {
-					mediaInfo.itemFileName = mediaFile.getName() + ";";
-					mediaInfo.ItemName = mediaInfo.itemFileName;
-					mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
-					mediaInfo.CategoryId = 0;
-					taskInfoActivity.meidaInfos.add(mediaInfo);
-					taskInfoActivity.additional(mediaFile.getName(), false);
-					taskInfoActivity.doSaveMediaInfo("", "", mediaFile.getName() + ";", mediaFile.getName() + ";", CategoryType.PictureCollection, true, false);
+					// 判断当前分类项中是否有未分类的选项
+					setDropDefaultSelect(mediaFile);
 					isContinue = true;
 				}
 				break;
@@ -632,7 +629,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 			case TASK_VEDIO:
 				taskInfoActivity.changMediaFragment(taskInfoActivity.TASK_VEDIO, mediaInfo, true);
 				break;
-			case TASK_PHOTOLIB:
+			case TASK_PHOTOLIB:// 系统图库返回
 				// 为false时为复制
 				boolean isPaste = false;
 				String copyOrPaste = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PICTURECOPYORPASTE);
@@ -640,7 +637,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					isPaste = true;
 				}
 				String fileFuleName = taskInfoActivity.task_p_dir + File.separator + UUID.randomUUID() + ".jpg";
-				
+
 				FileUtil.movePhotoLibFileToCustomDir(taskInfoActivity, intent, fileFuleName, isPaste, true);
 				File file = new File(fileFuleName);
 				if (!file.exists()) {
@@ -649,9 +646,15 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					mediaInfo = new MediaDataInfo("请选择种类", file);
 					if (mediaInfo != null) {
 						mediaInfo.itemFileName = file.getName() + ";";
-						mediaInfo.ItemName = mediaInfo.itemFileName;
 						mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
-						mediaInfo.CategoryId = 0;
+
+						if (hasDefaultSelect()) {
+							mediaInfo.ItemName = "未分类";
+							mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
+						} else {
+							mediaInfo.ItemName = mediaInfo.itemFileName;
+							mediaInfo.CategoryId = 0;
+						}
 						taskInfoActivity.meidaInfos.add(mediaInfo);
 						taskInfoActivity.additional(file.getName(), false);
 						taskInfoActivity.doSaveMediaInfo("", "", file.getName() + ";", file.getName() + ";", CategoryType.PictureCollection, true, false);
@@ -660,10 +663,10 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					// mediaInfo, true);
 				}
 				break;
-				
+
 			case TASK_ALBUM:// 从自定义图库返回
-				Log.d("kevin","is come+"+TASK_ALBUM);
-				ArrayList<String> result=intent.getStringArrayListExtra(MultiSelectAlbumActivity.RESULT_IMG_PATH);
+				Log.d("kevin", "is come+" + TASK_ALBUM);
+				ArrayList<String> result = intent.getStringArrayListExtra(MultiSelectAlbumActivity.RESULT_IMG_PATH);
 				// 为false时为复制
 				boolean isPastes = false;
 				String copyOrPastes = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PICTURECOPYORPASTE);
@@ -671,7 +674,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					isPaste = true;
 				}
 				// 循环没个图片路径， 移动到指定文件夹， 并添加到主界面
-				for(String path:result){
+				for (String path : result) {
 					String fileFuleNames = taskInfoActivity.task_p_dir + File.separator + UUID.randomUUID() + ".jpg";
 					// 移动文件到指定文件夹
 					if (new File(path).exists()) {
@@ -698,29 +701,37 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 						mediaInfo = new MediaDataInfo("请选择种类", files);
 						if (mediaInfo != null) {
 							mediaInfo.itemFileName = files.getName() + ";";
-							mediaInfo.ItemName = mediaInfo.itemFileName;
 							mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
-							mediaInfo.CategoryId = 0;
-							taskInfoActivity.meidaInfos.add(mediaInfo);
+
+							// setDropDefaultSelect();
+							if (hasDefaultSelect()) {
+								mediaInfo.ItemName = "未分类";
+								mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
+							} else {
+								mediaInfo.ItemName = mediaInfo.itemFileName;
+								mediaInfo.CategoryId = 0;
+							}
+							/*
+							 * mediaInfo.ItemName = mediaInfo.itemFileName;
+							 * mediaInfo.CategoryId = 0;
+							 */
+
+							taskInfoActivity.meidaInfos.add(mediaInfo);//添加到缓存
 							taskInfoActivity.additional(files.getName(), false);
-							//同步插入
-							TaskOperator.saveMediaInfo(taskInfoActivity, 
-									taskInfoActivity.viewModel.currentTask, 
-									taskInfoActivity.viewModel.currentCategory, 
-									files.getName() + ";", files.getName() + ";", 
-									"", 
-									"", 
-									false);
-							//刷新内存， 和刷新界面显示
+							// 同步插入 数据库
+							TaskOperator.saveMediaInfo(taskInfoActivity,//
+									taskInfoActivity.viewModel.currentTask,//
+									taskInfoActivity.viewModel.currentCategory,//
+									files.getName() + ";", files.getName() + ";", "", "", false);//
+							// 刷新内存， 和刷新界面显示
 							taskInfoActivity.refreshTaskCategory();
 							taskInfoActivity.sortTaskItemValue();
 							taskInfoActivity.meidaListAdapter.notifyDataSetChanged();
 						}
 					}
 				}
-				
 				break;
-				
+
 			case TASK_AUDIOLIB:
 				taskInfoActivity.changMediaFragment(taskInfoActivity.TASK_AUDIO, mediaInfo, true);
 				break;
@@ -1097,8 +1108,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 						taskInfoActivity.meidaListAdapter.notifyDataSetChanged();
 					}
 					detailDialog.dismiss();
-				}
-				else{
+				} else {
 					taskInfoActivity.appHeader.showDialog("提示信息", "没有选择类型或者选择类型不对");
 				}
 			}
@@ -1118,4 +1128,43 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		}
 	}
 
+	/***
+	 * 设置图片下拉框默认选项的值
+	 */
+	private void setDropDefaultSelect(File file) {
+		mediaInfo.itemFileName = file.getName() + ";";
+
+		if (hasDefaultSelect()) {
+			mediaInfo.ItemName = "未分类";
+			mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
+			if(!mediaInfo.ItemValue.contains(file.getName())){
+				mediaInfo.ItemValue += file.getName() + ";";
+			}
+			
+		} else {
+			mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
+			mediaInfo.ItemName = mediaInfo.itemFileName;
+			mediaInfo.CategoryId = 0;
+		}
+		taskInfoActivity.meidaInfos.add(mediaInfo);
+		taskInfoActivity.additional(mediaFile.getName(), false);
+
+		taskInfoActivity.doSaveMediaInfo("", "", mediaInfo.ItemName,mediaInfo.ItemValue, CategoryType.PictureCollection, true, false);
+	}
+
+	/***
+	 * 图片下拉框是否有默认选项 默认选项： "未分类"
+	 * 
+	 * @return
+	 */
+	private boolean hasDefaultSelect() {
+		boolean result = false;
+		for (String dropItem : taskInfoActivity.viewModel.currentDropDownListData) {
+			if (dropItem.equals("未分类")) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
 }
