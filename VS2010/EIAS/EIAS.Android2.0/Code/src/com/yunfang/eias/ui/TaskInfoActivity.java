@@ -168,6 +168,8 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 	 * 保存媒体信息多个
 	 */
 	private final int TASK_SAVE_MEDIAS_INFO = 2;
+	/** 有默认选中项保存图片信息  */
+	private final int TASK_SAVE_MEDIA_DEFAULT_INFO=3;
 
 	/**
 	 * 分类项位置索引
@@ -240,19 +242,29 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 			CategoryType mediaType = CategoryType.valueOf(categoryType);
 			String filePath = getFilePath(mediaType);
 			ResultInfo<Boolean> saveMediaInfoResult = new ResultInfo<Boolean>();
+			File mediaFile=null;
 			for (String item : datas) {
+				/*// 保存图片信息到数据库， 刷新缓存等操作
 				MediaDataInfo mData = new MediaDataInfo(item, new File(filePath + File.separator + item));
 				mData.itemFileName = item + ";";
 				mData.ItemName = item;
 				mData.ItemValue = item + ";";
 				mData.CategoryId = 0;
 				meidaInfos.add(mData);
-				saveMediaInfoResult = TaskOperator.saveMediaInfo(this, viewModel.currentTask, viewModel.currentCategory, mData.itemFileName, mData.ItemValue, "", "", false);
+				saveMediaInfoResult = TaskOperator.saveMediaInfo(this, viewModel.currentTask, viewModel.currentCategory, mData.itemFileName, mData.ItemValue, "", "", false);*/
+				mediaFile=new File(filePath + File.separator + item);
+				MediaDataInfo mData = new MediaDataInfo("未分类",mediaFile);
+				setDropDefaultSelect(mData,mediaFile);
 			}
 			uiMsg.setData(param);
 			uiMsg.obj = saveMediaInfoResult;
 			break;
 		}
+		case TASK_SAVE_MEDIA_DEFAULT_INFO:// 保存有默认选项的图片信息
+			MediaDataInfo mediaInfo=(MediaDataInfo)msg.obj;
+			this.saveTaskItemValue(CategoryType.PictureCollection, mediaInfo, mediaInfo.ItemName,true);
+			 
+			break;
 		default:
 			break;
 		}
@@ -366,7 +378,10 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 					DataLogOperator.other("TaskInfoActivity.handleUiMessage.TASK_SAVE_MEDIAS_INFO:" + e.getMessage());
 				}
 			}
-			showToast(saveMediaInfoResult.Message);
+			/*showToast(saveMediaInfoResult.Message);*/
+			break;
+		case TASK_SAVE_MEDIA_DEFAULT_INFO:// 保存完图片刷新界面
+			this.meidaListAdapter.notifyDataSetChanged();
 			break;
 		}
 		loadingWorker.closeLoading();
@@ -1172,9 +1187,9 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 					Bundle bundle = intent.getExtras();
 					String[] files = bundle.getStringArray("files");
 					if (files.length > 0) {
-						for (String item : files) {
+						/*for (String item : files) {
 							additional(item, false);
-						}
+						}*/
 						doSaveMediasInfo(files, CategoryType.PictureCollection, true);
 					}
 					break;
@@ -1211,12 +1226,14 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 
 	/**
 	 * 保存资源选择类型后的子项
+	 * 增加新的资源子项
 	 * 
 	 * @param mType资源类型
 	 * @param mInfo资源对象
 	 * @param itemName当前选择的描述类型
+	 * @param hasDefault是否有默认值
 	 */
-	public void saveTaskItemValue(CategoryType mType, MediaDataInfo mInfo, String itemName) {
+	public void saveTaskItemValue(CategoryType mType, MediaDataInfo mInfo, String itemName,boolean hasDefault) {
 		// 记录当前Item的全部Value
 		String currentValue = "";
 		// 获取当前选择类型的全部Value
@@ -1250,8 +1267,16 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 		}
 		// 如果是补发图片
 		additional(mInfo.file.getName(), false);
-		// 保存当前操作的资源
-		ResultInfo<Boolean> saveResultInfo = TaskOperator.saveMediaInfo(this, viewModel.currentTask, viewModel.currentCategory, itemName, currentValue, mInfo.ItemName, newItemValue, false);
+		ResultInfo<Boolean> saveResultInfo;
+		if(!hasDefault){
+			// 保存当前操作的资源
+			saveResultInfo = TaskOperator.saveMediaInfo(this, viewModel.currentTask, viewModel.currentCategory, itemName, currentValue, mInfo.ItemName, newItemValue, false);
+		}else{
+			// 有默认的值
+			saveResultInfo = TaskOperator.saveMediaInfo(this, viewModel.currentTask, viewModel.currentCategory, itemName, currentValue, "", "", false);
+		}
+		
+		
 		// 如果保存成功就重新获取当前的分类数据
 		if (saveResultInfo.Data != null && saveResultInfo.Data) {
 			refreshTaskCategory();
@@ -1311,7 +1336,7 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 	 * @param itemName
 	 * @return
 	 */
-	private String getBeforeItemValue(String itemName) {
+	public String getBeforeItemValue(String itemName) {
 		String result = "";
 		for (TaskDataItem item : viewModel.currentCategory.Items) {
 			if (item.Name.equals(itemName)) {
@@ -1344,6 +1369,51 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 		} catch (Exception e) {
 			DataLogOperator.other(viewModel.currentTask + "删除图片=>" + e.getMessage());
 		}
+	}
+	
+	
+	/***
+	 * 设置图片下拉框默认选项的值
+	 * @param file 要保存的图片File 对象
+	 */
+	protected void setDropDefaultSelect(MediaDataInfo mediaInfo,File file) {
+		mediaInfo.itemFileName = file.getName() + ";";
+
+		if (hasDefaultSelect()) {
+			mediaInfo.ItemValue = file.getName() + ";";
+			mediaInfo.ItemName = "未分类";
+			mediaInfo.CategoryId = this.viewModel.currentCategory.CategoryID;
+			this.meidaInfos.add(mediaInfo);// 添加新子项到缓存
+			
+			Message mbgMsg=new Message();// 发消息通知后台线程保存图片信息
+			mbgMsg.what=TASK_SAVE_MEDIA_DEFAULT_INFO;
+			mbgMsg.obj=mediaInfo;
+			this.mBackgroundHandler.sendMessage(mbgMsg);
+		} else {
+			mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
+			mediaInfo.ItemName = mediaInfo.itemFileName;
+			mediaInfo.CategoryId = 0;
+			this.meidaInfos.add(mediaInfo);
+			
+			this.additional(file.getName(), false);
+			this.doSaveMediaInfo("", "", mediaInfo.ItemName, mediaInfo.ItemValue, CategoryType.PictureCollection, true, false);
+		}
+	}
+
+	/***
+	 * 图片下拉框是否有默认选项 默认选项： "未分类"
+	 * 
+	 * @return
+	 */
+	protected boolean hasDefaultSelect() {
+		boolean result = false;
+		for (String dropItem : this.viewModel.currentDropDownListData) {
+			if (dropItem.equals("未分类")) {
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
 
 }

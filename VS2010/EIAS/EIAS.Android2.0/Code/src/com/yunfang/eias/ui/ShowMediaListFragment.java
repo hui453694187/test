@@ -592,14 +592,14 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		}
 	}
 
-	/**
+/*	*//**
 	 * 从媒体文件取
-	 */
+	 *//*
 	@SuppressWarnings("unused")
 	private void getFileOfMediaLib() {
 		Intent intent = CameraUtils.startGetPicPhotoAlbum();
 		startActivityForResult(intent, taskInfoActivity.TASK_PHOTOLIB);
-	}
+	}*/
 
 	/**
 	 * 返回方法
@@ -611,15 +611,13 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		if (resultCode == taskInfoActivity.RESULT_OK) {
 			Boolean isContinue = false;
 			if (mediaFile != null) {
-				if(!hasDefaultSelect()||mediaInfo==null){
-					mediaInfo = new MediaDataInfo("请选择类型", mediaFile);
-				}
+				mediaInfo = new MediaDataInfo("请选择类型", mediaFile);
 			}
 			switch (requestCode) {
 			case TASK_PHOTO:// 系统相机拍照返回
 				if (mediaInfo != null) {
 					// 判断当前分类项中是否有未分类的选项
-					setDropDefaultSelect(mediaFile);
+					taskInfoActivity.setDropDefaultSelect(mediaInfo,mediaFile);
 					isContinue = true;
 				}
 				break;
@@ -648,7 +646,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 						mediaInfo.itemFileName = file.getName() + ";";
 						mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
 
-						if (hasDefaultSelect()) {
+						if (taskInfoActivity.hasDefaultSelect()) {
 							mediaInfo.ItemName = "未分类";
 							mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
 						} else {
@@ -665,7 +663,6 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				break;
 
 			case TASK_ALBUM:// 从自定义图库返回
-				Log.d("kevin", "is come+" + TASK_ALBUM);
 				ArrayList<String> result = intent.getStringArrayListExtra(MultiSelectAlbumActivity.RESULT_IMG_PATH);
 				// 为false时为复制
 				boolean isPastes = false;
@@ -700,7 +697,8 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					} else {
 						mediaInfo = new MediaDataInfo("请选择种类", files);
 						if (mediaInfo != null) {
-							mediaInfo.itemFileName = files.getName() + ";";
+							taskInfoActivity.setDropDefaultSelect(mediaInfo,files);
+							/*mediaInfo.itemFileName = files.getName() + ";";
 							mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
 
 							// setDropDefaultSelect();
@@ -711,22 +709,22 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 								mediaInfo.ItemName = mediaInfo.itemFileName;
 								mediaInfo.CategoryId = 0;
 							}
-							/*
+							
 							 * mediaInfo.ItemName = mediaInfo.itemFileName;
 							 * mediaInfo.CategoryId = 0;
-							 */
+							 
 
-							taskInfoActivity.meidaInfos.add(mediaInfo);//添加到缓存
+							taskInfoActivity.meidaInfos.add(mediaInfo);// 添加到缓存
 							taskInfoActivity.additional(files.getName(), false);
 							// 同步插入 数据库
 							TaskOperator.saveMediaInfo(taskInfoActivity,//
 									taskInfoActivity.viewModel.currentTask,//
 									taskInfoActivity.viewModel.currentCategory,//
-									files.getName() + ";", files.getName() + ";", "", "", false);//
+									mediaInfo.ItemName, files.getName() + ";", "", "", false);//
 							// 刷新内存， 和刷新界面显示
 							taskInfoActivity.refreshTaskCategory();
 							taskInfoActivity.sortTaskItemValue();
-							taskInfoActivity.meidaListAdapter.notifyDataSetChanged();
+							taskInfoActivity.meidaListAdapter.notifyDataSetChanged();*/
 						}
 					}
 				}
@@ -1102,7 +1100,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 					}
 					if (selectItems.size() > 0) {
 						for (MediaDataInfo mediaDataInfo : selectItems) {
-							taskInfoActivity.saveTaskItemValue(CategoryType.PictureCollection, mediaDataInfo, selectTypeString);
+							taskInfoActivity.saveTaskItemValue(CategoryType.PictureCollection, mediaDataInfo, selectTypeString,false);
 						}
 						leaveEdit();
 						taskInfoActivity.meidaListAdapter.notifyDataSetChanged();
@@ -1128,43 +1126,4 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		}
 	}
 
-	/***
-	 * 设置图片下拉框默认选项的值
-	 */
-	private void setDropDefaultSelect(File file) {
-		mediaInfo.itemFileName = file.getName() + ";";
-
-		if (hasDefaultSelect()) {
-			mediaInfo.ItemName = "未分类";
-			mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
-			if(!mediaInfo.ItemValue.contains(file.getName())){
-				mediaInfo.ItemValue += file.getName() + ";";
-			}
-			
-		} else {
-			mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
-			mediaInfo.ItemName = mediaInfo.itemFileName;
-			mediaInfo.CategoryId = 0;
-		}
-		taskInfoActivity.meidaInfos.add(mediaInfo);
-		taskInfoActivity.additional(mediaFile.getName(), false);
-
-		taskInfoActivity.doSaveMediaInfo("", "", mediaInfo.ItemName,mediaInfo.ItemValue, CategoryType.PictureCollection, true, false);
-	}
-
-	/***
-	 * 图片下拉框是否有默认选项 默认选项： "未分类"
-	 * 
-	 * @return
-	 */
-	private boolean hasDefaultSelect() {
-		boolean result = false;
-		for (String dropItem : taskInfoActivity.viewModel.currentDropDownListData) {
-			if (dropItem.equals("未分类")) {
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
 }

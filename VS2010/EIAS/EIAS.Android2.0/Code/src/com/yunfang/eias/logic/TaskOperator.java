@@ -1241,18 +1241,14 @@ public class TaskOperator {
 	/**
 	 * 保存媒体信息
 	 * 
-	 * @param taskCategoryId
-	 *            :当前分类项编号,Android端的值
-	 * @param dataItemName
-	 *            :当前分类项的名称
-	 * @param dataItemValue
-	 *            :当前分类项需要保存的值
-	 * @param beforeValue
-	 *            :以前的文件名称
-	 * @param beforeType
-	 *            :以前的文件类型
-	 * @param taskInfoActivity
-	 *            :当前上下文
+	 * @param taskInfoActivity当前操作界面
+	 * @param taskInfo任务信息
+	 * @param taskCategoryInfo任务分类
+	 * @param dataItemName当前操作图片描述类型
+	 * @param dataItemValue当前操作图片值
+	 * @param beforeType之前操作图片描述类型
+	 * @param beforeValue之前操作图片值
+	 * @param delete是否为删除操作
 	 * @return
 	 */
 	public static ResultInfo<Boolean> saveMediaInfo(TaskInfoActivity taskInfoActivity, TaskInfo taskInfo, TaskCategoryInfo taskCategoryInfo, String dataItemName, String dataItemValue,

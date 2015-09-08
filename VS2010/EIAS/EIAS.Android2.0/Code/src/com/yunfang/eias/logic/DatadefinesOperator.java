@@ -34,11 +34,6 @@ public class DatadefinesOperator {
 				result=getDatadefinesTask.request(userInfo);
 				
 				ArrayList<DataDefine> motroDefines=(ArrayList<DataDefine>)result.Data;
-				//int size=motroDefines.size();
-				//Log.d("lee","size"+size);
-				/*for(DataDefine d:motroDefines){
-					Log.d("lee","define:"+d.toString());
-				}*/
 				List<String> ddidList=new ArrayList<String>();
 				//获取本地数据库 勘察表数据
 				ResultInfo<ArrayList<DataDefine>> localDefines=DataDefineWorker.queryDataDefineByCompanyID(userInfo.CompanyID);

@@ -211,7 +211,7 @@ public class MeidaListAdapter extends BaseAdapter {
 					viewHolder.mAutoText.setVisibility(View.GONE);
 					viewHolder.mImageText.setText(arg0.getItemAtPosition(arg2).toString());
 					viewHolder.mImageText.setVisibility(View.VISIBLE);
-					mTaskInfoActivity.saveTaskItemValue(mType, mInfo, arg0.getItemAtPosition(arg2).toString());
+					mTaskInfoActivity.saveTaskItemValue(mType, mInfo, arg0.getItemAtPosition(arg2).toString(),false);
 				}
 			});
 		}

@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -154,7 +153,9 @@ public class LoginActivity extends BaseWorkerActivity {
 		loginMsg.what = TASK_ONLINE_LOGIN;
 		mBackgroundHandler.sendMessage(loginMsg);
 	}
-
+	/***
+	 * 获取最新配置表， 同步本地数据库配置信息
+	 */
 	private void getNewesDatadefines() {
 		loadingWorker.showLoading("检查勘察配置信息中...");
 		Message getDatadefinde = new Message();
@@ -234,7 +235,6 @@ public class LoginActivity extends BaseWorkerActivity {
 				showToast(result.Message);
 			}
 		} else {
-			Log.d("lee", "msg:" + result.Message);
 			if (result.Message.contains("Value Connection")) {
 				showToast("登录失败,无法连接服务器");
 			} else if (result.Message.contains("Value Connect")) {
