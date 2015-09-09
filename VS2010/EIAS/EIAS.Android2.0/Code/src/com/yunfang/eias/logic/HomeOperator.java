@@ -8,6 +8,7 @@ import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.http.task.GetDataDefineDataTask;
 import com.yunfang.eias.http.task.GetFinishInworkReportTask;
 import com.yunfang.eias.http.task.GetHomeInfoTask;
+import com.yunfang.eias.http.task.GetReturnTask;
 import com.yunfang.eias.model.DataDefine;
 import com.yunfang.eias.model.UserTaskInfo;
 import com.yunfang.eias.tables.DataDefineWorker;
@@ -168,8 +169,8 @@ public class HomeOperator {
 						}
 					}
 				}
-			}else{
-				result=TaskDataWorker.queryUserInfo(userInfo);
+			} else {
+				result = TaskDataWorker.queryUserInfo(userInfo);
 			}
 		} catch (Exception e) {
 			result.Success = false;
@@ -207,5 +208,24 @@ public class HomeOperator {
 				}
 			}.start();
 		}
+	}
+
+	/***
+	 * 
+	 * @return 暂停了的任务编号数组
+	 */
+	public static String[] getReturnTaskInfo() {
+		String[] returnTaskNum = null;
+		ResultInfo<String> result = new ResultInfo<String>();
+		// 发起网络请求后去暂停了的任务信息
+		GetReturnTask getReturnTask = new GetReturnTask();
+		// 发起网络请求
+		result = getReturnTask.getReturnTadkInfo(EIASApplication.getCurrentUser());
+		if (result.Success) {
+			if (result.Data.contains(";")) {
+				returnTaskNum = result.Data.split(";");
+			}
+		}
+		return returnTaskNum;
 	}
 }

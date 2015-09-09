@@ -1,7 +1,11 @@
 package com.yunfang.eias.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -18,15 +22,18 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.MainService;
 import com.yunfang.eias.enumObj.TaskStatus;
 import com.yunfang.eias.logic.AppHeader;
 import com.yunfang.eias.logic.DataLogOperator;
+import com.yunfang.eias.logic.HomeOperator;
 import com.yunfang.eias.logic.TaskListMenuOperaotr;
 import com.yunfang.framework.base.BaseWorkerFragmentActivity;
 import com.yunfang.framework.utils.DialogUtil;
+import com.yunfang.framework.utils.SpUtil;
 import com.yunfang.framework.utils.ToastUtil;
 
 /*
@@ -38,7 +45,23 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	 * 检测版本
 	 */
 	private final int TASK_CHECK_VERSION = 1;
+
+	/** GetReturnTask */
+	private final int TASK_GET_RETURN_TASK = 2;
+
+	/** 收到隐藏顶部已暂停任务提示条 */
+	private final int TASK_GONE_TOP_TIPS = 3;
+
+	/** 任务提示条展示时间 */
+	private final int TOP_TIPS_SHOW_TIME = 60000;
+	/** SP 中保存已暂停task numbs 文件名 */
+	private final String SP_RETURN_TASK_NUMB = "return_task_numbs";
+	/** SP 总保已整体 task numbs 的 key */
+	private final String SP_RETURN_TASK_NUMB_KEY = "taskNums";
+
 	// }}
+
+	private SpUtil sputil;
 
 	// {{相关变量
 
@@ -126,6 +149,9 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	 */
 	private LinearLayout homeLayout;
 
+	/** 显示已经暂停了的 任务编号 */
+	private TextView rollingTv;
+
 	/**
 	 * 任务匹配的界面名称
 	 */
@@ -144,6 +170,10 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		case TASK_CHECK_VERSION:
 			msg.obj = true;
 			break;
+		case TASK_GET_RETURN_TASK:
+			String[] taskNums = HomeOperator.getReturnTaskInfo();
+			resultMsg.obj = taskNums;
+			break;
 		default:
 			showToast("没有找到任务执行的操作函数");
 			break;
@@ -160,12 +190,117 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		switch (msg.what) {
 		case TASK_CHECK_VERSION:
 			appHeader.downloadTipsDialog("");
-			// appHeader.checkSDCardHasSize();
+			getReturnTaskInfo();
+			break;
+		case TASK_GET_RETURN_TASK:
+			String[] taskNumbs = (String[]) msg.obj;
+			setRollingAnimationTv(taskNumbs);
+			break;
+		case TASK_GONE_TOP_TIPS:
+			rollingTv.setVisibility(View.GONE);
 			break;
 		default:
 			showToast("没有找到任务执行的操作函数");
 			break;
 		}
+	}
+
+	/***
+	 * 设置TextView 平移的动画
+	 * 
+	 * @param taskNumbs
+	 */
+	private void setRollingAnimationTv(String[] taskNumbs) {
+		// TODO 获取SP 中存储的变量，如果已经存在于SP 中择不显示，如果
+		List<String> unExitTaskNumbs = getSpReturnTaskNumbs(taskNumbs);
+		if (unExitTaskNumbs != null && unExitTaskNumbs.size() > 0) {
+			rollingTv.setVisibility(View.VISIBLE);// 显示提示
+			rollingTv.setText(appendTaskNumb(unExitTaskNumbs));
+			
+			// 指定时间到了后， 隐藏这个提示
+			Message msg = new Message();
+			msg.what = TASK_GONE_TOP_TIPS;
+			mUiHandler.sendMessageDelayed(msg, TOP_TIPS_SHOW_TIME);
+		}
+		// 无论有无显示， 都把最新的暂停列表保存起来
+		saveUnExitTaskNum(taskNumbs);
+	}
+
+	/***
+	 * 拼接已经暂停的任务编号字符串提示
+	 * 
+	 * @param unExitTaskNumbs
+	 * @return
+	 */
+	private String appendTaskNumb(List<String> unExitTaskNumbs) {
+		StringBuilder sb = new StringBuilder("已有" + unExitTaskNumbs.size() + "个任务");
+		for (String str : unExitTaskNumbs) {
+			sb.append("[");
+			sb.append(str);
+			sb.append("]");
+			sb.append(",");
+		}
+		sb.delete(sb.length() - 1, sb.length());
+		sb.append("被暂停");
+		return sb.toString();
+	}
+
+	/***
+	 * 获取SP 中原来存储的已暂停 taskNumbs
+	 * 
+	 * @param taskNumbs
+	 * @return
+	 */
+	private List<String> getSpReturnTaskNumbs(String[] taskNumbs) {
+		List<String> result = new ArrayList<String>();
+		if (taskNumbs == null)// 当前没有已经暂停的任务
+			return result;
+		String[] spTaskNumbs = null;
+		if (sputil == null) {
+			sputil = SpUtil.getInstance(SP_RETURN_TASK_NUMB);
+		}
+		String taskNums = sputil.getString(SP_RETURN_TASK_NUMB_KEY, "");
+		if (taskNums != null && taskNums.length() > 0) {
+			spTaskNumbs = taskNums.split(";");
+		}
+		// 过滤已经存在 SP 中的任务编号
+		if (spTaskNumbs != null && spTaskNumbs.length > 0) {
+			for (String taskNum : taskNumbs) {
+				boolean isExist = false;
+				for (String str : spTaskNumbs) {
+					if (str.equals(taskNum)) {
+						isExist = true;
+						break;
+					}
+				}
+				if (!isExist) {// SP 中不存在这个 taskNumber
+					result.add(taskNum);
+				}
+			}
+		} else {// 原来没有已经暂停的任务
+			for (String tempStr : taskNumbs) {
+				result.add(tempStr);
+			}
+		}
+		return result;
+	}
+
+	/***
+	 * 保存所有暂停了的任务编号
+	 */
+	private void saveUnExitTaskNum(String[] taskNumbs) {
+		if (sputil == null) {
+			sputil = SpUtil.getInstance(SP_RETURN_TASK_NUMB);
+		}
+		StringBuilder sb = new StringBuilder("");
+		if(taskNumbs!=null&&taskNumbs.length>0){
+			for (String str : taskNumbs) {
+				sb.append(str);
+				sb.append(";");
+			}
+		}
+		
+		sputil.putString(SP_RETURN_TASK_NUMB_KEY,sb.toString());
 	}
 
 	/**
@@ -177,10 +312,23 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		setContentView(R.layout.homeactivity);
 		radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 		homeLayout = (LinearLayout) findViewById(R.id.home_Layout);
+
+		rollingTv = (TextView) findViewById(R.id.rolling_tv);
+		rollingTv.setSelected(true);
+
 		homeLayout.setOnTouchListener(menuBodyOnTouchListener);
 		radioGroup.setOnCheckedChangeListener(this);
 		changFragment(1);
 		initView();
+	}
+
+	/**
+	 * 请求，获取已经暂停任务的信息
+	 */
+	private void getReturnTaskInfo() {
+		Message msg = new Message();
+		msg.what = TASK_GET_RETURN_TASK;
+		mBackgroundHandler.sendMessage(msg);
 	}
 
 	/**
@@ -197,6 +345,7 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	 * 
 	 */
 	private OnTouchListener menuBodyOnTouchListener = new OnTouchListener() {
+		@SuppressLint("ClickableViewAccessibility")
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			return touchPage(event.getAction(), event.getX(), event.getY(), true);
@@ -343,23 +492,23 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		}
 		super.onDestroy();
 	}
-	
+
 	@Override
-	protected void onResume(){
+	protected void onResume() {
 		super.onResume();
 	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode) {
-			if(MainService.getUploadTasks().size() > 0){				
-				DialogUtil.showConfirmationDialog(this, "当前有任务还未提交完成，您确认退出吗？", new OnClickListener() {					
+			if (MainService.getUploadTasks().size() > 0) {
+				DialogUtil.showConfirmationDialog(this, "当前有任务还未提交完成，您确认退出吗？", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						finish();
 					}
 				});
-			}else{
+			} else {
 				long currentTime = System.currentTimeMillis();
 				if ((currentTime - touchTime) >= waitTime) {
 					ToastUtil.longShow(this, "再按一次退出");
@@ -382,11 +531,12 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 
 	/**
 	 * 任务编号
+	 * 
 	 * @param taskNum
 	 */
-	public void openMatchAty(String taskNum,Integer ddid){ 	
+	public void openMatchAty(String taskNum, Integer ddid) {
 		Intent intent = new Intent();
-		intent.setClass(this,TaskMatchActivity.class);
+		intent.setClass(this, TaskMatchActivity.class);
 		intent.putExtra("taskNum", taskNum);
 		intent.putExtra("ddid", ddid);
 		startActivity(intent);

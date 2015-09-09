@@ -10,31 +10,21 @@ import android.widget.PopupWindow;
 public class DensityHelper {
 
     private static DensityHelper densityUtil;
-    private Activity context;
 
-    public static DensityHelper getInstance(Activity context){
+    public static DensityHelper getInstance(){
         if(densityUtil==null){
-            densityUtil=new DensityHelper(context);
-        }
-        if(densityUtil.context==null){
-        	densityUtil.context=context;
+            densityUtil=new DensityHelper();
         }
         return densityUtil;
 
     }
     
-    public void destroy(){
-    	context=null;
-    }
+   
 
     /***
      * 单例
      */
-    private DensityHelper(Activity context){
-    	if(this.context!=null){
-    		this.context=null;
-    	}
-        this.context=context;
+    private DensityHelper(){
     }
 
     /**
@@ -48,7 +38,7 @@ public class DensityHelper {
     /**
      * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
      */
-	public int px2dip( float pxValue) {
+	public int px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (pxValue / scale + 0.5f);
 	}
@@ -58,7 +48,7 @@ public class DensityHelper {
      * @param spVal
      * @return
      */
-    public int sp2px(float spVal)
+    public int sp2px(Context context,float spVal)
     {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 spVal, context.getResources().getDisplayMetrics());
@@ -69,7 +59,7 @@ public class DensityHelper {
      * @param pxVal
      * @return
      */
-    public int px2sp(float pxVal){
+    public int px2sp(Context context,float pxVal){
         return (int)(pxVal/context.getResources().getDisplayMetrics().scaledDensity);
     }
 

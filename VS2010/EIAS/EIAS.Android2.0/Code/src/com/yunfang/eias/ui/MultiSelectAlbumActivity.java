@@ -192,7 +192,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 		View popView = null;
 		if (previewPopup == null) {
 			pvPopHolder = new PreviewPopHolder();
-			densityUtil = DensityHelper.getInstance(context);
+			densityUtil = DensityHelper.getInstance();
 			int w = EIASApplication.deviceInfo.ScreenWeight;
 			int h = EIASApplication.deviceInfo.ScreenHeight;
 			previewPopup = densityUtil.createPopWindows(context, R.layout.popup_preview_pic, R.color.white, w, h);
