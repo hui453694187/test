@@ -221,8 +221,8 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 					temp.Data = viewModel.currentTask;
 				}
 			} else {
+				//temp.Message = "请更新勘察表";
 				temp.Success = false;
-				temp.Message = "请更新勘察表";
 			}
 			uiMsg.obj = temp;
 			break;
@@ -679,6 +679,7 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 	/**
 	 * 任务列表的触屏事件
 	 */
+	@SuppressLint("ClickableViewAccessibility")
 	private OnTouchListener menuBodyOnTouchListener = new OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {

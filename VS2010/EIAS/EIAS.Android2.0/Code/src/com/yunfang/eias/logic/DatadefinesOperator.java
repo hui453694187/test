@@ -38,7 +38,7 @@ public class DatadefinesOperator {
 				//获取本地数据库 勘察表数据
 				ResultInfo<ArrayList<DataDefine>> localDefines=DataDefineWorker.queryDataDefineByCompanyID(userInfo.CompanyID);
 				
-				for(DataDefine localDefine:localDefines.Data){
+				for(DataDefine localDefine:localDefines.Data){// 对比本地勘察表， 和远程勘察表
 					boolean isExist=false;
 					for(DataDefine motroDefine:motroDefines){
 						if(motroDefine.ID==localDefine.DDID){// 本地的DDID 对应远程服务器的 define 的ID 
@@ -50,15 +50,10 @@ public class DatadefinesOperator {
 						ddidList.add(String.valueOf(localDefine.DDID));
 					}
 				}
-				//Log.d("lee","要删除的DDID 个数："+ddidList.size());
-				if(ddidList.size()>0){
+				if(ddidList.size()>0){// 删除远程不存在的 勘察表
 					DataDefineWorker.deletDataDefneByDDID(ddidList);
 				}
-				
-				
 			}
-			
-			
 		}catch(Exception e){
 			result.Success = false;
 			result.Message = result.Message.length() > 0 ? result.Message : e.getMessage();

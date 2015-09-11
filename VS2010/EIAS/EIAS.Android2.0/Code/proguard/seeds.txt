@@ -14165,6 +14165,7 @@ com.yunfang.eias.R$drawable: int home_btn_refresh_bg
 com.yunfang.eias.R$drawable: int home_find
 com.yunfang.eias.R$drawable: int home_find2
 com.yunfang.eias.R$drawable: int home_left
+com.yunfang.eias.R$drawable: int home_top_tips_bg
 com.yunfang.eias.R$drawable: int ic_launcher
 com.yunfang.eias.R$drawable: int ic_preference_first_normal
 com.yunfang.eias.R$drawable: int ic_preference_first_pressed
@@ -14345,6 +14346,7 @@ com.yunfang.eias.R$drawable: int title_ico
 com.yunfang.eias.R$drawable: int titlebar_lightgray_bg
 com.yunfang.eias.R$drawable: int titlebar_lightgray_bg_press
 com.yunfang.eias.R$drawable: int tool_content
+com.yunfang.eias.R$drawable: int tv_rolling_bg
 com.yunfang.eias.R$drawable: int user_info
 com.yunfang.eias.R$drawable: int whats_new_start_btn_pressed
 com.yunfang.eias.R$drawable: int xlistview_arrow
@@ -14754,6 +14756,7 @@ com.yunfang.eias.R$id: int rl5
 com.yunfang.eias.R$id: int rl_Address
 com.yunfang.eias.R$id: int rl_done_report_finish
 com.yunfang.eias.R$id: int rl_urgent_fee
+com.yunfang.eias.R$id: int rolling_tv
 com.yunfang.eias.R$id: int root
 com.yunfang.eias.R$id: int sbVideoDetailPlayer
 com.yunfang.eias.R$id: int scrollView1
@@ -15359,9 +15362,9 @@ com.yunfang.eias.dto.TaskInfoDTO: java.lang.String BookedRemark
 com.yunfang.eias.dto.TaskInfoDTO: java.lang.Boolean InworkReportFinish
 com.yunfang.eias.dto.TaskInfoDTO: java.lang.String InworkReportFinishDate
 com.yunfang.eias.dto.TaskInfoDTO: java.lang.Boolean HasResource
-com.yunfang.eias.dto.TaskInfoDTO: java.lang.Double UrgentFee
-com.yunfang.eias.dto.TaskInfoDTO: java.lang.Double AdjustFee
-com.yunfang.eias.dto.TaskInfoDTO: java.lang.Double LiveSearchCharge
+com.yunfang.eias.dto.TaskInfoDTO: double UrgentFee
+com.yunfang.eias.dto.TaskInfoDTO: double AdjustFee
+com.yunfang.eias.dto.TaskInfoDTO: double LiveSearchCharge
 com.yunfang.eias.dto.TaskInfoDTO: java.util.List Categories
 com.yunfang.eias.dto.TaskInfoDTO: TaskInfoDTO()
 com.yunfang.eias.dto.TaskInfoDTO: TaskInfoDTO(com.yunfang.eias.model.TaskInfo)
@@ -15619,6 +15622,11 @@ com.yunfang.eias.http.task.GetHomeInfoTask: void setContext(byte[])
 com.yunfang.eias.http.task.GetHomeInfoTask: com.yunfang.framework.model.ResultInfo getResponseData()
 com.yunfang.eias.http.task.GetHomeInfoTask: com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo)
 com.yunfang.eias.http.task.GetHomeInfoTask: java.lang.Object getResponseData()
+com.yunfang.eias.http.task.GetReturnTask: GetReturnTask()
+com.yunfang.eias.http.task.GetReturnTask: void setContext(byte[])
+com.yunfang.eias.http.task.GetReturnTask: com.yunfang.framework.model.ResultInfo getReturnTadkInfo(com.yunfang.framework.model.UserInfo)
+com.yunfang.eias.http.task.GetReturnTask: com.yunfang.framework.model.ResultInfo getResponseData()
+com.yunfang.eias.http.task.GetReturnTask: java.lang.Object getResponseData()
 com.yunfang.eias.http.task.GetTaskInfoTask: GetTaskInfoTask()
 com.yunfang.eias.http.task.GetTaskInfoTask: void setContext(byte[])
 com.yunfang.eias.http.task.GetTaskInfoTask: com.yunfang.framework.model.ResultInfo request(com.yunfang.framework.model.UserInfo,com.yunfang.eias.model.TaskInfo)
@@ -15802,6 +15810,7 @@ com.yunfang.eias.logic.HomeOperator: com.yunfang.framework.model.ResultInfo fill
 com.yunfang.eias.logic.HomeOperator: com.yunfang.framework.model.UserInfo getUsrInfo()
 com.yunfang.eias.logic.HomeOperator: com.yunfang.framework.model.ResultInfo getHomeData(com.yunfang.framework.model.UserInfo)
 com.yunfang.eias.logic.HomeOperator: void synchroReportInfo(com.yunfang.framework.model.UserInfo)
+com.yunfang.eias.logic.HomeOperator: java.lang.String[] getReturnTaskInfo()
 com.yunfang.eias.logic.HomeOperator$1: void run()
 com.yunfang.eias.logic.IntroductionOperator: IntroductionOperator()
 com.yunfang.eias.logic.IntroductionOperator: com.yunfang.framework.model.ResultInfo getDatas(com.yunfang.eias.enumObj.IntroductionTypeEnum)
@@ -15876,6 +15885,7 @@ com.yunfang.eias.logic.TaskListMenuOperaotr: TaskListMenuOperaotr(com.yunfang.ei
 com.yunfang.eias.logic.TaskListMenuOperaotr: void showDialog()
 com.yunfang.eias.logic.TaskListMenuOperaotr: void resizePikcer(android.widget.FrameLayout)
 com.yunfang.eias.logic.TaskListMenuOperaotr: void putTaskInfo(java.lang.Integer,java.lang.String,java.lang.String)
+com.yunfang.eias.logic.TaskListMenuOperaotr: boolean hasNewDataDefines(int)
 com.yunfang.eias.logic.TaskListMenuOperaotr$1: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.logic.TaskListMenuOperaotr$10: void onDateChanged(android.widget.DatePicker,int,int,int)
 com.yunfang.eias.logic.TaskListMenuOperaotr$11: void onClick(android.content.DialogInterface,int)
@@ -16146,9 +16156,9 @@ com.yunfang.eias.model.TaskInfo: java.lang.String BookedRemark
 com.yunfang.eias.model.TaskInfo: java.lang.Boolean InworkReportFinish
 com.yunfang.eias.model.TaskInfo: java.lang.String InworkReportFinishDate
 com.yunfang.eias.model.TaskInfo: java.lang.Boolean HasResource
-com.yunfang.eias.model.TaskInfo: java.lang.Double UrgentFee
-com.yunfang.eias.model.TaskInfo: java.lang.Double AdjustFee
-com.yunfang.eias.model.TaskInfo: java.lang.Double LiveSearchCharge
+com.yunfang.eias.model.TaskInfo: double UrgentFee
+com.yunfang.eias.model.TaskInfo: double AdjustFee
+com.yunfang.eias.model.TaskInfo: double LiveSearchCharge
 com.yunfang.eias.model.TaskInfo: java.lang.Boolean isChecked
 com.yunfang.eias.model.TaskInfo: java.util.ArrayList Categories
 com.yunfang.eias.model.TaskInfo: TaskInfo()
@@ -16673,7 +16683,8 @@ com.yunfang.eias.ui.TaskInfoActivity: void setAutoCompleteData(android.widget.Au
 com.yunfang.eias.ui.TaskInfoActivity: void additional(java.lang.String,boolean)
 com.yunfang.eias.ui.TaskInfoActivity: void receiverCameraBack()
 com.yunfang.eias.ui.TaskInfoActivity: boolean onKeyDown(int,android.view.KeyEvent)
-com.yunfang.eias.ui.TaskInfoActivity: void saveTaskItemValue(com.yunfang.eias.enumObj.CategoryType,com.yunfang.eias.model.MediaDataInfo,java.lang.String)
+com.yunfang.eias.ui.TaskInfoActivity: void saveTaskItemValue(com.yunfang.eias.enumObj.CategoryType,com.yunfang.eias.model.MediaDataInfo,java.lang.String,boolean)
+com.yunfang.eias.ui.TaskInfoActivity: java.lang.String getBeforeItemValue(java.lang.String)
 com.yunfang.eias.ui.TaskInfoActivity: void removeTaskItemValue(com.yunfang.eias.model.MediaDataInfo)
 com.yunfang.eias.ui.TaskInfoActivity$1: boolean onTouch(android.view.View,android.view.MotionEvent)
 com.yunfang.eias.ui.TaskInfoActivity$2: int compare(com.yunfang.eias.model.MediaDataInfo,com.yunfang.eias.model.MediaDataInfo)
@@ -16761,12 +16772,11 @@ com.yunfang.eias.utils.DataCheckHelper: boolean fileEquals(java.io.File,java.io.
 com.yunfang.eias.utils.DataCheckHelper: byte[] getBytesFromFile(java.io.File)
 com.yunfang.eias.utils.DataCheckHelper: java.io.File getFileFromBytes(byte[],java.lang.String)
 com.yunfang.eias.utils.DataCheckHelper: java.io.File displayNoFile(java.io.File)
-com.yunfang.eias.utils.DensityHelper: com.yunfang.eias.utils.DensityHelper getInstance(android.app.Activity)
-com.yunfang.eias.utils.DensityHelper: void destroy()
+com.yunfang.eias.utils.DensityHelper: com.yunfang.eias.utils.DensityHelper getInstance()
 com.yunfang.eias.utils.DensityHelper: int dip2px(android.content.Context,float)
-com.yunfang.eias.utils.DensityHelper: int px2dip(float)
-com.yunfang.eias.utils.DensityHelper: int sp2px(float)
-com.yunfang.eias.utils.DensityHelper: int px2sp(float)
+com.yunfang.eias.utils.DensityHelper: int px2dip(android.content.Context,float)
+com.yunfang.eias.utils.DensityHelper: int sp2px(android.content.Context,float)
+com.yunfang.eias.utils.DensityHelper: int px2sp(android.content.Context,float)
 com.yunfang.eias.utils.DensityHelper: android.widget.PopupWindow createPopWindows(android.content.Context,int,int,int,int)
 com.yunfang.eias.utils.DownloadResultHelper: DownloadResultHelper()
 com.yunfang.eias.utils.DownloadResultHelper: void downloadComplete()

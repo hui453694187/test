@@ -16,6 +16,7 @@ import android.content.res.Configuration;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.baidu.location.BDLocation;
@@ -297,19 +298,12 @@ public class EIASApplication extends BaseApplication {
 	 */
 	private void initFinalString() {
 		
-		Services.put("本地测试服务器", "http://192.168.3.66:8099");//本地测试服务器
-		/*
-		Services.put("分公司服务器1(外业)", "http://182.92.219.161:18099");
-		Services.put("分公司服务器2(勘图)", "http://182.92.161.16:18099");		
-		Services.put("总公司服务器1(外业)", "http://182.92.161.16:8099")
-		
-		Services.put("大连服务器", "http://124.93.240.144:18099");*/
+		/*Services.put("本地测试服务器", "http://192.168.3.66:8099");
+		Services.put("大连服务器", "http://124.93.240.144:18099");
+		Services.put("外业测试服务器2", "http://182.92.219.161:18098");*/
 		Services.put("外业测试服务器1", "http://eiastest.yunfangdata.com");
 		Services.put("采图测试服务器1","http://182.92.161.16:18099");	
 		Services.put("外业正式服务器1", "http://waicai.yunfangdata.com");
-		
-		
-		
 		
 		company = getString(R.string.app_name_company);
 		project = getString(R.string.app_name_en);
@@ -474,6 +468,7 @@ public class EIASApplication extends BaseApplication {
 				String actionType = intent.getAction();
 				switch (actionType) {
 				case BroadRecordType.MAINSERVER_CREATED:
+					Log.d("Service","设置的定时任务。");
 					BackgroundServiceTask task = new BackgroundServiceTask(MainService.TIMER_PUSH, null);
 					MainService.setTask(task);
 					break;

@@ -246,6 +246,10 @@ public class LoginInfoOperator {
 	 * @return
 	 */
 	public static UserInfo getCurrentUser() {
+		if(_currentUser == null){
+			//如果当前用户信息为空了，获取最后一次登录的用户信息。
+			_currentUser = GetLatestLoginInfo();
+		}
 		return _currentUser;
 	}
 

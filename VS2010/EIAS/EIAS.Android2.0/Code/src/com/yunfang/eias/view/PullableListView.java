@@ -2,6 +2,7 @@ package com.yunfang.eias.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ListView;
 
 public class PullableListView extends ListView implements Pullable {
@@ -20,10 +21,12 @@ public class PullableListView extends ListView implements Pullable {
 
 	@Override
 	public boolean canPullDown() {
+		// 因为偶尔会抛出空指针异常， 所以在这里做出处理， 
+		View headView = getChildAt(0);
 		if (getCount() == 0) {
 			// 没有item的时候也可以下拉刷新
 			return true;
-		} else if (getFirstVisiblePosition() == 0 && getChildAt(0).getTop() >= 0) {
+		} else if (getFirstVisiblePosition() == 0 && headView != null && headView.getTop() >= 0) {
 			// 滑到ListView的顶部了
 			return true;
 		} else

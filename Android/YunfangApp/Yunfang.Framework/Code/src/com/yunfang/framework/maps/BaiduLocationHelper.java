@@ -264,7 +264,8 @@ public class BaiduLocationHelper {
 				}				
 			} else {
 				if(mShowMessage){
-					msg = "坐标获取失败,请重试,errorCode:" + bdLocation.getLocType();	
+					//msg = "坐标获取失败,请重试,errorCode:" + bdLocation.getLocType();	
+					msg = "坐标获取失败,请重试";
 				}				
 			}
 			return msg;

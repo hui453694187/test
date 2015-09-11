@@ -215,7 +215,7 @@ public class HomeOperator {
 	 * @return 暂停了的任务编号数组
 	 */
 	public static String[] getReturnTaskInfo() {
-		String[] returnTaskNum = null;
+		String[] returnTaskNum = null;    
 		ResultInfo<String> result = new ResultInfo<String>();
 		// 发起网络请求后去暂停了的任务信息
 		GetReturnTask getReturnTask = new GetReturnTask();

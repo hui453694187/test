@@ -84,7 +84,7 @@ public class TaskDataWorker {
 		SQLiteDatabase db = null;
 		StringBuilder queryStr = new StringBuilder("select * from TaskInfo where User=?");
 		queryStr.append(" and IsNew=? and Status=?");
-		try {
+		try { 
 			db = SQLiteHelper.getWritableDB();
 			Cursor cursor = db.rawQuery(queryStr.toString(),new String[]{currentUser.Name,"0","1"});
 			if (cursor != null) {
@@ -652,9 +652,15 @@ public class TaskDataWorker {
 			}
 			// 获取勘察信息
 			ResultInfo<DataDefine> defineCategory = DataDefineWorker.queryDataDefineByDDID(taskResultInfo.Data.DDID);
+			if(defineCategory.Data==null){ // 本地找不到这张勘察表， 认为这张勘察表在服务器被删除了， 直接返回
+				resultInfo.Success=true;
+				resultInfo.Data=null;
+				return resultInfo;
+			}
 			if (defineCategory.Data != null) {
 				defineCategoryVersion = defineCategory.Data.Version;
 			}
+			
 
 			// 获取之前的勘察信息
 			ArrayList<TaskCategoryInfo> beforeTaskCategoryInfos = getTaskCategories(taskID);

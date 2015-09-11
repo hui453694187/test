@@ -19,18 +19,15 @@ import com.yunfang.eias.tables.DataDefineWorker;
 import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.utils.StringUtil;
 
-/**   
- *    
- * 项目名称：外业采集项目   
- * 类名称：TaskInfoDTO   
- * 类描述：勘察任务信息 用于给后台传递的参数对象
- * 创建人：贺隽   
- * 创建时间：2014-6-25 
+/**
+ * 
+ * 项目名称：外业采集项目 类名称：TaskInfoDTO 类描述：勘察任务信息 用于给后台传递的参数对象 创建人：贺隽 创建时间：2014-6-25
+ * 
  * @version 1.0.0.1
- */ 
+ */
 public class TaskInfoDTO {
 
-	//{{相关的属性
+	// {{相关的属性
 
 	/**
 	 * 编号
@@ -186,16 +183,16 @@ public class TaskInfoDTO {
 	 * 收据号
 	 */
 	public String ReceiptNo;
-	
+
 	/**
 	 * 预约日期
 	 */
-	public String BookedDate ;
+	public String BookedDate;
 
 	/**
 	 * 预约时间
 	 */
-	public String BookedTime ;
+	public String BookedTime;
 
 	/**
 	 * 联系人
@@ -211,17 +208,17 @@ public class TaskInfoDTO {
 	 * 备注
 	 */
 	public String BookedRemark;
-	
+
 	/**
-	 * 内业报告是否完成  2015-6-30
+	 * 内业报告是否完成 2015-6-30
 	 */
 	public Boolean InworkReportFinish;
-	
+
 	/**
-	 * 内业报告完成时间  2015-6-30
+	 * 内业报告完成时间 2015-6-30
 	 */
 	public String InworkReportFinishDate;
-	
+
 	/**
 	 * 是否有资源文件
 	 */
@@ -231,24 +228,25 @@ public class TaskInfoDTO {
 	 * 加急金额 2015-7-24
 	 */
 	public double UrgentFee;
-	
+
 	/**
 	 * 加急金额 2015-8-5
 	 */
 	public double AdjustFee;
-	
+
 	/**
 	 * 加急金额 2015-7-24
 	 */
 	public double LiveSearchCharge;
-	
+
 	/**
 	 * 任务下的分类信息
 	 */
 	public List<TaskCategoryInfoDTO> Categories = new ArrayList<TaskCategoryInfoDTO>();
-	//}}
 
-	//{{构造函数
+	// }}
+
+	// {{构造函数
 	/**
 	 * 无参构造，设置默认值
 	 * */
@@ -266,11 +264,11 @@ public class TaskInfoDTO {
 		DDID = task.DDID;
 		ReceiveDate = task.ReceiveDate;
 		DoneDate = task.DoneDate;
-		//Status = String.valueOf(task.Status.getIndex());
+		// Status = String.valueOf(task.Status.getIndex());
 		Status = task.Status.getIndex();
 		TargetNumber = task.TargetNumber;
 		IsUrgent = String.valueOf(task.UrgentStatus.getIndex());
-		//IsUrgent = task.UrgentStatus.getIndex();
+		// IsUrgent = task.UrgentStatus.getIndex();
 		TargetAddress = task.TargetAddress;
 		Owner = task.Owner;
 		OwnerTelePhone = task.OwnerTel;
@@ -292,70 +290,72 @@ public class TaskInfoDTO {
 		DataDefineVersion = task.DataDefineVersion;
 		CreateType = task.CreateType.getIndex();
 		// 新增字段
-		BookedDate =task.BookedDate;
+		BookedDate = task.BookedDate;
 		BookedTime = task.BookedTime;
 		ContactPerson = task.ContactPerson;
 		ContactTel = task.ContactTel;
 		BookedRemark = task.BookedRemark;
-		//内业报告是否完成
+		// 内业报告是否完成
 		InworkReportFinish = task.InworkReportFinish;
-		//内业报告完成日期
+		// 内业报告完成日期
 		InworkReportFinishDate = task.InworkReportFinishDate;
-		//是否有资源文件
+		// 是否有资源文件
 		HasResource = task.HasResource;
-		//加急金额
+		// 加急金额
 		UrgentFee = task.UrgentFee;
-		//应收费用
+		// 应收费用
 		AdjustFee = task.AdjustFee;
-		//预收费用
+		// 预收费用
 		LiveSearchCharge = task.LiveSearchCharge;
 
-		if(task.Categories!= null){
+		if (task.Categories != null) {
 			for (TaskCategoryInfo category : task.Categories) {
 				Categories.add(new TaskCategoryInfoDTO(category));
-			}		
+			}
 		}
 
 		// 获取勘察数据信息
-		ResultInfo<DataDefine> dataDefine = DataDefineWorker
-				.getCompleteDataDefine((int)DDID);
+		ResultInfo<DataDefine> dataDefine = DataDefineWorker.getCompleteDataDefine((int) DDID);
 		//
-		// 获的分类项 类型  和 子项输入类型  
-		for (DataCategoryDefine categoryDefine : dataDefine.Data.Categories) {				
-			for (TaskCategoryInfoDTO category : Categories) {
-				if(categoryDefine.CategoryID == category.CategoryID){
-					category.CategoryType = categoryDefine.ControlType.getName();					
-					for (DataFieldDefine field : categoryDefine.Fields) {
-						for (TaskDataItemDTO item : category.Items) {							
-							if(item.Name.equals(field.Name)){
-								item.ItemType = field.ItemType.getName();
-								break;
-							}							
+		// 获的分类项 类型 和 子项输入类型
+		if (dataDefine.Data != null) {
+			for (DataCategoryDefine categoryDefine : dataDefine.Data.Categories) {
+				for (TaskCategoryInfoDTO category : Categories) {
+					if (categoryDefine.CategoryID == category.CategoryID) {
+						category.CategoryType = categoryDefine.ControlType.getName();
+						for (DataFieldDefine field : categoryDefine.Fields) {
+							for (TaskDataItemDTO item : category.Items) {
+								if (item.Name.equals(field.Name)) {
+									item.ItemType = field.ItemType.getName();
+									break;
+								}
+							}
 						}
-					}	
+					}
 				}
 			}
 		}
 	}
 
 	/**
-	 * 把数据对象转换成模型对象 
+	 * 把数据对象转换成模型对象
+	 * 
 	 * @param dto
 	 * @return
 	 */
-	public TaskInfo getTaskInfo(){
+	public TaskInfo getTaskInfo() {
 		TaskInfo result = new TaskInfo();
 		result.TaskNum = this.TaskNum;
 		result.TaskID = (int) this.ID;
 		result.DDID = (int) this.DDID;
 		result.ReceiveDate = this.ReceiveDate;
 		result.DoneDate = this.DoneDate;
-//		result.Status = TaskStatus.getEnumByValue(Integer.parseInt(this.Status));
+		// result.Status =
+		// TaskStatus.getEnumByValue(Integer.parseInt(this.Status));
 
 		result.Status = TaskStatus.getEnumByValue(this.Status);
 		result.TargetNumber = this.TargetNumber;
-		switch (this.IsUrgent)
-		{
+		switch (this.IsUrgent) {
 		case "1":
 		case "紧急":
 			result.UrgentStatus = UrgentStatusEnum.getEnumByName("紧急");
@@ -364,7 +364,7 @@ public class TaskInfoDTO {
 			result.UrgentStatus = UrgentStatusEnum.getEnumByName("一般");
 			break;
 		}
-//		result.UrgentStatus = UrgentStatusEnum.getEnumByValue(this.IsUrgent);
+		// result.UrgentStatus = UrgentStatusEnum.getEnumByValue(this.IsUrgent);
 		result.TargetAddress = this.TargetAddress;
 		result.Owner = this.Owner;
 		result.OwnerTel = this.OwnerTelePhone;
@@ -385,37 +385,37 @@ public class TaskInfoDTO {
 		result.Remark = this.Remark;
 		result.DataDefineVersion = this.DataDefineVersion;
 		result.CreateType = TaskCreateType.getEnumByValue(this.CreateType);
-		for(TaskCategoryInfoDTO dto :this.Categories){
+		for (TaskCategoryInfoDTO dto : this.Categories) {
 			result.Categories.add(dto.getTaskCategoryInfo());
 		}
 		// 新增字段
-		result.BookedDate =this.BookedDate;
+		result.BookedDate = this.BookedDate;
 		result.BookedTime = this.BookedTime;
 		result.ContactPerson = this.ContactPerson;
 		result.ContactTel = this.ContactTel;
 		result.BookedRemark = this.BookedRemark;
-		
-		//内业报告是否完成
+
+		// 内业报告是否完成
 		result.InworkReportFinish = this.InworkReportFinish;
 		result.InworkReportFinishDate = this.InworkReportFinishDate;
-		
-		//是否有资源文件
+
+		// 是否有资源文件
 		result.HasResource = this.HasResource;
-		
+
 		result.UrgentFee = this.UrgentFee;
 		result.AdjustFee = this.AdjustFee;
 		result.LiveSearchCharge = this.LiveSearchCharge;
-		
+
 		return result;
 	}
-	
-	
+
 	/**
 	 * 构建对象
+	 * 
 	 * @param obj
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
-	public TaskInfoDTO(JSONObject obj) throws JSONException{	
+	public TaskInfoDTO(JSONObject obj) throws JSONException {
 		TaskNum = obj.optString("TaskNum");
 		ID = obj.optInt("ID");
 		DDID = obj.optInt("DDID");
@@ -424,11 +424,10 @@ public class TaskInfoDTO {
 		Status = obj.optInt("Status");
 		TargetNumber = obj.optString("TargetNumber");
 		IsUrgent = obj.optString("UrgentStatus");
-		if (IsUrgent == null || IsUrgent =="" || IsUrgent.isEmpty())
-		{
+		if (IsUrgent == null || IsUrgent == "" || IsUrgent.isEmpty()) {
 			IsUrgent = obj.optString("IsUrgent");
 		}
-		TargetAddress =obj.optString("TargetAddress");
+		TargetAddress = obj.optString("TargetAddress");
 		Owner = obj.optString("Owner");
 		OwnerTelePhone = obj.optString("OwnerTelePhone");
 		ResidentialArea = obj.optString("ResidentialArea");
@@ -443,38 +442,38 @@ public class TaskInfoDTO {
 		ClientTelephone = obj.optString("ClientTelephone");
 		User = obj.optString("User");
 		Fee = obj.optString("Fee");
-		ReceiptNo =obj.optString("ReceiptNo");
+		ReceiptNo = obj.optString("ReceiptNo");
 		CreatedDate = obj.optString("CreatedDate");
 		Remark = obj.optString("Remark");
 		DataDefineVersion = obj.optInt("DataDefineVersion");
-		if(obj.has("Categories")){
+		if (obj.has("Categories")) {
 			String categoriesStr = obj.getString("Categories");
-			if(categoriesStr!= null && categoriesStr.length()>0){
+			if (categoriesStr != null && categoriesStr.length() > 0) {
 				ArrayList<TaskCategoryInfoDTO> tempCategories = new ArrayList<TaskCategoryInfoDTO>();
-				JSONArray arr = new JSONArray(categoriesStr);  
-				for (int i = 0; i < arr.length(); i++) {  
-					JSONObject temp = (JSONObject) arr.get(i);  
-					tempCategories.add(new TaskCategoryInfoDTO(temp));					
+				JSONArray arr = new JSONArray(categoriesStr);
+				for (int i = 0; i < arr.length(); i++) {
+					JSONObject temp = (JSONObject) arr.get(i);
+					tempCategories.add(new TaskCategoryInfoDTO(temp));
 				}
 				Categories = tempCategories;
 			}
 		}
 		// 新增字段
 		BookedDate = obj.optString("BookedDate");
-		BookedTime =  obj.optString("BookedTime");
+		BookedTime = obj.optString("BookedTime");
 		ContactPerson = obj.optString("ContactPerson");
 		ContactTel = obj.optString("ContactTel");
 		BookedRemark = obj.optString("BookedRemark");
-		//内业报告是否完成  
+		// 内业报告是否完成
 		InworkReportFinish = StringUtil.parseBoolean(obj.optString("InworkReportFinish"));
 		InworkReportFinishDate = obj.optString("InworkReportFinishDate");
-		//是否有资源文件
+		// 是否有资源文件
 		HasResource = StringUtil.parseBoolean(obj.optString("HasResource"));
-		
+
 		UrgentFee = obj.optDouble("UrgentFee");
 		AdjustFee = obj.optDouble("AdjustFee");
 		LiveSearchCharge = obj.optDouble("LiveSearchCharge");
 	}
 
-	//}}
+	// }}
 }

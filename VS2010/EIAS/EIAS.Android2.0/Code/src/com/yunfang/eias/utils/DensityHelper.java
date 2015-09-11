@@ -1,6 +1,5 @@
 package com.yunfang.eias.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;

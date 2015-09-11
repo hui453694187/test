@@ -30,7 +30,7 @@ public class DateTimeUtil {
 	 * @return
 	 */
 	public static String getCurrentTime_CN() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd HH:mm:ss");// 日期格式
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// 日期格式
 																			// 2013-04-02
 																			// 14:22:22
 		return sdf.format(new Date());// 当前时间

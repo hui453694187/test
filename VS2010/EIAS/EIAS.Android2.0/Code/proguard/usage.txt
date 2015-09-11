@@ -413,7 +413,7 @@ com.squareup.picasso.Utils$BitmapHoneycombMR1:
 com.squareup.picasso.Utils$OkHttpLoaderCreator:
     419:419:private Utils$OkHttpLoaderCreator()
 com.yunfang.eias.base.EIASApplication:
-    449:452:protected void StopService()
+    444:447:protected void StopService()
 com.yunfang.eias.http.task.AdditionalResourceTask
 com.yunfang.eias.impl.ContactItemInterface
 com.yunfang.eias.logic.AppHeader2
@@ -432,9 +432,8 @@ com.yunfang.eias.ui.HomeFragment:
 com.yunfang.eias.ui.MainSettingActivity:
     private static final int TASK_CHECK_VERSION
 com.yunfang.eias.ui.ShowMediaListFragment:
-    562:562:private android.content.DialogInterface$OnClickListener dialogListener()
-    600:602:private void getFileOfMediaLib()
-    173:173:static synthetic int access$10(com.yunfang.eias.ui.ShowMediaListFragment)
+    561:561:private android.content.DialogInterface$OnClickListener dialogListener()
+    172:172:static synthetic int access$10(com.yunfang.eias.ui.ShowMediaListFragment)
 com.yunfang.eias.ui.ShowMediaListFragment$12
 com.yunfang.eias.ui.ShowPhotoFragment:
     346:395:private java.lang.Boolean compressImage(java.io.File)

@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -953,6 +954,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 	/**
 	 * 填充任务列表
 	 */
+	@SuppressLint("ClickableViewAccessibility")
 	private void initTaskList(final TaskListMenuOperaotr menuOperator) {
 		taskPullTorefreshLayout = (PullToRefreshLayout) mView.findViewById(R.id.task_pull_refresh_layout);
 
@@ -970,20 +972,25 @@ public class TaskListFragment extends BaseWorkerFragment {
 		task_listview.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				if (viewModel.taskStatus == TaskStatus.Submiting) {
-					taskListViewAdapter.setSelectedPosition(position);
-					taskListViewAdapter.notifyDataSetChanged();
-					viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
-					menuOperator.showDialog();
-				} else {
-					if (!TaskOperator.submiting(viewModel.taskInfoes.get(position).TaskNum) && viewModel.taskInfoes.get(position).Status != TaskStatus.Submiting) {
+				try{
+					if (viewModel.taskStatus == TaskStatus.Submiting) {
 						taskListViewAdapter.setSelectedPosition(position);
 						taskListViewAdapter.notifyDataSetChanged();
 						viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
 						menuOperator.showDialog();
 					} else {
-						viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
+						if (!TaskOperator.submiting(viewModel.taskInfoes.get(position).TaskNum) && viewModel.taskInfoes.get(position).Status != TaskStatus.Submiting) {
+							taskListViewAdapter.setSelectedPosition(position);
+							taskListViewAdapter.notifyDataSetChanged();
+							viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
+							menuOperator.showDialog();
+						} else {
+							viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
+						}
 					}
+				}catch(Exception e){
+					e.printStackTrace();
+					Log.e("com.yunfang.eias",">>"+e.getMessage());
 				}
 				return true;
 			}
@@ -1014,7 +1021,10 @@ public class TaskListFragment extends BaseWorkerFragment {
 						case Doing:
 						case Done:
 							if (viewModel.currentSelectedTask.Status != TaskStatus.Submiting) {
-								startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
+								//当前任务列表是否要跟新配置表
+								if(!menuOperator.hasNewDataDefines(viewModel.currentSelectedTask.DDID)){
+									startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
+								}
 							} else {
 								viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
 							}

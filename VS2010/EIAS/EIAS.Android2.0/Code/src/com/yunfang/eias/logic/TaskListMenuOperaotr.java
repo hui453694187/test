@@ -60,7 +60,7 @@ import com.yunfang.framework.view.CustomMultipleChoiceView.onSelectedListener;
  * @author gorson
  * 
  */
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "InflateParams" })
 public class TaskListMenuOperaotr {
 	// {{ 菜单项数据
 
@@ -718,6 +718,7 @@ public class TaskListMenuOperaotr {
 	/**
 	 * 点击查看任务信息的操作
 	 */
+	@SuppressLint("InflateParams")
 	private void showCurrentSelectedTaskInfo() {
 		LayoutInflater inflater = LayoutInflater.from(currentContext);
 		View dialog_view_detail = inflater.inflate(R.layout.dialog_view_task_detail, null);
@@ -818,6 +819,7 @@ public class TaskListMenuOperaotr {
 	/**
 	 * 执行点击复制后的操作
 	 */
+	@SuppressLint("InflateParams")
 	private void showCopyCategoriesDialog() {
 		if (taskListFragment.viewModel.currentSelectedTask != null) {
 			TaskInfo selectedTask = taskListFragment.viewModel.currentSelectedTask;
@@ -1051,7 +1053,7 @@ public class TaskListMenuOperaotr {
 	 * @param ddid勘察配置表ID
 	 * @return
 	 */
-	private boolean hasNewDataDefines(int ddid) {
+	public boolean hasNewDataDefines(int ddid) {
 		for (DataDefine dataDefine : EIASApplication.currentUpdateDataDefines) {
 			if (dataDefine.DDID == ddid) {
 				homeActivity.appHeader.showDialog("提示信息", "请同步勘察表[" + dataDefine.Name + "]");

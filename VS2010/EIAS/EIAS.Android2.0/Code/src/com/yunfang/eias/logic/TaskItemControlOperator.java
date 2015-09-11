@@ -177,7 +177,7 @@ public class TaskItemControlOperator {
 				}
 			}
 			result = true;
-		}
+		} 
 		return result;
 	}
 
@@ -518,10 +518,6 @@ public class TaskItemControlOperator {
 		inputMap.put(f.Name, et);
 		et.setTag(f.Name);
 		et.setOnFocusChangeListener(focusListenter);
-		if (value != null && value.length() > 0) {
-			changeValueEvent(value, f.Name);
-		}
-
 	}
 
 	/**
@@ -544,9 +540,6 @@ public class TaskItemControlOperator {
 		inputMap.put(f.Name, et);
 		et.setTag(f.Name);
 		et.setOnFocusChangeListener(focusListenter);
-		if (value != null && value.length() > 0) {
-			changeValueEvent(value, f.Name);
-		}
 	}
 
 	/**
@@ -581,28 +574,19 @@ public class TaskItemControlOperator {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
+				// 在这里可以对获得焦点进行处理
 				EditText temp = (EditText) v;
 				if (hasFocus) {// 获得焦点
-					// 在这里可以对获得焦点进行处理
 					if (temp.getText().length() == 0) {
-						String dateTimeTemp = DateTimeUtil.getCurrentTime_CN();
-						String dateTime = dateTimeTemp.substring(0, dateTimeTemp.lastIndexOf(':'));
-						temp.setText(dateTime);
-
+						temp.setText(DateTimeUtil.getCurrentTime_CN());
 					}
-				} else {// 失去焦点
-					// 在这里可以对输入的文本内容进行有效的验证
 				}
-				changeValueEvent(temp.getText().toString(), f.Name);
-
+				changeValueEvent(temp.getText().toString(),f.Name);
 			}
 		});
 
 		l.addView(et);
 		inputMap.put(f.Name, et);
-		if (value != null && value.length() > 0) {
-			changeValueEvent(value, f.Name);
-		}
 	}
 
 	/**
@@ -729,14 +713,14 @@ public class TaskItemControlOperator {
 						locationHelper.setOperatorListener(new BaiduLoactionOperatorListener() {
 							@Override
 							public void onSelected(BDLocation location) {
-								temp.setText(location.getLatitude() + "," + location.getLongitude());
+								temp.setText(location.getLatitude()  + "," + location.getLongitude());
 								changeValueEvent(inputValue, inputKey);
 							}
 						});
 					}
 				} else {// 失去焦点
+					changeValueEvent(inputValue, inputKey);
 				}
-				changeValueEvent(inputValue, inputKey);
 			}
 		});
 		l.addView(et);
@@ -852,19 +836,14 @@ public class TaskItemControlOperator {
 				EditText temp = (EditText) v;
 				if (hasFocus) {
 					if (temp.getText().length() == 0) {
-						String userName = EIASApplication.getCurrentUser().Name;
-						temp.setText(userName);
+						temp.setText(EIASApplication.getCurrentUser().Name);
 					}
-				} else {// 失去焦点时保存
 				}
-				changeValueEvent(temp.getText().toString(), f.Name);
+				changeValueEvent(temp.getText().toString(),f.Name);
 			}
 		});
 		l.addView(et);
 		inputMap.put(f.Name, et);
-		if (value == null || value.length() <= 0) {
-			changeValueEvent(EIASApplication.getCurrentUser().Name, f.Name);
-		}
 	}
 
 	/**
@@ -892,23 +871,15 @@ public class TaskItemControlOperator {
 			public void onFocusChange(View v, boolean hasFocus) {
 				EditText temp = (EditText) v;
 				if (hasFocus) {
-
 					if (temp.getText().length() == 0) {
-						String mobile = EIASApplication.getCurrentUser().Mobile;
-						temp.setText(mobile);
+						temp.setText(EIASApplication.getCurrentUser().Mobile);
 					}
 				}
-				// 保存
-				String mobile = temp.getText().toString();
-				changeValueEvent(mobile, f.Name);
-
+				changeValueEvent(temp.getText().toString(),f.Name);
 			}
 		});
 		l.addView(et);
 		inputMap.put(f.Name, et);
-		if (value == null || value.length() <= 0) {
-			changeValueEvent(EIASApplication.getCurrentUser().Mobile, f.Name);
-		}
 	}
 
 	/**

@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Message;
+
 import com.yunfang.eias.dto.AdditionalResource;
 import com.yunfang.eias.dto.TaskInfoDTO;
 import com.yunfang.eias.enumObj.OperatorTypeEnum;
@@ -23,17 +31,9 @@ import com.yunfang.framework.base.BaseBackgroundService;
 import com.yunfang.framework.base.BaseBroadcastReceiver;
 import com.yunfang.framework.base.BaseBroadcastReceiver.afterReceiveBroadcast;
 import com.yunfang.framework.model.ResultInfo;
+import com.yunfang.framework.utils.DownLoadFileUtil;
 import com.yunfang.framework.utils.ListUtil;
 import com.yunfang.framework.utils.ToastUtil;
-import com.yunfang.framework.utils.DownLoadFileUtil;
-
-import android.app.DownloadManager;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Handler;
-import android.os.Message;
 
 /**
  * @author 贺隽
@@ -90,6 +90,7 @@ public class MainService extends BaseBackgroundService {
 		super.onCreate();
 		if (mbackgroundHandler != null) {
 			sendBroadcastByMainServerCreated();
+			standbyLatlagDelayed();
 		}
 	}
 
@@ -177,7 +178,8 @@ public class MainService extends BaseBackgroundService {
 			if (temp != null && !uploadTasks.containsKey(temp.TaskNum)) {
 				temp.UploadStatusEnum = TaskUploadStatusEnum.Submitwating;
 				TaskOperator.saveTaskUploadStatus(TaskUploadStatusEnum.Submitwating, temp.TaskNum);
-				temp.Status=TaskStatus.Submiting;
+				// 这里改变缓存中任务状态 为提交中
+				temp.Status = TaskStatus.Submiting;
 				uploadTasks.put(temp.TaskNum, temp);
 				Intent myIntent = new Intent();// 创建Intent对象
 				myIntent.setAction(BroadRecordType.WAIT_TO_SUBMIT);
@@ -316,11 +318,11 @@ public class MainService extends BaseBackgroundService {
 								// 若网络连接断开则直接提示并返回
 								if (isContinue(tempTask))
 									break;
-								//提交失败，状态改变为待提交
-								tempTask.Status=TaskStatus.Doing;
+								// 提交失败，缓存中的任务状态改变为 待提交
+								tempTask.Status = TaskStatus.Doing;
 								uploadTasks.put(tempTask.TaskNum, tempTask);
 								// 网络正常则提示任务提交失败
-								showNotification(tempTask.ID, tempTask.TaskNum, "提交失败:服务器繁忙" , "地址：" + tempTask.TargetAddress, tempTask.TaskNum + "提交失败");
+								showNotification(tempTask.ID, tempTask.TaskNum, "提交失败:服务器繁忙", "地址：" + tempTask.TargetAddress, tempTask.TaskNum + "提交失败");
 								TaskOperator.saveTaskUploadStatus(TaskUploadStatusEnum.SubmitFailure, tempTask.TaskNum);
 								tempTask.UploadStatusEnum = TaskUploadStatusEnum.SubmitFailure;
 								isResubmit = true;

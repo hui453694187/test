@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,7 +66,7 @@ import com.yunfang.framework.utils.ToastUtil;
  * 
  * @version
  */
-@SuppressLint("ValidFragment")
+@SuppressLint({ "ValidFragment", "InflateParams" })
 public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrollListener {
 
 	// {{ 变量
@@ -1066,6 +1065,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	/**
  * 
  */
+	@SuppressLint("ClickableViewAccessibility")
 	private void showSelectDialog() {
 		LayoutInflater inflater = LayoutInflater.from(taskInfoActivity);
 		View dialog_view_task_submit = inflater.inflate(R.layout.dialog_media_singlechoice, null);

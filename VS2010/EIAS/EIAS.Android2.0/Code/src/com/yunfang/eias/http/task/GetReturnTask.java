@@ -8,10 +8,8 @@ import java.util.Hashtable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
 
 import com.yunfang.eias.logic.DataLogOperator;
-import com.yunfang.eias.model.TaskInfo;
 import com.yunfang.framework.httpClient.CommonRequestPackage;
 import com.yunfang.framework.httpClient.IRequestTask;
 import com.yunfang.framework.httpClient.RequestTypeEnum;
@@ -20,8 +18,8 @@ import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.model.UserInfo;
 
 /**
- * @author Administrator
- * 
+ * @author kevin
+ *  获取当前已经暂停的任务任务编号
  */
 public class GetReturnTask implements IRequestTask {
 
@@ -48,7 +46,6 @@ public class GetReturnTask implements IRequestTask {
 		String url = user.LatestServer + "/apis/GetReturnTask";
 		Hashtable<String, Object> params = new Hashtable<String, Object>(4);
 		params.put("token", user.Token);
-		// 封装了一个其请求
 		CommonRequestPackage requestPackage = new CommonRequestPackage(url, RequestTypeEnum.POST, params);
 		try {
 			YFHttpClient.request(requestPackage, this);
@@ -84,7 +81,7 @@ public class GetReturnTask implements IRequestTask {
 		} catch (JSONException e) {
 			result.Success = false;
 			result.Message = e.getMessage();
-			DataLogOperator.taskHttp("GetReturnTask 获取真挺任务编号=>(getResponseData)", e.getMessage());
+			DataLogOperator.taskHttp("GetReturnTask 获取暂停任务编号=>(getResponseData)", e.getMessage());
 		}
 
 		return result;

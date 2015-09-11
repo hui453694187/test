@@ -157,7 +157,7 @@ public class LoginActivity extends BaseWorkerActivity {
 	 * 获取最新配置表， 同步本地数据库配置信息
 	 */
 	private void getNewesDatadefines() {
-		loadingWorker.showLoading("检查勘察配置信息中...");
+		//loadingWorker.showLoading("检查勘察配置信息中...");
 		Message getDatadefinde = new Message();
 		getDatadefinde.what = TASK_ONLINE_GET_NEWEST_DATADEFINES;
 		mBackgroundHandler.sendMessage(getDatadefinde);
@@ -198,9 +198,10 @@ public class LoginActivity extends BaseWorkerActivity {
 	@Override
 	protected void handleUiMessage(Message msg) {
 		super.handleUiMessage(msg);
+		boolean doNotClose=false;
 		switch (msg.what) {
 		case TASK_ONLINE_LOGIN:// 在线登录
-			afterLogined((ResultInfo<UserInfo>) msg.obj, TASK_ONLINE_LOGIN);
+			doNotClose=afterLogined((ResultInfo<UserInfo>) msg.obj, TASK_ONLINE_LOGIN);
 			break;
 		case TASK_OFFLINE_LOGIN:// 离线登录
 			afterLogined((ResultInfo<UserInfo>) msg.obj, TASK_OFFLINE_LOGIN);
@@ -214,7 +215,10 @@ public class LoginActivity extends BaseWorkerActivity {
 			showToast("没有找到任务执行的操作函数");
 			break;
 		}
-		loadingWorker.closeLoading();
+		if(!doNotClose){
+			loadingWorker.closeLoading();
+		}
+		
 	}
 
 	// }}
@@ -226,11 +230,13 @@ public class LoginActivity extends BaseWorkerActivity {
 	 *            :用户登录结果信息
 	 * @param
 	 */
-	private void afterLogined(ResultInfo<UserInfo> result, int loginStatus) {
+	private boolean afterLogined(ResultInfo<UserInfo> result, int loginStatus) {
+		boolean loginResult=false;
 		if (result.Success) {
 			if (result.Data != null && result.Data.Token != null && result.Data.Token.length() > 0 && !result.Data.Token.equals("null")) {
 				// TODO 登录成功， 更新勘查配置表
 				getNewesDatadefines();
+				loginResult= true;
 			} else {
 				showToast(result.Message);
 			}
@@ -245,6 +251,7 @@ public class LoginActivity extends BaseWorkerActivity {
 				showToast("登录失败，" + result.Message);
 			}
 		}
+		return loginResult;
 	}
 
 	/**

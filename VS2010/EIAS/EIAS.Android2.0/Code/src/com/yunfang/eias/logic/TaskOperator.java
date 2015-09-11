@@ -614,6 +614,10 @@ public class TaskOperator {
 				if (categroiesInfo.Success && ListUtil.hasData(categroiesInfo.Data)) {
 					taskInfo.Categories = categroiesInfo.Data;
 					result.Data = taskInfo;
+				}else if(categroiesInfo.Success&&categroiesInfo.Data==null){ // 处理当前任务勘察表被删除的情况
+					result.Message="此任务勘察表已在后台被删除！";
+				}else{
+					result.Message = "请更新勘察表！";
 				}
 			}
 		} catch (Exception e) {

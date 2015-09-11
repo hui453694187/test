@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -211,7 +210,7 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	 * @param taskNumbs
 	 */
 	private void setRollingAnimationTv(String[] taskNumbs) {
-		// TODO 获取SP 中存储的变量，如果已经存在于SP 中择不显示，如果
+		//获取SP 中存储的变量，如果已经存在于SP 中不显示
 		List<String> unExitTaskNumbs = getSpReturnTaskNumbs(taskNumbs);
 		if (unExitTaskNumbs != null && unExitTaskNumbs.size() > 0) {
 			rollingTv.setVisibility(View.VISIBLE);// 显示提示
