@@ -298,8 +298,8 @@ public class EIASApplication extends BaseApplication {
 	 */
 	private void initFinalString() {
 		
-		/*Services.put("本地测试服务器", "http://192.168.3.66:8099");
-		Services.put("大连服务器", "http://124.93.240.144:18099");
+		Services.put("本地测试服务器", "http://192.168.3.66:8099");
+		/*Services.put("大连服务器", "http://124.93.240.144:18099");
 		Services.put("外业测试服务器2", "http://182.92.219.161:18098");*/
 		Services.put("外业测试服务器1", "http://eiastest.yunfangdata.com");
 		Services.put("采图测试服务器1","http://182.92.161.16:18099");	

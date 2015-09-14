@@ -72,7 +72,6 @@ public class TaskCategoryInfoAdapter extends BaseAdapter {
 
 	/**
 	 * 构造方法
-	 * 
 	 * @param context
 	 */
 	public TaskCategoryInfoAdapter(Context context) {
@@ -237,11 +236,11 @@ public class TaskCategoryInfoAdapter extends BaseAdapter {
 			for (DataCategoryDefine defineCategory : defineCategories) {
 				if (defineCategory.CategoryID == model.CategoryID) {
 					for (DataFieldDefine field : defineCategory.Fields) {
-						if (field.ShowInPhone) {
+						if (field.ShowInPhone) { // 拼接当前分类要显示的所有子项名称
 							fieldNames += field.Name + ",";
 							dataDefineTotal += 1;
 						}
-						if (field.Required) {
+						if (field.Required) { // 统计必填分类子项总数
 							requiredCount += 1;
 						}
 					}
@@ -256,10 +255,10 @@ public class TaskCategoryInfoAdapter extends BaseAdapter {
 				// 填充必填项的总数和必填项的已填个数
 				for (DataCategoryDefine defineCategory : defineCategories) {
 					if (defineCategory.CategoryID == model.CategoryID) {
-						for (TaskDataItem item : model.Items) {
-							for (DataFieldDefine element : defineCategory.Fields) {
-								if (element.Name.equals(item.Name)) {
-									if (!isNullOrWhiteSpace(item.Value)) {
+						for (TaskDataItem item : model.Items) {//任务属性子项
+							for (DataFieldDefine element : defineCategory.Fields) {// 勘察配置表中的属性
+								if (element.Name.equals(item.Name)) {//取出配置表中的这个属性
+									if (!isNullOrWhiteSpace(item.Value)) {// 这个任务属性子项的值是否为空
 										if (element.Required) {
 											requiredDoneCount += 1;
 										} else {

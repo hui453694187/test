@@ -171,7 +171,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 * 领取任务并编辑
 	 */
 	public final int TASK_RECEIVETASK_AND_EDIT = 8;
-
+	/** 批量删除任务*/
+	public final int TASK_BATCH_DELETE=9;
+	
 	/**
 	 * 删除任务
 	 */
@@ -295,6 +297,20 @@ public class TaskListFragment extends BaseWorkerFragment {
 			break;
 		case TASK_DELETE:
 			uiMsg.obj = TaskOperator.deleteLoaclTask(viewModel.currentUser, viewModel.currentSelectedTask);
+			break;
+		case TASK_BATCH_DELETE:// 批量删除任务。
+			@SuppressWarnings("unchecked")
+			List<TaskInfo> taskInfos=(List<TaskInfo>)msg.obj;
+			List<TaskInfo> deleteTtask=new ArrayList<TaskInfo>();
+			if(taskInfos!=null&&taskInfos.size()>0){
+				for(TaskInfo taskInfo:taskInfos){// 循环执行 删除任务
+					ResultInfo<Integer> result=TaskOperator.deleteLoaclTask(viewModel.currentUser,taskInfo);
+					if(result.Success&&result.Data>0){
+						deleteTtask.add(taskInfo);// 删除成功的任务
+					}
+				}
+			}
+			uiMsg.obj=deleteTtask;
 			break;
 		case TASK_EDIT_TASKINFO:
 			uiMsg.obj = openTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
@@ -535,6 +551,20 @@ public class TaskListFragment extends BaseWorkerFragment {
 			} else {
 				viewModel.ToastMsg = resultDelete.Message;
 				viewModel.reload = false;
+			}
+			break;
+		case TASK_BATCH_DELETE:
+			List<TaskInfo> taskInfos= (List<TaskInfo>) msg.obj;
+			if(taskInfos!=null&&taskInfos.size()>0){
+				for(TaskInfo tempTask:taskInfos){
+					viewModel.taskInfoes.remove(tempTask);
+					if (viewModel.currentCopiedTask != null && viewModel.currentSelectedTask.TaskNum.equals(viewModel.currentCopiedTask.TaskNum)) {
+						viewModel.currentCopiedTask = null;
+					}
+					viewModel.GetDataSuccess = true;
+					viewModel.ToastMsg = "批量删除任务成功！";
+					viewModel.reload = true;
+				}
 			}
 			break;
 		case TASK_EDIT_TASKINFO: {
@@ -997,9 +1027,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 
 		});
 
-		// Log.d("lee",viewModel.taskStatus+"--"+TaskStatus.Submiting);
 		// if (viewModel.taskStatus != TaskStatus.Submiting) {
-		// Log.d("lee","设置监听");
 		// 监听点击事件
 		task_listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override

@@ -202,6 +202,7 @@ public class TaskListMenuOperaotr {
 				// 多选状态
 				if (taskListFragment.viewModel.currentSelectedTask.isChecked) {
 					tempItems.add(TaskMenuEnum.提交选中任务.toString());
+					tempItems.add(TaskMenuEnum.删除已选中本地任务.toString());
 				} else {
 					tempItems.add(TaskMenuEnum.查看任务信息.toString());
 					tempItems.add(TaskMenuEnum.预约信息.toString());
@@ -225,6 +226,7 @@ public class TaskListMenuOperaotr {
 				if (taskListFragment.viewModel.currentSelectedTask.isChecked) {
 					tempItems.add(TaskMenuEnum.重新提交选中任务.toString());
 					tempItems.add(TaskMenuEnum.删除选中任务资源文件.toString());
+					tempItems.add(TaskMenuEnum.删除已选中本地任务.toString());
 				}
 				// 非多选状态
 				else {
@@ -289,10 +291,36 @@ public class TaskListMenuOperaotr {
 		switch (menu) {
 		case 删除本地任务:
 			if (!TaskOperator.submiting(taskListFragment.viewModel.currentSelectedTask.TaskNum)) {
-				deleteTaskInfoDialog();
+				String  msgStr="您确认要删除编号为[" + taskListFragment.viewModel.currentSelectedTask.TaskNum + "]的任务吗？";
+				deleteTaskInfoDialog(msgStr,taskListFragment.TASK_DELETE);
 			} else {
 				ToastUtil.longShow(taskListFragment.getActivity(), "当前任务正在提交中，将不会清空当前任务!");
 			}
+			break;
+		case 删除已选中本地任务:// 多选任务， 删除。
+			// 判断选中的的任务中是否有选中的任务， 提示不可删除。 
+			/** 所有的任务信息， 找出选中的任务*/
+			ArrayList<TaskInfo> deletTaskInfos =new ArrayList<TaskInfo>();
+			/** 是否可以执行批量删除  */
+			boolean canCommit=true;
+			for(TaskInfo taskInfo:taskListFragment.viewModel.taskInfoes){
+				if(taskInfo.isChecked){
+					if (!TaskOperator.submiting(taskInfo.TaskNum)) {// 判断选中的任务中是否有提交中的任务，
+						deletTaskInfos.add(taskInfo);// 选中的任务， 加入删除列表
+					} else {// 跳出
+						ToastUtil.longShow(taskListFragment.getActivity(), "当前任务正在提交中，将不会清空当前任务!");
+						canCommit=false;
+						break;
+					}
+					
+				} 
+			}
+			if(canCommit&&deletTaskInfos.size()>0){
+				/** 批量删除任务  */
+				deleteTadkInfoDialog("您确认要删除选中的这些任务？",taskListFragment.TASK_BATCH_DELETE,deletTaskInfos);// 发出批量删除任务的通知给后台执行
+			}
+			
+			
 			break;
 		case 复制:
 			if (!hasNewDataDefines(ddid)) {
@@ -416,16 +444,32 @@ public class TaskListMenuOperaotr {
 	/**
 	 * 删除本地任务
 	 */
-	private void deleteTaskInfoDialog() {
-		DialogUtil.showConfirmationDialog(currentContext, "您确认要删除编号为[" + taskListFragment.viewModel.currentSelectedTask.TaskNum + "]的任务吗？", new DialogInterface.OnClickListener() {
+	private void deleteTaskInfoDialog(String msgStr,final int TASK_NUMBER) {
+		DialogUtil.showConfirmationDialog(currentContext,msgStr, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
-				taskListFragment.doSomething("删除中", taskListFragment.TASK_DELETE);
+				taskListFragment.doSomething("删除中",TASK_NUMBER);//taskListFragment.TASK_DELETE
 			}
 		});
 	}
-
+	
+	/***
+	 * 批量删除本地任务任务
+	 * @param msgStr
+	 * @param TASK_NUMBER
+	 * @param taskInfos 需要删除的任务列表
+	 */
+	private void deleteTadkInfoDialog(String msgStr,final int TASK_NUMBER,final List<TaskInfo> taskInfos){
+		DialogUtil.showConfirmationDialog(currentContext,msgStr, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				taskListFragment.doSomething("删除中",TASK_NUMBER,taskInfos);//taskListFragment.TASK_DELETE
+			}
+		});
+	};
+	
 	/**
 	 * 跳去任务无法勘察的操作界面
 	 */
