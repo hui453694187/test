@@ -4,16 +4,20 @@ import java.util.Hashtable;
 
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.yunfang.eias.base.EIASApplication;
+import com.yunfang.eias.base.MainService;
 import com.yunfang.eias.logic.DataLogOperator;
-import com.yunfang.framework.model.*;
-import com.yunfang.framework.utils.DateTimeUtil;
-import com.yunfang.framework.utils.JSONHelper;
-import com.yunfang.framework.utils.StringUtil;
 import com.yunfang.framework.httpClient.CommonRequestPackage;
 import com.yunfang.framework.httpClient.IRequestTask;
 import com.yunfang.framework.httpClient.RequestTypeEnum;
 import com.yunfang.framework.httpClient.YFHttpClient;
+import com.yunfang.framework.model.ResultInfo;
+import com.yunfang.framework.model.UserInfo;
+import com.yunfang.framework.utils.DateTimeUtil;
+import com.yunfang.framework.utils.JSONHelper;
+import com.yunfang.framework.utils.StringUtil;
 
 /**
  * 推送当前坐标发送到服务器
@@ -92,7 +96,7 @@ public class PushCoordinateTask implements IRequestTask {
 			} catch (Exception e) {
 				result.Success = false;
 				result.Message = e.getMessage();
-				DataLogOperator.taskHttp("GetTaskInfoTask=>获取任务勘察信息失败(getResponseData)",e.getMessage());
+				DataLogOperator.taskHttp("GetTaskInfoTask=>推送当前坐标发送到服务器失败(getResponseData)",e.getMessage());
 			}
 		} else {
 			result.Success = false;

@@ -16,7 +16,6 @@ import android.content.res.Configuration;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.WindowManager;
 
 import com.baidu.location.BDLocation;
@@ -468,7 +467,6 @@ public class EIASApplication extends BaseApplication {
 				String actionType = intent.getAction();
 				switch (actionType) {
 				case BroadRecordType.MAINSERVER_CREATED:
-					Log.d("Service","设置的定时任务。");
 					BackgroundServiceTask task = new BackgroundServiceTask(MainService.TIMER_PUSH, null);
 					MainService.setTask(task);
 					break;

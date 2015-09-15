@@ -94,6 +94,16 @@ public class MainService extends BaseBackgroundService {
 		}
 	}
 
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see android.app.Service#onStartCommand(android.content.Intent, int, int)
+	 */
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return super.onStartCommand(intent, flags, startId);
+	}
+
 	/**
 	 * 主服务创建完成之后派发是事件通知可以启动 地图推送等一些操作
 	 */
@@ -109,7 +119,8 @@ public class MainService extends BaseBackgroundService {
 			BackgroundServiceTask task = (BackgroundServiceTask) msg.obj;
 			boolean additional = false;
 			Map<String, Object> params = task.getTaskParam();
-			if (params.size() > 1) {
+			/** 加上空值判断 ，防止抛出异常 */
+			if (params != null && params.size() > 1 && params.containsKey("additional")) {
 				additional = (boolean) params.get("additional");
 			}
 			switch (msg.what) {
@@ -126,6 +137,7 @@ public class MainService extends BaseBackgroundService {
 				if (uploadTasks.size() > 0) {
 					uploadTaskInfo(additional);
 				}
+				break;
 			case TIMER_PUSH:
 				pushLatlagDelayed();
 			case PUSH_LATLNG:
@@ -472,7 +484,7 @@ public class MainService extends BaseBackgroundService {
 	/**
 	 * 定时器的时间间隔 单位毫秒 当前时间为2分钟
 	 */
-	private int TIME = 1000 * 60 * 2;
+	private int TIME = 1000 * 60 * 5;
 
 	/**
 	 * 记录时间获取坐标
