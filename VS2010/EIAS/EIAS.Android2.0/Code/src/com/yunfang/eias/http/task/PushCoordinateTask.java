@@ -4,10 +4,8 @@ import java.util.Hashtable;
 
 import org.json.JSONObject;
 
-import android.util.Log;
 
 import com.yunfang.eias.base.EIASApplication;
-import com.yunfang.eias.base.MainService;
 import com.yunfang.eias.logic.DataLogOperator;
 import com.yunfang.framework.httpClient.CommonRequestPackage;
 import com.yunfang.framework.httpClient.IRequestTask;
