@@ -158,7 +158,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 	/***
 	 * item 点击事件
 	 * 
-	 * @author Administrator
+	 * @author kevin
 	 * 
 	 */
 	private class ViewOnItemClick implements AdapterView.OnItemClickListener {
