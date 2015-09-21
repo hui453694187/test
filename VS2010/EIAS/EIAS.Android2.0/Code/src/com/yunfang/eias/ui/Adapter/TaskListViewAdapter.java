@@ -53,6 +53,8 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 	 * 视图膨胀器
 	 * */
 	private LayoutInflater mInflater;
+	
+	private Context context;
 
 	/**
 	 * 选中的位置
@@ -67,6 +69,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 		mInflater = LayoutInflater.from(context);
 		taskInfoes = objects;
 		itemRID = textViewResourceId;
+		this.context=context;
 	}
 
 	@Override
@@ -198,6 +201,9 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			// 任务编号
 			if (holder.TaskNum_Txt != null && item.TaskNum != null) {
 				holder.TaskNum_Txt.setText("编号:" + item.TaskNum);
+				if(item.Status==TaskStatus.Pause){
+					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.red));
+				}
 			}
 			// 任务领取时间
 			if (holder.receiveDateTime_Txt != null && item.ReceiveDate != null) {

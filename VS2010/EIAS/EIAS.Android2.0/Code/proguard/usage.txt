@@ -413,7 +413,7 @@ com.squareup.picasso.Utils$BitmapHoneycombMR1:
 com.squareup.picasso.Utils$OkHttpLoaderCreator:
     419:419:private Utils$OkHttpLoaderCreator()
 com.yunfang.eias.base.EIASApplication:
-    444:447:protected void StopService()
+    443:446:protected void StopService()
 com.yunfang.eias.http.task.AdditionalResourceTask
 com.yunfang.eias.impl.ContactItemInterface
 com.yunfang.eias.logic.AppHeader2

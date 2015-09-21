@@ -117,7 +117,6 @@ public class SystemSettingActivity extends BaseWorkerActivity {
 		/** 获取原来系统设置 */
 		String selectPaste = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PICTURECOPYORPASTE);
 		String selectPhotoType = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PHOTOTYPE);
-		Log.d("lee",selectPaste+"--"+selectPhotoType);
 		setRadioButtonSelectedByValue(rg_setting_copyOrPaste,selectPaste);
 		setRadioButtonSelectedByValue(rg_setting_photo,selectPhotoType);
 		

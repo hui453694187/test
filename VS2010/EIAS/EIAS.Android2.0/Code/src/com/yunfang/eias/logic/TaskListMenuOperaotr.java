@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -233,6 +234,7 @@ public class TaskListMenuOperaotr {
 					tempItems.add(TaskMenuEnum.查看任务信息.toString());
 					tempItems.add(TaskMenuEnum.预约信息.toString());
 					tempItems.add(TaskMenuEnum.编辑内容.toString());
+					tempItems.add(TaskMenuEnum.同步服务器数据.toString());
 					tempItems.add(TaskMenuEnum.图片补发.toString());
 					// tempItems.add(TaskMenuEnum.收费信息.toString());
 					if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
@@ -354,6 +356,13 @@ public class TaskListMenuOperaotr {
 			if (!hasNewDataDefines(ddid)) {
 				taskListFragment.doSomething("加载中", taskListFragment.TASK_EDIT_TASKINFO);
 			}
+			break;
+		case 同步服务器数据:
+			//TODO 同步服务器这条任务的数据  不为空则覆盖
+			//TaskInfo taskInfoRlaseh=taskListFragment.viewModel.currentSelectedTask;
+			
+			taskListFragment.doSomething("正在同步本条任务数据",taskListFragment.SYNC_TASK_INFO);
+			
 			break;
 		case 领取任务:
 			taskListFragment.doSomething("加载中", taskListFragment.TASK_RECEIVETASK);

@@ -26,6 +26,7 @@ import com.yunfang.eias.ui.DataLogActivity;
 import com.yunfang.eias.ui.IntroductionActivity;
 import com.yunfang.eias.ui.LoginActivity;
 import com.yunfang.eias.ui.MainSettingActivity;
+import com.yunfang.eias.ui.StopTaskListActivity;
 import com.yunfang.eias.ui.SystemSettingActivity;
 import com.yunfang.eias.ui.UserInfoActivity;
 import com.yunfang.framework.base.BaseApplication;
@@ -55,6 +56,8 @@ public class AppHeaderMenu {
 	 * 新建任务
 	 */
 	private Button pop_btn_newtask;
+	/** 查看暂停的任务 */
+	private Button pop_btn_stoptask;
 
 	/**
 	 * 日志记录
@@ -168,6 +171,8 @@ public class AppHeaderMenu {
 	private void initButtons() {
 		pop_btn_newtask = (Button) mPopView
 				.findViewById(R.id.home_pop_menu_btn_newtask);
+		pop_btn_stoptask = (Button) mPopView
+				.findViewById(R.id.home_pop_menu_btn_stop_task);
 		pop_btn_daily = (Button) mPopView
 				.findViewById(R.id.home_pop_menu_btn_daily);
 		pop_btn_about = (Button) mPopView
@@ -197,6 +202,7 @@ public class AppHeaderMenu {
 		pop_btn_chang_offline.setOnClickListener(menuItemClickLister);
 		pop_btn_login.setOnClickListener(menuItemClickLister);
 		pop_btn_Introduction.setOnClickListener(menuItemClickLister);
+		pop_btn_stoptask.setOnClickListener(menuItemClickLister);
 	}
 
 	/**
@@ -314,11 +320,28 @@ public class AppHeaderMenu {
 			case R.id.home_pop_menu_btn_Introduction:
 				showIntroductionDialog();
 				break;
+			case R.id.home_pop_menu_btn_stop_task:// 跳转到暂停任务列表状态
+				showStopTaskList();
+				break;
 			default:
 				break;
 			}
 		}
 	};
+	
+	/**
+	 * 
+	 * @author kevin
+	 * @date 2015-9-21 下午3:41:15
+	 * @Description: 跳转到已暂停任务列表界面     
+	 * @version V1.0
+	 */
+	private void showStopTaskList(){
+		mPopupWindow.dismiss();
+		Intent i=new Intent();
+		i.setClass(currentContext,StopTaskListActivity.class);
+		currentContext.startActivity(i);
+	}
 	
 	/**
 	 * 显示功能介绍

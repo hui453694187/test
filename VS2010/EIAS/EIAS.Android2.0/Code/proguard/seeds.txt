@@ -15208,6 +15208,7 @@ com.yunfang.eias.base.MainService: int CONNECTIONBACK_MSG
 com.yunfang.eias.base.MainService: boolean THREADRUNING
 com.yunfang.eias.base.MainService: MainService()
 com.yunfang.eias.base.MainService: void onCreate()
+com.yunfang.eias.base.MainService: int onStartCommand(android.content.Intent,int,int)
 com.yunfang.eias.base.MainService: void setTask(com.yunfang.eias.http.task.BackgroundServiceTask)
 com.yunfang.eias.base.MainService: java.util.LinkedHashMap getUploadTasks()
 com.yunfang.eias.base.MainService: boolean checkNetworkAvailable(android.content.Context)
@@ -15525,6 +15526,7 @@ com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum ∏¥÷
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum ’≥Ã˘
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum ’≥Ã˘¥¥Ω®–¬»ŒŒÒ
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum …æ≥˝±æµÿ»ŒŒÒ
+com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum …æ≥˝“——°÷–±æµÿ»ŒŒÒ
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum Ã·Ωª±æµÿ»ŒŒÒ
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum ÷ÿ–¬Ã·Ωª±æµÿ»ŒŒÒ
 com.yunfang.eias.enumObj.TaskMenuEnum: com.yunfang.eias.enumObj.TaskMenuEnum »ŒŒÒ∆•≈‰
@@ -15887,22 +15889,23 @@ com.yunfang.eias.logic.TaskListMenuOperaotr: void resizePikcer(android.widget.Fr
 com.yunfang.eias.logic.TaskListMenuOperaotr: void putTaskInfo(java.lang.Integer,java.lang.String,java.lang.String)
 com.yunfang.eias.logic.TaskListMenuOperaotr: boolean hasNewDataDefines(int)
 com.yunfang.eias.logic.TaskListMenuOperaotr$1: void onClick(android.content.DialogInterface,int)
-com.yunfang.eias.logic.TaskListMenuOperaotr$10: void onDateChanged(android.widget.DatePicker,int,int,int)
-com.yunfang.eias.logic.TaskListMenuOperaotr$11: void onClick(android.content.DialogInterface,int)
-com.yunfang.eias.logic.TaskListMenuOperaotr$12: void onClick(android.view.View)
-com.yunfang.eias.logic.TaskListMenuOperaotr$13: void onSelected(android.util.SparseBooleanArray)
-com.yunfang.eias.logic.TaskListMenuOperaotr$14: void onCancel()
-com.yunfang.eias.logic.TaskListMenuOperaotr$15: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$10: void onTimeChanged(android.widget.TimePicker,int,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$11: void onDateChanged(android.widget.DatePicker,int,int,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$12: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$13: void onClick(android.view.View)
+com.yunfang.eias.logic.TaskListMenuOperaotr$14: void onSelected(android.util.SparseBooleanArray)
+com.yunfang.eias.logic.TaskListMenuOperaotr$15: void onCancel()
 com.yunfang.eias.logic.TaskListMenuOperaotr$16: void onClick(android.content.DialogInterface,int)
-com.yunfang.eias.logic.TaskListMenuOperaotr$17: void onClick(android.view.View)
+com.yunfang.eias.logic.TaskListMenuOperaotr$17: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$18: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskListMenuOperaotr$2: void onClick(android.content.DialogInterface,int)
-com.yunfang.eias.logic.TaskListMenuOperaotr$3: void onClick(android.view.View)
+com.yunfang.eias.logic.TaskListMenuOperaotr$3: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.logic.TaskListMenuOperaotr$4: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskListMenuOperaotr$5: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskListMenuOperaotr$6: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskListMenuOperaotr$7: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskListMenuOperaotr$8: void onClick(android.view.View)
-com.yunfang.eias.logic.TaskListMenuOperaotr$9: void onTimeChanged(android.widget.TimePicker,int,int)
+com.yunfang.eias.logic.TaskListMenuOperaotr$9: void onClick(android.view.View)
 com.yunfang.eias.logic.TaskOperator
 com.yunfang.eias.logic.TaskOperator: java.lang.String KEY_ADDITIONAL
 com.yunfang.eias.logic.TaskOperator: java.lang.String KEY_ADDITIONAL_RESOURCE
@@ -16720,6 +16723,7 @@ com.yunfang.eias.ui.TaskListFragment: int TASK_COPY_TASKINFO
 com.yunfang.eias.ui.TaskListFragment: int TASK_PASTED_TASKINFO
 com.yunfang.eias.ui.TaskListFragment: int TASK_PASTED_NEWTASKINFO
 com.yunfang.eias.ui.TaskListFragment: int TASK_RECEIVETASK_AND_EDIT
+com.yunfang.eias.ui.TaskListFragment: int TASK_BATCH_DELETE
 com.yunfang.eias.ui.TaskListFragment: int TASK_DELETE
 com.yunfang.eias.ui.TaskListFragment: int TASK_EXPORT
 com.yunfang.eias.ui.TaskListFragment: int TASK_IMPORT_GUIDE

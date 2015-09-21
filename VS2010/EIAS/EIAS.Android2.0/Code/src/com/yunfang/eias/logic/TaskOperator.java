@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ import com.yunfang.eias.enumObj.OperatorTypeEnum;
 import com.yunfang.eias.enumObj.TaskStatus;
 import com.yunfang.eias.enumObj.TaskUploadStatusEnum;
 import com.yunfang.eias.http.task.BackgroundServiceTask;
+import com.yunfang.eias.http.task.GetFinishTaskInfo;
 import com.yunfang.eias.http.task.GetTaskInfoTask;
 import com.yunfang.eias.http.task.GetTaskListTask;
 import com.yunfang.eias.http.task.SetAppointmentTask;
@@ -2510,4 +2512,24 @@ public class TaskOperator {
 	}
 
 	// }}
+	
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-9-18 下午2:21:39
+	 * @Description: 同步远程已完成任务子项值
+	 * @param currentSelectTask
+	 * @return ResultInfo<Integer>    返回类型 
+	 * @version V1.0
+	 */
+	public static ResultInfo<Integer> syncDoneTaskInfo(TaskInfo currentSelectTask){
+		ResultInfo<Integer> result=null;
+		GetFinishTaskInfo getFinishTaskInfo=new GetFinishTaskInfo();
+		ResultInfo<List<TaskDataItem>> dataItems=null;
+		dataItems=getFinishTaskInfo.request(EIASApplication.getCurrentUser(), currentSelectTask);
+		// 对比 本地 TaskDataItem 更新服务器数据
+		result=TaskDataWorker.updataTaskDataItems(dataItems.Data);
+		
+		return result;
+	}
 }

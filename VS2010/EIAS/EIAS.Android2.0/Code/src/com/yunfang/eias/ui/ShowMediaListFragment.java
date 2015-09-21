@@ -522,6 +522,9 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
 			if (!TaskOperator.submiting(taskInfoActivity.viewModel.currentTask.TaskNum)) {
 				// 如果有空间就打开对应的资源列表
+				//图片集合才可以长按
+				boolean isImap=mediaType==CategoryType.PictureCollection;
+				//isImap&&
 				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {

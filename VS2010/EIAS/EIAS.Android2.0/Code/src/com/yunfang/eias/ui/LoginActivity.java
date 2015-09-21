@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,22 +16,29 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.logic.DatadefinesOperator;
 import com.yunfang.eias.logic.LoginInfoOperator;
 import com.yunfang.framework.base.BaseWorkerActivity;
+import com.yunfang.framework.maps.BaiduLocationHelper;
+import com.yunfang.framework.maps.BaiduLocationHelper.BaiduLoactionOperatorListener;
 import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.model.UserInfo;
 import com.yunfang.framework.view.ComboBox;
 
 public class LoginActivity extends BaseWorkerActivity {
 
+	/** 位置定位类 */
+	BaiduLocationHelper locationHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setContentView(R.layout.login_activity);
+		initLocation();
 		init();
 	}
 
@@ -142,6 +150,39 @@ public class LoginActivity extends BaseWorkerActivity {
 
 		txtAPPPageSize = (TextView) findViewById(R.id.app_PageSize);
 		EIASApplication.PageSize = Integer.parseInt(txtAPPPageSize.getText().toString().trim());
+	}
+	
+	/**
+	 * @author kevin
+	 * @date 2015-9-17 上午11:09:24
+	 * @Description: 发起定位， 后去当前登录用户所在城市
+	 * @return void    返回类型 
+	 * @throws 
+	 * @version V1.0
+	 */
+	private void initLocation(){
+		if(locationHelper==null){
+			locationHelper=new BaiduLocationHelper(this, false);
+			locationHelper.setOperatorListener(new BaiduLoactionOperatorListener() {
+				@Override
+				public void onSelected(BDLocation location) {
+					Log.d("baiduLoc","-------------以下为定位信息-----------------");
+					//TODO 定位监听 得到定位信息 发送给后台处理，或者界面处理, 填充配置列表到下拉框，同时保存到本地。
+					String addrStr=location.getAddrStr();
+					String city=location.getCity();
+					String cityCode=location.getCityCode();
+					int locType=location.getLocType();
+					String time=location.getTime();
+					Log.d("baiduLoc","addrStr:"+addrStr);
+					Log.d("baiduLoc","city:"+city);
+					Log.d("baiduLoc","cityCode:"+cityCode);
+					Log.d("baiduLoc","locType:"+locType);
+					Log.d("baiduLoc","time:"+time);
+				}
+			});
+		}else{
+			locationHelper.startLocation();
+		}
 	}
 
 	/**

@@ -342,7 +342,11 @@ public class AppHeader {
 		if (EIASApplication.IsNetworking) {
 			try {
 				// 如果版本不一致就下载最新的
-				if (!EIASApplication.versionInfo.LocalVersionName.equals(EIASApplication.versionInfo.ServerVersionName)) {
+				//检查服务端版本名是否为空
+				boolean isNull=EIASApplication.versionInfo.ServerVersionName!=null&&EIASApplication.versionInfo.ServerVersionName.trim().length()>0;
+				//本地版本名于服务端版本是否一致
+				boolean euqalsVersion=!EIASApplication.versionInfo.LocalVersionName.equals(EIASApplication.versionInfo.ServerVersionName);
+				if (isNull&&euqalsVersion) {
 					DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {

@@ -171,9 +171,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 * 领取任务并编辑
 	 */
 	public final int TASK_RECEIVETASK_AND_EDIT = 8;
-	/** 批量删除任务*/
-	public final int TASK_BATCH_DELETE=9;
-	
+	/** 批量删除任务 */
+	public final int TASK_BATCH_DELETE = 9;
+
 	/**
 	 * 删除任务
 	 */
@@ -209,6 +209,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 	 */
 	public final int TASK_REMOVE_RESOURCE = 16;
 
+	/** 同步一条已完成任务数据 */
+	public final int SYNC_TASK_INFO=17;
+	
 	/**
 	 * HomeFragment
 	 */
@@ -300,17 +303,17 @@ public class TaskListFragment extends BaseWorkerFragment {
 			break;
 		case TASK_BATCH_DELETE:// 批量删除任务。
 			@SuppressWarnings("unchecked")
-			List<TaskInfo> taskInfos=(List<TaskInfo>)msg.obj;
-			List<TaskInfo> deleteTtask=new ArrayList<TaskInfo>();
-			if(taskInfos!=null&&taskInfos.size()>0){
-				for(TaskInfo taskInfo:taskInfos){// 循环执行 删除任务
-					ResultInfo<Integer> result=TaskOperator.deleteLoaclTask(viewModel.currentUser,taskInfo);
-					if(result.Success&&result.Data>0){
+			List<TaskInfo> taskInfos = (List<TaskInfo>) msg.obj;
+			List<TaskInfo> deleteTtask = new ArrayList<TaskInfo>();
+			if (taskInfos != null && taskInfos.size() > 0) {
+				for (TaskInfo taskInfo : taskInfos) {// 循环执行 删除任务
+					ResultInfo<Integer> result = TaskOperator.deleteLoaclTask(viewModel.currentUser, taskInfo);
+					if (result.Success && result.Data > 0) {
 						deleteTtask.add(taskInfo);// 删除成功的任务
 					}
 				}
 			}
-			uiMsg.obj=deleteTtask;
+			uiMsg.obj = deleteTtask;
 			break;
 		case TASK_EDIT_TASKINFO:
 			uiMsg.obj = openTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
@@ -391,6 +394,10 @@ public class TaskListFragment extends BaseWorkerFragment {
 			uiMsg.obj = removeResult;
 			break;
 		}
+		case SYNC_TASK_INFO:
+			//TODO 发送已完成任务 数据， 后去需要同步的数据
+			uiMsg.obj = TaskOperator.syncDoneTaskInfo(this.viewModel.currentSelectedTask);
+			break;
 		default:
 			break;
 		}
@@ -554,9 +561,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 			}
 			break;
 		case TASK_BATCH_DELETE:
-			List<TaskInfo> taskInfos= (List<TaskInfo>) msg.obj;
-			if(taskInfos!=null&&taskInfos.size()>0){
-				for(TaskInfo tempTask:taskInfos){
+			List<TaskInfo> taskInfos = (List<TaskInfo>) msg.obj;
+			if (taskInfos != null && taskInfos.size() > 0) {
+				for (TaskInfo tempTask : taskInfos) {
 					viewModel.taskInfoes.remove(tempTask);
 					if (viewModel.currentCopiedTask != null && viewModel.currentSelectedTask.TaskNum.equals(viewModel.currentCopiedTask.TaskNum)) {
 						viewModel.currentCopiedTask = null;
@@ -682,6 +689,10 @@ public class TaskListFragment extends BaseWorkerFragment {
 			}
 			break;
 		}
+		case SYNC_TASK_INFO:
+			// 同步已完成任务
+			viewModel.reload = false;
+			break;
 		default:
 			break;
 		}
@@ -763,13 +774,16 @@ public class TaskListFragment extends BaseWorkerFragment {
 		LinkedHashMap<String, TaskInfo> uploadTasks = MainService.getUploadTasks();
 		if (uploadTasks.size() > 0) {
 			for (TaskInfo element : viewModel.taskInfoes) {
-				TaskInfo tempTask=uploadTasks.get(element.TaskNum);
-				if(uploadTasks.containsKey(element.TaskNum)&&tempTask.Status==TaskStatus.Submiting){
+				TaskInfo tempTask = uploadTasks.get(element.TaskNum);
+				if (uploadTasks.containsKey(element.TaskNum) && tempTask.Status == TaskStatus.Submiting) {
 					element.Status = TaskStatus.Submiting;
 				}
-				/*if (uploadTasks.containsKey(element.TaskNum) && uploadTasks.get(element.TaskNum).Status != TaskStatus.Submiting) {
-					element.Status = TaskStatus.Submiting;
-				}*/
+				/*
+				 * if (uploadTasks.containsKey(element.TaskNum) &&
+				 * uploadTasks.get(element.TaskNum).Status !=
+				 * TaskStatus.Submiting) { element.Status =
+				 * TaskStatus.Submiting; }
+				 */
 			}
 		}
 	}
@@ -866,6 +880,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 			@Override
 			public void onClick(View v) {
 				viewModel.currentIndex = 1;
+				//刷新，重新加载数据，清空缓存，重新获取数据。 
+				viewModel.taskInfoes.retainAll(viewModel.taskInfoes);
+				viewModel.taskInfoes.clear();
 				loadData();
 			}
 		});
@@ -893,7 +910,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			switch (viewModel.taskStatus) {
 			case Todo:
 				setTitle("待堪察的列表");
-				taskSearch.setVisibility(View.GONE);
+				//taskSearch.setVisibility(View.GONE);
 				break;
 			case Doing:
 				sub_title_select.setVisibility(View.VISIBLE);
@@ -920,6 +937,8 @@ public class TaskListFragment extends BaseWorkerFragment {
 			@Override
 			public void onClick(View v) {
 				viewModel.currentIndex = 1;
+				viewModel.taskInfoes.retainAll(viewModel.taskInfoes);
+				viewModel.taskInfoes.clear();
 				loadData();
 			}
 		});
@@ -1002,7 +1021,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 		task_listview.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				try{
+				try {
 					if (viewModel.taskStatus == TaskStatus.Submiting) {
 						taskListViewAdapter.setSelectedPosition(position);
 						taskListViewAdapter.notifyDataSetChanged();
@@ -1018,9 +1037,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 							viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
 						}
 					}
-				}catch(Exception e){
+				} catch (Exception e) {
 					e.printStackTrace();
-					Log.e("com.yunfang.eias",">>"+e.getMessage());
+					Log.e("com.yunfang.eias", ">>" + e.getMessage());
 				}
 				return true;
 			}
@@ -1033,34 +1052,39 @@ public class TaskListFragment extends BaseWorkerFragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
 				// 记录点击的位置
-				taskListViewAdapter.setSelectedPosition(position);
-				taskListViewAdapter.notifyDataSetChanged();
-				if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
-					viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
-					if (viewModel.taskStatus != null) {
-						switch (viewModel.taskStatus) {
-						case Todo:
-							// 记录长按的位置
-							taskListViewAdapter.setSelectedPosition(position);
-							taskListViewAdapter.notifyDataSetChanged();
-							viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
-							menuOperator.showDialog();
-							break;
-						case Doing:
-						case Done:
-							if (viewModel.currentSelectedTask.Status != TaskStatus.Submiting) {
-								//当前任务列表是否要跟新配置表
-								if(!menuOperator.hasNewDataDefines(viewModel.currentSelectedTask.DDID)){
-									startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
+				try {
+					taskListViewAdapter.setSelectedPosition(position);
+					taskListViewAdapter.notifyDataSetChanged();
+					if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
+						viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
+						if (viewModel.taskStatus != null) {
+							switch (viewModel.taskStatus) {
+							case Todo:
+								// 记录长按的位置
+								taskListViewAdapter.setSelectedPosition(position);
+								taskListViewAdapter.notifyDataSetChanged();
+								viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
+								menuOperator.showDialog();
+								break;
+							case Doing:
+							case Done:
+								if (viewModel.currentSelectedTask.Status != TaskStatus.Submiting) {
+									// 当前任务列表是否要更新配置表
+									if (!menuOperator.hasNewDataDefines(viewModel.currentSelectedTask.DDID)) {
+										startTaskInfo(viewModel.currentSelectedTask.TaskID, viewModel.currentSelectedTask.ID, viewModel.currentSelectedTask.TaskNum);
+									}
+								} else {
+									viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
 								}
-							} else {
-								viewModel.homeActivity.appHeader.showDialog("提示信息", "无法操作正在提交的任务");
+								break;
+							default:
+								break;
 							}
-							break;
-						default:
-							break;
 						}
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					Log.e("com.yunfang.eias", "OnItemClick->>" + e.getMessage());
 				}
 			}
 		});

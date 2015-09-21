@@ -260,10 +260,10 @@ public class EIASApplication extends BaseApplication {
 			}
 			break;
 		case BroadRecordType.KEY_SETTING_PHOTOTYPE:
-			resultStr = sp.getString(BroadRecordType.KEY_SETTING_PHOTOTYPE, "");
+			resultStr = sp.getString(BroadRecordType.KEY_SETTING_PHOTOTYPE, "系统自带相机");
 			// 默认是复制
 			if (resultStr == "") {
-				resultStr = SystemSettingActivity.photoTypeChooseItem[0];
+				resultStr = SystemSettingActivity.photoTypeChooseItem[1];
 			}
 			break;
 		}

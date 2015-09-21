@@ -51,7 +51,7 @@ import com.yunfang.framework.base.BaseWorkerActivity;
 import com.yunfang.framework.utils.StringUtil;
 
 /**
- * @author lee
+ * @author kevin
  * 
  */
 public class MultiSelectAlbumActivity extends BaseWorkerActivity {
@@ -271,7 +271,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 	/***
 	 * 
-	 * @author lee 图片预览适配器
+	 * @author kevin 图片预览适配器
 	 */
 	private class PreviewVpgAdapter extends PagerAdapter {
 
@@ -510,7 +510,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 	/***
 	 * 
-	 * @author lee 相册图片
+	 * @author kevin 相册图片
 	 */
 	private class FolderImage {
 		/** 文件夹路径 */
@@ -560,7 +560,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 	}
 
 	/***
-	 * @author lee 一张图片
+	 * @author kevin 一张图片
 	 */
 	private class ImageItem {
 
@@ -600,7 +600,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 	/***
 	 * gird适配器
 	 * 
-	 * @author lee
+	 * @author kevin
 	 * 
 	 */
 	private class GirdViewAdapter extends BaseAdapter {
@@ -692,7 +692,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 	/***
 	 * 相册列表适配器
 	 * 
-	 * @author lee
+	 * @author kevin
 	 */
 	private class AlbumFolderAdapter extends BaseAdapter {
 

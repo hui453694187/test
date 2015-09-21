@@ -65,7 +65,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:background="@drawable/btn_next_statue"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/list_reload"
@@ -74,16 +74,14 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:background="@drawable/log_title_refresh_statue" />
+        android:background="@drawable/log_title_refresh_statue"/>
 
     <Button
         android:id="@+id/home_top_additional"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/btn_next_Category"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
         android:background="@drawable/btn_additional_statue"
-        android:visibility="gone" />
-
+        android:visibility="gone"/>
 </RelativeLayout>

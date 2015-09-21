@@ -1,10 +1,12 @@
 package com.yunfang.eias.tables;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.dto.TaskCategoryInfoDTO;
@@ -26,6 +28,7 @@ import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.model.UserInfo;
 import com.yunfang.framework.utils.DateTimeUtil;
 import com.yunfang.framework.utils.ListUtil;
+import com.yunfang.framework.utils.StringUtil;
 
 /**
  * 
@@ -36,6 +39,51 @@ import com.yunfang.framework.utils.ListUtil;
  */
 public class TaskDataWorker {
 
+	
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-9-18 下午12:59:17
+	 * @Description: 同步服务器中的任务子项 value 
+	 * @param dataItem
+	 * @return ResultInfo<Integer>    返回类型 
+	 * @version V1.0
+	 */
+	public static ResultInfo<Integer> updataTaskDataItems(List<TaskDataItem> dataItem){
+		ResultInfo<Integer> result=new ResultInfo<Integer>();
+		SQLiteDatabase db=null;
+		int resultCount=0;
+		try{
+			db=SQLiteHelper.getReadableDB();
+			for(TaskDataItem tempDataItem:dataItem){
+				// value 不为空值覆盖本地的值, 
+				if(!StringUtil.IsNullOrEmpty(tempDataItem.Value)){
+					TaskDataItem taskDataItem=new TaskDataItem();
+					String baseId=String.valueOf(tempDataItem.ID);
+					Cursor cursor=taskDataItem.onSelect(null, "BaseID='"+baseId+"'");
+					cursor.moveToNext();
+					taskDataItem.setValueByCursor(cursor);
+					//媒体分类项的子项Value 不修改。
+					if(taskDataItem.Value.contains(".jpg")||taskDataItem.Value.contains(".amr")||taskDataItem.Value.contains(".mp4")){
+						continue;
+					}
+					taskDataItem.Value=tempDataItem.Value;
+					resultCount+=taskDataItem.onUpdate("BaseID='"+ baseId +"'");// 更新本地本条数据
+				}
+			}
+			result.Data=resultCount;
+		}catch(Exception e){
+			result.Success=false;
+			result.Data=0;
+			result.Message="数据库操作失败！";
+		}finally{
+			db.close();
+		}
+		
+		return result;
+	}
+	
+	
 	/**
 	 * 检查是否有自建任务数据
 	 * 
@@ -84,7 +132,7 @@ public class TaskDataWorker {
 		SQLiteDatabase db = null;
 		StringBuilder queryStr = new StringBuilder("select * from TaskInfo where User=?");
 		queryStr.append(" and IsNew=? and Status=?");
-		try { 
+		try {
 			db = SQLiteHelper.getWritableDB();
 			Cursor cursor = db.rawQuery(queryStr.toString(),new String[]{currentUser.Name,"0","1"});
 			if (cursor != null) {
