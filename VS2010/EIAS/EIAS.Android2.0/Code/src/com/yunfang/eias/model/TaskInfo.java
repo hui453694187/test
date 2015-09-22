@@ -51,6 +51,9 @@ public class TaskInfo extends TableWorkerBase {
 	 * */
 	public int DDID;
 
+	/** 公司ID */
+	public int CompanyId;
+
 	/**
 	 * 领取时间（自建任务时，需要客户端自动填入当前时间）
 	 * */
@@ -240,42 +243,42 @@ public class TaskInfo extends TableWorkerBase {
 	// 内业报告是否完成 end 2015-6-30
 
 	// 是否包含资源文件 start 2015-7-2
-	
+
 	/**
 	 * 内业报告是否完成
 	 */
 	public Boolean HasResource;
-	
+
 	// 是否包含资源文件 end 2015-7-2
 
 	// 加急费用 start 2015-7-24
-	
+
 	/**
 	 * 加急费用
 	 */
 	public double UrgentFee;
-	
+
 	// 加急费用 end 2015-7-24
-	
+
 	// 2015-8-5 strat
-	
+
 	/**
 	 * 应收费用
 	 */
 	public double AdjustFee;
-	
+
 	/**
 	 * 预收费用
 	 */
 	public double LiveSearchCharge;
-	
+
 	// 2015-8-5 end
-		
+
 	/**
 	 * 是否选中 这个不在数据库中存在 勾选使用
 	 */
-	public Boolean isChecked = false;	
-	
+	public Boolean isChecked = false;
+
 	/**
 	 * 任务下的分类信息
 	 */
@@ -292,6 +295,7 @@ public class TaskInfo extends TableWorkerBase {
 		TaskNum = "";
 		TaskID = -1;
 		DDID = -1;
+		CompanyId = 0;
 		ReceiveDate = DateTimeUtil.getCurrentTime();// 当前时间
 		DoneDate = null;// 当前时间
 		Status = TaskStatus.Todo;
@@ -343,6 +347,7 @@ public class TaskInfo extends TableWorkerBase {
 		TaskNum = obj.optString("TaskNum");
 		TaskID = obj.optInt("ID");
 		DDID = obj.optInt("DDID");
+		CompanyId = obj.optInt("CompanyId");
 		ReceiveDate = obj.optString("ReceiveDate");
 		DoneDate = obj.optString("DoneDate");
 		Status = TaskStatus.getEnumByValue(obj.optInt("Status"));
@@ -390,16 +395,16 @@ public class TaskInfo extends TableWorkerBase {
 		ContactTel = obj.optString("ContactTel");
 		CreateType = TaskCreateType.getEnumByValue(obj.optInt("CreateType"));
 
-		// 内业报告相关属性  2015-6-30
+		// 内业报告相关属性 2015-6-30
 		InworkReportFinish = obj.optBoolean("InworkReportFinish");
 		InworkReportFinishDate = obj.optString("InworkReportFinishDate");
-		
-		// 资源相关属性  2015-7-2
+
+		// 资源相关属性 2015-7-2
 		HasResource = obj.optBoolean("HasResource");
-		
+
 		// 加急金额 2015-7-24
 		UrgentFee = obj.optDouble("UrgentFee");
-		
+
 		// 2015-8-5
 		AdjustFee = obj.optDouble("AdjustFee");
 		LiveSearchCharge = obj.optDouble("LiveSearchCharge");
@@ -436,6 +441,7 @@ public class TaskInfo extends TableWorkerBase {
 		taskInfo_values.put("TaskNum", TaskNum);
 		taskInfo_values.put("TaskID", TaskID);
 		taskInfo_values.put("DDID", DDID);
+		taskInfo_values.put("CompanyId", CompanyId);
 		taskInfo_values.put("ReceiveDate", ReceiveDate);
 		taskInfo_values.put("DoneDate", DoneDate);
 		taskInfo_values.put("Status", Status.getIndex());
@@ -472,14 +478,14 @@ public class TaskInfo extends TableWorkerBase {
 		taskInfo_values.put("ContactTel", ContactTel);
 		taskInfo_values.put("BookedRemark", BookedRemark);
 		taskInfo_values.put("Remark", Remark);
-		// 内业报告是否完成   2015-6-30
+		// 内业报告是否完成 2015-6-30
 		taskInfo_values.put("InworkReportFinish", InworkReportFinish);
 		taskInfo_values.put("InworkReportFinishDate", InworkReportFinishDate);
 		// 资源相关 2015-7-2
 		taskInfo_values.put("HasResource", HasResource);
 		// 加急收费金额 2015-7-24
 		taskInfo_values.put("UrgentFee", UrgentFee);
-		//2015-8-5
+		// 2015-8-5
 		taskInfo_values.put("AdjustFee", AdjustFee);
 		taskInfo_values.put("LiveSearchCharge", LiveSearchCharge);
 		return taskInfo_values;
@@ -495,10 +501,10 @@ public class TaskInfo extends TableWorkerBase {
 	@Override
 	public String toString() {
 		return "TaskInfo [ID=" + ID + ", TaskNum=" + TaskNum + ", TaskID=" + TaskID + ", DDID=" + DDID + ", ReceiveDate=" + ReceiveDate + ", DoneDate=" + DoneDate + ", Status=" + Status
-				+ ", TargetNumber=" + TargetNumber + ", UrgentStatus=" + UrgentStatus + ", TargetAddress=" + TargetAddress + ", Owner=" + Owner + ", OwnerTel=" + OwnerTel + ", ResidentialArea="
-				+ ResidentialArea + ", Building=" + Building + ", Floor=" + Floor + ", TargetName=" + TargetName + ", TargetType=" + TargetType + ", TargetArea=" + TargetArea + ", ClientUnit="
-				+ ClientUnit + ", ClientDep=" + ClientDep + ", ClientName=" + ClientName + ", ClientTel=" + ClientTel + ", User=" + User + ", Fee=" + Fee + ", ReceiptNo=" + ReceiptNo
-				+ ", CreatedDate=" + CreatedDate + ", Remark=" + Remark + ", IsNew=" + IsNew + ", CategoryVersion=" + DataDefineVersion + ", CreateType=" + CreateType + ", UploadStatus="
+				+ "CompanyId=" + CompanyId + ", TargetNumber=" + TargetNumber + ", UrgentStatus=" + UrgentStatus + ", TargetAddress=" + TargetAddress + ", Owner=" + Owner + ", OwnerTel=" + OwnerTel
+				+ ", ResidentialArea=" + ResidentialArea + ", Building=" + Building + ", Floor=" + Floor + ", TargetName=" + TargetName + ", TargetType=" + TargetType + ", TargetArea=" + TargetArea
+				+ ", ClientUnit=" + ClientUnit + ", ClientDep=" + ClientDep + ", ClientName=" + ClientName + ", ClientTel=" + ClientTel + ", User=" + User + ", Fee=" + Fee + ", ReceiptNo="
+				+ ReceiptNo + ", CreatedDate=" + CreatedDate + ", Remark=" + Remark + ", IsNew=" + IsNew + ", CategoryVersion=" + DataDefineVersion + ", CreateType=" + CreateType + ", UploadStatus="
 				+ UploadStatusEnum + ", UploadTimes=" + UploadTimes + ", LatestUploadDate=" + LatestUploadDate
 				// 新增字段
 				+ ", BookedDate=" + BookedDate + ", BookedTime=" + BookedTime + ", ContactPerson=" + ContactPerson + ", ContactTel=" + ContactTel + ", BookedRemark=" + BookedRemark
@@ -509,9 +515,7 @@ public class TaskInfo extends TableWorkerBase {
 				// 加急金额 2015-7-24
 				+ ", UrgentFee=" + UrgentFee
 				// 2015-8-5
-				+ ", AdjustFee=" + AdjustFee
-				+ ", LiveSearchCharge=" + LiveSearchCharge
-				+ "]";
+				+ ", AdjustFee=" + AdjustFee + ", LiveSearchCharge=" + LiveSearchCharge + "]";
 
 	}
 
@@ -526,6 +530,8 @@ public class TaskInfo extends TableWorkerBase {
 		this.TaskNum = cursor.getString(cursor.getColumnIndex("TaskNum"));
 		this.TaskID = cursor.getInt(cursor.getColumnIndex("TaskID"));
 		this.DDID = cursor.getInt(cursor.getColumnIndex("DDID"));
+		//2015-9-22 公司ID
+		this.CompanyId = cursor.getInt(cursor.getColumnIndex("CompanyId"));
 		this.ReceiveDate = cursor.getString(cursor.getColumnIndex("ReceiveDate"));
 		this.DoneDate = cursor.getString(cursor.getColumnIndex("DoneDate"));
 		this.Status = TaskStatus.getEnumByValue((cursor.getInt(cursor.getColumnIndex("Status"))));
@@ -565,11 +571,13 @@ public class TaskInfo extends TableWorkerBase {
 		this.InworkReportFinish = StringUtil.parseBoolean(cursor.getString(cursor.getColumnIndex("InworkReportFinish")));
 		this.InworkReportFinishDate = cursor.getString(cursor.getColumnIndex("InworkReportFinishDate"));
 		// 资源相关 2015-7-2
-		//this.HasResource = StringUtil.parseBoolean(cursor.getString(cursor.getColumnIndex("HasResource")));
-		this.UrgentFee =cursor.getDouble(cursor.getColumnIndex("UrgentFee"));
+		// this.HasResource =
+		// StringUtil.parseBoolean(cursor.getString(cursor.getColumnIndex("HasResource")));
+		this.UrgentFee = cursor.getDouble(cursor.getColumnIndex("UrgentFee"));
 		// 2015-8-5
-		this.AdjustFee =cursor.getDouble(cursor.getColumnIndex("AdjustFee"));
-		this.LiveSearchCharge =cursor.getDouble(cursor.getColumnIndex("LiveSearchCharge"));
+		this.AdjustFee = cursor.getDouble(cursor.getColumnIndex("AdjustFee"));
+		this.LiveSearchCharge = cursor.getDouble(cursor.getColumnIndex("LiveSearchCharge"));
+		
 	}
 
 	/**
@@ -580,6 +588,7 @@ public class TaskInfo extends TableWorkerBase {
 		TaskNum = task.TaskNum;
 		TaskID = (int) task.ID;
 		DDID = (int) task.DDID;
+		CompanyId=task.CompanyId;
 		ReceiveDate = task.ReceiveDate;
 		DoneDate = task.DoneDate;
 		Status = TaskStatus.getEnumByValue(task.Status);

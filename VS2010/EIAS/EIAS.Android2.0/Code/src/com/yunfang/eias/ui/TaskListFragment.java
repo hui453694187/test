@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.view.ResLoader;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.BroadRecordType;
 import com.yunfang.eias.base.EIASApplication;
@@ -77,7 +78,8 @@ public class TaskListFragment extends BaseWorkerFragment {
 	private ListView task_listview;
 
 	private PullToRefreshLayout taskPullTorefreshLayout;
-
+	
+	/** 是否处于下拉刷新中 */
 	private boolean isLoad;
 
 	/**
@@ -210,8 +212,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 	public final int TASK_REMOVE_RESOURCE = 16;
 
 	/** 同步一条已完成任务数据 */
-	public final int SYNC_TASK_INFO=17;
-	
+	public final int SYNC_TASK_INFO = 17;
+	/** 启用一条已经暂停的任务  */
+	public final int TASK_RESTART_TASK=18;
 	/**
 	 * HomeFragment
 	 */
@@ -395,8 +398,12 @@ public class TaskListFragment extends BaseWorkerFragment {
 			break;
 		}
 		case SYNC_TASK_INFO:
-			//TODO 发送已完成任务 数据， 后去需要同步的数据
+			//发送已完成任务 数据， 后去需要同步的数据
 			uiMsg.obj = TaskOperator.syncDoneTaskInfo(this.viewModel.currentSelectedTask);
+			break;
+		case TASK_RESTART_TASK:
+			//TODO 后台执行启用暂停的任务
+			uiMsg.obj = TaskOperator.restartTask(EIASApplication.getCurrentUser(),this.viewModel.currentSelectedTask);
 			break;
 		default:
 			break;
@@ -533,7 +540,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 		case TASK_SETPAUSE:
 			ResultInfo<Boolean> resultSetReject = (ResultInfo<Boolean>) msg.obj;
 			if (resultSetReject.Success && resultSetReject.Data) {
-				viewModel.taskInfoes.remove(viewModel.currentSelectedTask);
+				//viewModel.taskInfoes.remove(viewModel.currentSelectedTask);
 				viewModel.currentSelectedTask = null;
 				viewModel.GetDataSuccess = true;
 				viewModel.ToastMsg = "任务已暂停";
@@ -692,6 +699,17 @@ public class TaskListFragment extends BaseWorkerFragment {
 		case SYNC_TASK_INFO:
 			// 同步已完成任务
 			viewModel.reload = false;
+			break;
+		case TASK_RESTART_TASK:
+			//TODO 前台处理 暂停任务的启用
+			ResultInfo<Boolean> restartResult=(ResultInfo<Boolean>)msg.obj;
+			if(restartResult.Data){
+				viewModel.reload = true;
+				viewModel.currentSelectedTask.Status=TaskStatus.Doing;
+			}else{
+				viewModel.reload = false;
+				viewModel.ToastMsg=restartResult.Message;
+			}
 			break;
 		default:
 			break;
@@ -880,7 +898,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			@Override
 			public void onClick(View v) {
 				viewModel.currentIndex = 1;
-				//刷新，重新加载数据，清空缓存，重新获取数据。 
+				// 刷新，重新加载数据，清空缓存，重新获取数据。
 				viewModel.taskInfoes.retainAll(viewModel.taskInfoes);
 				viewModel.taskInfoes.clear();
 				loadData();
@@ -896,7 +914,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 				for (TaskInfo element : viewModel.taskInfoes) {
-					if (!element.InworkReportFinish) {
+					if (!element.InworkReportFinish&&!(element.Status==TaskStatus.Pause)) {
 						element.isChecked = isChecked;
 					}
 				}
@@ -910,7 +928,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			switch (viewModel.taskStatus) {
 			case Todo:
 				setTitle("待堪察的列表");
-				//taskSearch.setVisibility(View.GONE);
+				// taskSearch.setVisibility(View.GONE);
 				break;
 			case Doing:
 				sub_title_select.setVisibility(View.VISIBLE);
@@ -1058,6 +1076,13 @@ public class TaskListFragment extends BaseWorkerFragment {
 					if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
 						viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
 						if (viewModel.taskStatus != null) {
+							//TODO 过滤暂停任务，提示任务已被暂停。
+							if(viewModel.currentSelectedTask.Status==TaskStatus.Pause){
+								viewModel.homeActivity.appHeader.showDialog("提示信息", "任务已被暂停!");
+								return;
+							}
+							
+							
 							switch (viewModel.taskStatus) {
 							case Todo:
 								// 记录长按的位置

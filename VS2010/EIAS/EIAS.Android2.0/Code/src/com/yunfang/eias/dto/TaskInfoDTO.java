@@ -39,6 +39,9 @@ public class TaskInfoDTO {
 	 */
 	public long DDID;
 
+	/** 9/22 新字段，任务对应的公司ID */
+	public int CompanyId;
+	
 	/**
 	 * 配置版本号
 	 */
@@ -262,6 +265,7 @@ public class TaskInfoDTO {
 		TaskNum = task.TaskNum;
 		ID = task.TaskID;
 		DDID = task.DDID;
+		CompanyId=task.CompanyId;
 		ReceiveDate = task.ReceiveDate;
 		DoneDate = task.DoneDate;
 		// Status = String.valueOf(task.Status.getIndex());
@@ -348,6 +352,7 @@ public class TaskInfoDTO {
 		result.TaskNum = this.TaskNum;
 		result.TaskID = (int) this.ID;
 		result.DDID = (int) this.DDID;
+		result.CompanyId=this.CompanyId;
 		result.ReceiveDate = this.ReceiveDate;
 		result.DoneDate = this.DoneDate;
 		// result.Status =
@@ -419,6 +424,7 @@ public class TaskInfoDTO {
 		TaskNum = obj.optString("TaskNum");
 		ID = obj.optInt("ID");
 		DDID = obj.optInt("DDID");
+		CompanyId=obj.optInt("CompanyId");
 		ReceiveDate = obj.optString("ReceiveDate");
 		DoneDate = obj.optString("DoneDate");
 		Status = obj.optInt("Status");

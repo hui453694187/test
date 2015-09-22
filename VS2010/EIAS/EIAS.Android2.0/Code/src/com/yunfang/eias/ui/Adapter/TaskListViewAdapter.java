@@ -200,10 +200,12 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			}
 			// 任务编号
 			if (holder.TaskNum_Txt != null && item.TaskNum != null) {
-				holder.TaskNum_Txt.setText("编号:" + item.TaskNum);
+				StringBuffer taskNumStr=new StringBuffer("编号:" + item.TaskNum);
 				if(item.Status==TaskStatus.Pause){
 					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.red));
+					taskNumStr.append("(任务暂停)");
 				}
+				holder.TaskNum_Txt.setText(taskNumStr);
 			}
 			// 任务领取时间
 			if (holder.receiveDateTime_Txt != null && item.ReceiveDate != null) {
@@ -280,7 +282,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			}
 			// 是否被勾选
 			if (holder.checkTaskInfo != null) {
-				if (item.InworkReportFinish || item.Status == TaskStatus.Submiting) {
+				if (item.InworkReportFinish || item.Status == TaskStatus.Submiting||item.Status == TaskStatus.Pause) {
 					holder.checkTaskInfo.setVisibility(View.GONE);
 				} else {
 					holder.checkTaskInfo.setVisibility(View.VISIBLE);

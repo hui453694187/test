@@ -43,6 +43,7 @@ import com.yunfang.eias.http.task.GetTaskListTask;
 import com.yunfang.eias.http.task.SetAppointmentTask;
 import com.yunfang.eias.http.task.SetTaskFeeTask;
 import com.yunfang.eias.http.task.SetTaskPauseTask;
+import com.yunfang.eias.http.task.SetTaskRestartTask;
 import com.yunfang.eias.model.DataCategoryDefine;
 import com.yunfang.eias.model.DataDefine;
 import com.yunfang.eias.model.DataFieldDefine;
@@ -103,6 +104,29 @@ public class TaskOperator {
 		return result;
 	}
 
+	public static ResultInfo<Boolean> restartTask(UserInfo currentUser,TaskInfo taskInfo){
+		ResultInfo<Boolean> result=null;
+		if(!EIASApplication.IsOffline){
+			//TODO 发起网络请求的任务
+			SetTaskRestartTask task=new SetTaskRestartTask();
+			result=task.request(currentUser, taskInfo);
+			if(result.Data){// 启用成功  修改本地数据库状态
+				taskInfo.Status = TaskStatus.Doing;
+				int rowCount=taskInfo.onUpdate("TaskNum='" + taskInfo.TaskNum + "'");
+				if(!(rowCount>0)){
+					result.Message="客户端暂停失败，请刷新列表。";
+				}
+			}
+		}else{
+			if(result==null){
+				result=new ResultInfo<Boolean>();
+			}
+			result.Success=false;
+			result.Message="离线状态，无法启用任务！";
+		}
+		return result;
+	}
+	
 	// {{ getDoingTaskInfoes
 	/**
 	 * 获取待提交的任务信息

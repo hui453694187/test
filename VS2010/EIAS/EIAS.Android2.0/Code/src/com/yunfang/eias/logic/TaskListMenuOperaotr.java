@@ -205,6 +205,12 @@ public class TaskListMenuOperaotr {
 					tempItems.add(TaskMenuEnum.提交选中任务.toString());
 					tempItems.add(TaskMenuEnum.删除已选中本地任务.toString());
 				} else {
+					//长按已暂停任务
+					if(taskListFragment.viewModel.currentSelectedTask.Status==TaskStatus.Pause){
+						tempItems.add(TaskMenuEnum.查看任务信息.toString());
+						tempItems.add(TaskMenuEnum.启用任务.toString());
+						break;
+					}
 					tempItems.add(TaskMenuEnum.查看任务信息.toString());
 					tempItems.add(TaskMenuEnum.预约信息.toString());
 					tempItems.add(TaskMenuEnum.编辑内容.toString());
@@ -299,8 +305,7 @@ public class TaskListMenuOperaotr {
 				ToastUtil.longShow(taskListFragment.getActivity(), "当前任务正在提交中，将不会清空当前任务!");
 			}
 			break;
-		case 删除已选中本地任务:// 多选任务， 删除。
-			// 判断选中的的任务中是否有选中的任务， 提示不可删除。 
+		case 删除已选中本地任务:
 			/** 所有的任务信息， 找出选中的任务*/
 			ArrayList<TaskInfo> deletTaskInfos =new ArrayList<TaskInfo>();
 			/** 是否可以执行批量删除  */
@@ -438,6 +443,11 @@ public class TaskListMenuOperaotr {
 			removeTaskResource();
 			break;
 		}
+		case 启用任务:
+			//启用已经暂停的任务 TODO 向服务器发起请求，启用暂停的任务。
+			taskListFragment.doSomething("正在启用！", taskListFragment.TASK_RESTART_TASK);
+			
+			break;
 		default:
 			break;
 		}

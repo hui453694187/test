@@ -166,6 +166,8 @@ public class DBTableScripts implements IDBArchitecture {
 		//版本12加入新字段		
 		sqlBuider.append(",AdjustFee DOUBLE(9,2) DEFAULT 0");//应收费用		
 		sqlBuider.append(",LiveSearchCharge DOUBLE(9,2) DEFAULT 0");//预收费用
+		//版本13加入新字段
+		sqlBuider.append(",CompanyId integer DEFAULT 0");//公司编号
 		sqlBuider.append(")");
 		return sqlBuider.toString();
 	}
@@ -239,7 +241,7 @@ public class DBTableScripts implements IDBArchitecture {
 	 * @return
 	 */
 	public int getCurrentVersion() {		
-		return 12;
+		return 13;
 	}
 
 	/**
@@ -290,6 +292,9 @@ public class DBTableScripts implements IDBArchitecture {
 			result.add("ALTER TABLE TaskInfo ADD COLUMN AdjustFee DOUBLE(9,2) DEFAULT 0");
 			//预收费用
 			result.add("ALTER TABLE TaskInfo ADD COLUMN LiveSearchCharge DOUBLE(9,2) DEFAULT 0");
+		case 13:
+			//公司ID
+			result.add("ALTER TABLE TaskInfo ADD COLUMN CompanyId integer DEFAULT 0");
 		default:
 			break;
 		}
