@@ -22,6 +22,7 @@ public class StopTaskListActivity extends BaseWorkerActivity {
 	/** 顶部导航 */
 	private AppHeader appHeader;
 	
+	@SuppressWarnings("unused")
 	private ListView stopTaskLv;
 	
 	@Override

@@ -110,12 +110,15 @@ public class TaskOperator {
 			//TODO 发起网络请求的任务
 			SetTaskRestartTask task=new SetTaskRestartTask();
 			result=task.request(currentUser, taskInfo);
-			if(result.Data){// 启用成功  修改本地数据库状态
+			if(result.Data!=null&&result.Data){// 启用成功  修改本地数据库状态
 				taskInfo.Status = TaskStatus.Doing;
 				int rowCount=taskInfo.onUpdate("TaskNum='" + taskInfo.TaskNum + "'");
 				if(!(rowCount>0)){
 					result.Message="客户端暂停失败，请刷新列表。";
 				}
+			}else{
+				result.Success=false;
+				result.Message="无法启用任务！";
 			}
 		}else{
 			if(result==null){
@@ -303,7 +306,7 @@ public class TaskOperator {
 
 	/**
 	 * 获取提交中的任务信息
-	 * 
+	 * 缓存中的数据
 	 * @param pageIndex
 	 *            :当前所在页码，从1开始
 	 * @param pageSize
@@ -323,6 +326,30 @@ public class TaskOperator {
 		}
 		result.Data = taskinfos;
 		result.Others = taskinfos.size();
+		return result;
+	}
+	
+	/***
+	 * @author kevin
+	 * @date 2015-9-23 上午11:40:34
+	 * @Description: 取当前用户本地待提交的任务
+	 * @return ResultInfo<ArrayList<TaskInfo>> 返回类型 
+	 * @version V1.0
+	 */
+	public static ResultInfo<Boolean> getLocalSubmitingWaitTask(UserInfo currentUser){
+		ResultInfo<Boolean> result=new ResultInfo<Boolean>();
+		 ResultInfo<ArrayList<TaskInfo>> taskInfos=TaskDataWorker.getSubmmitWaitTask(currentUser);
+		//TODO 把查询到的任务加入到任务队列中，再次进行提交;
+		if(taskInfos!=null){
+			for (TaskInfo taskInfo : taskInfos.Data) {
+				//提交任务，同时任务加入待提交队列中
+				taskSubmiting(taskInfo);
+			}
+		}else{
+			result.Success=false;
+			result.Message="重新提交任务失败！";
+		}
+		
 		return result;
 	}
 
@@ -357,6 +384,7 @@ public class TaskOperator {
 				result = getTaskDoneInfoes(pageIndex, pageSize, queryStr, currentUser, onlyReportTask);
 				break;
 			case Submiting:// 提交中
+				//result=getLocalSubmitingWaiteTask(currentUser);
 				result = getSubmitingTask(pageIndex, pageSize, queryStr, currentUser);
 				break;
 			default:

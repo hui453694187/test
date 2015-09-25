@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.view.ResLoader;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.BroadRecordType;
 import com.yunfang.eias.base.EIASApplication;
@@ -115,6 +114,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 	/**
 	 * 任务列表查询控件
 	 */
+	@SuppressWarnings("unused")
 	private LinearLayout taskSearch;
 
 	/**
@@ -703,7 +703,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 		case TASK_RESTART_TASK:
 			//TODO 前台处理 暂停任务的启用
 			ResultInfo<Boolean> restartResult=(ResultInfo<Boolean>)msg.obj;
-			if(restartResult.Data){
+			if(restartResult.Success&&restartResult.Data){
 				viewModel.reload = true;
 				viewModel.currentSelectedTask.Status=TaskStatus.Doing;
 			}else{
@@ -1076,13 +1076,11 @@ public class TaskListFragment extends BaseWorkerFragment {
 					if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
 						viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
 						if (viewModel.taskStatus != null) {
-							//TODO 过滤暂停任务，提示任务已被暂停。
+							/*//TODO 过滤暂停任务，提示任务已被暂停。
 							if(viewModel.currentSelectedTask.Status==TaskStatus.Pause){
 								viewModel.homeActivity.appHeader.showDialog("提示信息", "任务已被暂停!");
 								return;
-							}
-							
-							
+							}*/
 							switch (viewModel.taskStatus) {
 							case Todo:
 								// 记录长按的位置

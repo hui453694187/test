@@ -204,6 +204,8 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 				if(item.Status==TaskStatus.Pause){
 					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.red));
 					taskNumStr.append("(任务暂停)");
+				}else{
+					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.black));
 				}
 				holder.TaskNum_Txt.setText(taskNumStr);
 			}

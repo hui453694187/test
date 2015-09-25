@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -48,6 +49,8 @@ import com.yunfang.eias.model.TaskCategoryInfo;
 import com.yunfang.eias.model.TaskDataItem;
 import com.yunfang.eias.tables.TaskDataWorker;
 import com.yunfang.eias.ui.TaskInfoActivity;
+import com.yunfang.eias.view.TimeEditText;
+import com.yunfang.eias.view.TimeEditText.OnIconClickListener;
 import com.yunfang.framework.maps.BaiduLocationHelper;
 import com.yunfang.framework.maps.BaiduLocationHelper.BaiduLoactionOperatorListener;
 import com.yunfang.framework.model.ResultInfo;
@@ -566,11 +569,23 @@ public class TaskItemControlOperator {
 	 * @param value
 	 */
 	private void createDateTimeTextBox(final DataFieldDefine f, LinearLayout l, String value) {
-		EditText et = new EditText(this.mActivity);
+		//EditText et = new EditText(this.mActivity);
+		TimeEditText et = new TimeEditText(this.mActivity);
+		et.setFocusable(false);
 		et.setLayoutParams(FILL_PARENT);
 		et.setText(value);
 		et.addTextChangedListener(watcher);
-		et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		et.setOnIconClickListener(new OnIconClickListener() {
+			
+			@Override
+			public void OnIconClick(Drawable iconDrawable,EditText edt) {
+				// 点击刷新icon 
+				edt.setText(DateTimeUtil.getCurrentTime_CN());// 刷新时间
+				changeValueEvent(edt.getText().toString(),f.Name);
+				
+			}
+		});
+		/*et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -583,7 +598,7 @@ public class TaskItemControlOperator {
 				}
 				changeValueEvent(temp.getText().toString(),f.Name);
 			}
-		});
+		});*/
 
 		l.addView(et);
 		inputMap.put(f.Name, et);
@@ -713,8 +728,8 @@ public class TaskItemControlOperator {
 						locationHelper.setOperatorListener(new BaiduLoactionOperatorListener() {
 							@Override
 							public void onSelected(BDLocation location) {
-								temp.setText(location.getLatitude()  + "," + location.getLongitude());
 								changeValueEvent(inputValue, inputKey);
+								temp.setText(location.getLatitude()  + "," + location.getLongitude());								
 							}
 						});
 					}

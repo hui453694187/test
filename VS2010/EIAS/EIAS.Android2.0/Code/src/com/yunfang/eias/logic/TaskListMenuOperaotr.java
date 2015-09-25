@@ -11,7 +11,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -205,19 +204,20 @@ public class TaskListMenuOperaotr {
 					tempItems.add(TaskMenuEnum.提交选中任务.toString());
 					tempItems.add(TaskMenuEnum.删除已选中本地任务.toString());
 				} else {
-					//长按已暂停任务
-					if(taskListFragment.viewModel.currentSelectedTask.Status==TaskStatus.Pause){
-						tempItems.add(TaskMenuEnum.查看任务信息.toString());
-						tempItems.add(TaskMenuEnum.启用任务.toString());
-						break;
-					}
+					
 					tempItems.add(TaskMenuEnum.查看任务信息.toString());
 					tempItems.add(TaskMenuEnum.预约信息.toString());
 					tempItems.add(TaskMenuEnum.编辑内容.toString());
 					tempItems.add(TaskMenuEnum.收费信息.toString());
-					if (!taskListFragment.viewModel.currentSelectedTask.IsNew) {
+					//长按已暂停任务
+					if(taskListFragment.viewModel.currentSelectedTask.Status==TaskStatus.Pause){
+						//暂停任务
+						tempItems.add(TaskMenuEnum.启用任务.toString());
+					}else if(!taskListFragment.viewModel.currentSelectedTask.IsNew){
+						//非暂停任务， 且不是自建任务
 						tempItems.add(TaskMenuEnum.暂停任务.toString());
 					}
+					
 					tempItems.add(TaskMenuEnum.删除本地任务.toString());
 					if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
 						tempItems.add(TaskMenuEnum.提交本地任务.toString());

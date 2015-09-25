@@ -25,6 +25,7 @@ import com.yunfang.eias.http.task.BackgroundServiceTask;
 import com.yunfang.eias.logic.LoginInfoOperator;
 import com.yunfang.eias.model.DataDefine;
 import com.yunfang.eias.ui.SystemSettingActivity;
+import com.yunfang.eias.utils.CrashHandler;
 import com.yunfang.eias.utils.DownloadResultHelper;
 import com.yunfang.eias.utils.LogHelper;
 import com.yunfang.framework.base.BaseApplication;
@@ -290,6 +291,10 @@ public class EIASApplication extends BaseApplication {
 		initDownloadManager(new DownloadResultHelper());
 		startService();
 		receiverMainServerCreated();
+		
+		/** 异常捕捉处理类 */
+		CrashHandler crashHandler=CrashHandler.getInstance();
+		crashHandler.init(this);
 	}
 
 	/**
@@ -297,8 +302,8 @@ public class EIASApplication extends BaseApplication {
 	 */
 	private void initFinalString() {
 		
-		Services.put("本地测试服务器", "http://192.168.3.66:8099");
-		/*Services.put("大连服务器", "http://124.93.240.144:18099");
+		/*Services.put("本地测试服务器", "http://192.168.3.66:8099");
+		Services.put("大连服务器", "http://124.93.240.144:18099");
 		Services.put("外业测试服务器2", "http://182.92.219.161:18098");*/
 		Services.put("外业测试服务器1", "http://eiastest.yunfangdata.com");
 		Services.put("采图测试服务器1","http://182.92.161.16:18099");	

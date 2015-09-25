@@ -24,13 +24,16 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.yunfang.eias.R;
+import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.base.MainService;
 import com.yunfang.eias.enumObj.TaskStatus;
 import com.yunfang.eias.logic.AppHeader;
 import com.yunfang.eias.logic.DataLogOperator;
 import com.yunfang.eias.logic.HomeOperator;
 import com.yunfang.eias.logic.TaskListMenuOperaotr;
+import com.yunfang.eias.logic.TaskOperator;
 import com.yunfang.framework.base.BaseWorkerFragmentActivity;
+import com.yunfang.framework.model.ResultInfo;
 import com.yunfang.framework.utils.DialogUtil;
 import com.yunfang.framework.utils.SpUtil;
 import com.yunfang.framework.utils.ToastUtil;
@@ -50,6 +53,8 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 
 	/** 收到隐藏顶部已暂停任务提示条 */
 	private final int TASK_GONE_TOP_TIPS = 3;
+	/** 获取本地当前用户等待提交的任务信息 */
+	private final int TASK_GET_WAITING_SUBMIT_TASK=4;
 
 	/** 任务提示条展示时间 */
 	private final int TOP_TIPS_SHOW_TIME = 60000;
@@ -173,6 +178,9 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 			String[] taskNums = HomeOperator.getReturnTaskInfo();
 			resultMsg.obj = taskNums;
 			break;
+		case TASK_GET_WAITING_SUBMIT_TASK:
+			resultMsg.obj=TaskOperator.getLocalSubmitingWaitTask(EIASApplication.getCurrentUser());
+			break;
 		default:
 			showToast("没有找到任务执行的操作函数");
 			break;
@@ -183,6 +191,7 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void handleUiMessage(Message msg) {
 		super.handleUiMessage(msg);
@@ -197,6 +206,12 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 			break;
 		case TASK_GONE_TOP_TIPS:
 			rollingTv.setVisibility(View.GONE);
+			break;
+		case TASK_GET_WAITING_SUBMIT_TASK:
+			ResultInfo<Boolean> reslt=(ResultInfo<Boolean>)msg.obj;
+			if(!reslt.Success){
+				showToast(reslt.Message);
+			}
 			break;
 		default:
 			showToast("没有找到任务执行的操作函数");
@@ -215,7 +230,6 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		if (unExitTaskNumbs != null && unExitTaskNumbs.size() > 0) {
 			rollingTv.setVisibility(View.VISIBLE);// 显示提示
 			rollingTv.setText(appendTaskNumb(unExitTaskNumbs));
-			
 			// 指定时间到了后， 隐藏这个提示
 			Message msg = new Message();
 			msg.what = TASK_GONE_TOP_TIPS;
@@ -309,6 +323,11 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.homeactivity);
+		
+		/*
+		 * 注释，先不处理
+		 * getSubmitWaitTask();
+		 */
 		radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 		homeLayout = (LinearLayout) findViewById(R.id.home_Layout);
 
@@ -319,6 +338,7 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		radioGroup.setOnCheckedChangeListener(this);
 		changFragment(1);
 		initView();
+		
 	}
 
 	/**
@@ -328,6 +348,16 @@ public class HomeActivity extends BaseWorkerFragmentActivity implements OnChecke
 		Message msg = new Message();
 		msg.what = TASK_GET_RETURN_TASK;
 		mBackgroundHandler.sendMessage(msg);
+	}
+	
+	/***
+	 * @author kevin
+	 * @date 2015-9-23 下午2:25:12
+	 * @Description: 获取当前用户待提交任务，加入后台任务队列    
+	 */
+	@SuppressWarnings("unused")
+	private void getSubmitWaitTask(){
+		mBackgroundHandler.sendEmptyMessage(TASK_GET_WAITING_SUBMIT_TASK);
 	}
 
 	/**

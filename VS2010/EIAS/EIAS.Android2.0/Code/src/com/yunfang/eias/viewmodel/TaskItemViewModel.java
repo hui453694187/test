@@ -70,6 +70,12 @@ public class TaskItemViewModel extends ViewModelBase
 	 */
 	public Boolean reload;
 	
+	/** 是否已经选中的图片类型  *//*
+	public boolean isSelectPicType=true;
+	
+	*//** 默认选中的分类想，即顶部AutoCompTextView下拉框中的值 */
+	public String selectPicType;
+	
 	/**
 	 * 选中的分类项子项的位置信息
 	 */

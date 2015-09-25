@@ -3,6 +3,7 @@ package com.yunfang.eias.base;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -254,6 +255,29 @@ public class MainService extends BaseBackgroundService {
 	 * 失败次数
 	 */
 	private static LinkedHashMap<String, Integer> failTasksTime = new LinkedHashMap<String, Integer>();
+
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-9-23 上午9:54:03
+	 * @Description: 清空后台所有任务， 数据库中的任务状态改为提交等待中。
+	 *               <p>
+	 *               停止当前正在提交的任务
+	 *               </p>
+	 */
+	@SuppressWarnings("unused")
+	private static void cleanBgTask() {
+		EIASApplication.SubmitingTaskNum = "";
+		Set<String> keys = uploadTasks.keySet();
+		while (keys.iterator().hasNext()) {
+			TaskInfo taskInfo = uploadTasks.get(keys.iterator().next());
+			// 修改本地数据库任务提交状态为等待提交中
+			TaskOperator.saveTaskUploadStatus(TaskUploadStatusEnum.Submitwating, taskInfo.TaskNum);
+		}
+		uploadTasks.clear();
+		failTasks.clear();
+		failTasksTime.clear();
+	}
 
 	/**
 	 * 上传任务操作

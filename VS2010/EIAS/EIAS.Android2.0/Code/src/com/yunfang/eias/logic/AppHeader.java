@@ -468,6 +468,40 @@ public class AppHeader {
 			dialog_checksdcard.show();
 		}
 	}
+	
+	
+	
+	public void showDialog(String title, String msg,OnClickListener confirmListener) {
+		final Dialog dialog_checksdcard = DialogUtil.commonDialog(currentContext, R.layout.dialog_view_info);
+		WindowManager.LayoutParams params = dialog_checksdcard.getWindow().getAttributes();
+		Point point = WinDisplay.getWidthAndHeight(currentContext);
+		switch (EIASApplication.PageSize) {
+		case 6:// 手机
+			params.width = (int) ((point.x) * (0.8));
+			params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+			dialog_checksdcard.getWindow().setAttributes(params);
+			break;
+		case 15:// 平板
+			params.width = (int) ((point.x) * (0.5));
+			params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+			dialog_checksdcard.getWindow().setAttributes(params);
+			break;
+		}
+		TextView dialog_view_info_concent = (TextView) dialog_checksdcard.findViewById(R.id.dialog_view_info_concent);
+		TextView dialog_view_info_title = (TextView) dialog_checksdcard.findViewById(R.id.dialog_view_info_title);
+		Button dialog_view_info_confirm = (Button) dialog_checksdcard.findViewById(R.id.dialog_view_info_confirm);
+
+		dialog_view_info_title.setText(title);
+		dialog_view_info_concent.setText(msg);
+
+		dialog_view_info_confirm.setOnClickListener(confirmListener);
+		
+		if (dialog_checksdcard.isShowing()) {
+			dialog_checksdcard.dismiss();
+		} else {
+			dialog_checksdcard.show();
+		}
+	}
 
 	// }}
 

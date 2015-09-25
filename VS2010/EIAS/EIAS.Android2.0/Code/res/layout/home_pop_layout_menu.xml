@@ -122,13 +122,12 @@
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/btn_pop_bg"
-        android:drawableBottom="@drawable/title_functionframe_line"
+        android:drawableBottom="@android:color/transparent"
         android:drawablePadding="6dp"
         android:text="新建任务"
         android:textColor="@color/bg_item_normal_transparent"
         android:textSize="16sp" />
-    <!-- android:drawableBottom="@android:color/transparent" -->
-    <Button
+<!--     <Button
         android:id="@+id/home_pop_menu_btn_stop_task"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -139,6 +138,6 @@
         android:text="暂停任务"
         android:textColor="@color/bg_item_normal_transparent"
         android:textSize="16sp"
-        />
+        /> -->
 
 </LinearLayout>

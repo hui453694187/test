@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.dto.TaskCategoryInfoDTO;
@@ -39,6 +38,46 @@ import com.yunfang.framework.utils.StringUtil;
  */
 public class TaskDataWorker {
 
+	
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-9-23 上午11:34:13
+	 * @Description: 获取数据库当前用户，待提交的任务信息
+	 * @param currentUser 当前用户
+	 * @return ResultInfo<ArrayList<TaskInfo>> 返回类型 
+	 * @version V1.0
+	 */
+	public static ResultInfo<ArrayList<TaskInfo>> getSubmmitWaitTask(UserInfo currentUser){
+		ResultInfo<ArrayList<TaskInfo>> result=new ResultInfo<ArrayList<TaskInfo>>();
+		SQLiteDatabase db=null;
+		TaskInfo taskInfo =null;
+		ArrayList<TaskInfo> taksInfos=new ArrayList<TaskInfo>();
+		try{
+			taskInfo = new TaskInfo();
+			db=SQLiteHelper.getWritableDB();
+			
+			StringBuilder queryStr=new StringBuilder(taskInfo.getTableName()+" where User='");
+			queryStr.append(currentUser.Name+"'");//当前用户
+			//状态未待提交
+			int UploadStatus=TaskUploadStatusEnum.Submitwating.getIndex();
+			queryStr.append(" and UploadStatus=" +UploadStatus);// 当前任务状态
+			Cursor cursor=db.rawQuery("select * from "+queryStr.toString(),null);
+			if(cursor!=null){
+				while(cursor.moveToNext()){
+					taskInfo.setValueByCursor(cursor);
+					taksInfos.add(taskInfo);
+				}
+			}
+			result.Data=taksInfos;
+			
+		}catch(Exception e){
+			result.Success=false;
+			result.Data=taksInfos;
+			result.Message="数据库操作失败！";
+		}
+		return result;
+	}
 	
 	/***
 	 * 

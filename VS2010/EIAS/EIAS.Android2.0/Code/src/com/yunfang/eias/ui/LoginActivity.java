@@ -157,7 +157,6 @@ public class LoginActivity extends BaseWorkerActivity {
 	 * @date 2015-9-17 上午11:09:24
 	 * @Description: 发起定位， 后去当前登录用户所在城市
 	 * @return void    返回类型 
-	 * @throws 
 	 * @version V1.0
 	 */
 	private void initLocation(){

@@ -3,7 +3,7 @@
     package="com.yunfang.eias"
     android:installLocation="auto"
     android:versionCode="3"
-    android:versionName="2.1.2.47" >
+    android:versionName="2.1.2.48" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -211,6 +211,7 @@
         <!-- lhm android:value="guGqlBGgVupcyL5vUPtU6GnY" /> -->
         <!-- lhm android:value="IIMBeLj7vfC6ZO7UYP3hDGZT" /> -->
         <!-- 发布版本 6coMH7OYGfW2u22mPtT1OR9q -->
+       	<!-- kevin android:value="GOULsb0qUwhoHS2L7rnX6xTN" -->
     </application>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

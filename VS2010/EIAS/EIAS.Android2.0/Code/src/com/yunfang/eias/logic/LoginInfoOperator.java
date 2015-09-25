@@ -203,18 +203,17 @@ public class LoginInfoOperator {
 
 	/**
 	 * 用户注销
-	 * 
 	 * @return
 	 */
 	public static ResultInfo<Boolean> logout() {
 		ResultInfo<Boolean> result = new ResultInfo<Boolean>();
-
 		try {
-
 			if (_currentUser != null) {
 				_currentUser.IsAuto = false;
 				saveToLocalLoginInfos(_currentUser);
 				saveToLatestLoginInfo(_currentUser);
+				/** 退出登录时清空后台进行中的任务 *//*
+				MainService.cleanBgTask();*/
 				_currentUser = null;
 				result.Data = true;
 			} else {

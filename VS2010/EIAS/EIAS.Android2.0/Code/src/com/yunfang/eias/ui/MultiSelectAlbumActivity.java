@@ -257,7 +257,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			popView.setTag(pvPopHolder);
 		} else {
 			// 刷新数据
-			Log.d("kevin","第二次进入+"+showImgList.size());
+			//Log.d("kevin","第二次进入+"+showImgList.size());
 			previewAdt.setCurrenImgList(showImgList);
 			popView = previewPopup.getContentView();
 			pvPopHolder = (PreviewPopHolder) popView.getTag();

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import android.annotation.SuppressLint;
@@ -15,10 +16,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -155,6 +158,9 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	 * 多选后图片选择类型提示信息
 	 */
 	private Button media_bottom_select_tips;
+	
+	/** 媒体类型自动适配框 */
+	public AutoCompleteTextView media_type_autoComplecTv;
 
 	/**
 	 * 勘察表分类项
@@ -170,6 +176,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	 * 需要操作资源的索引
 	 */
 	private int onItemIndex = -1;
+	
 	// }}
 
 	// {{ 下面的数字位数 代表 菜单级别 请勿随便修改
@@ -315,6 +322,38 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		media_bottom_bar_delete = (Button) mView.findViewById(R.id.media_bottom_bar_delete);
 		media_bottom_select_tips = (Button) mView.findViewById(R.id.media_bottom_select_tips);
 		header_bar_leave_select_all = (CheckBox) mView.findViewById(R.id.header_bar_leave_select_all);
+		media_type_autoComplecTv=(AutoCompleteTextView)mView.findViewById(R.id.media_type_autoComplecTv);
+		SearchAdapter<String> typeAcTvAdt= new SearchAdapter<String>(taskInfoActivity,// 
+				 R.layout.auto_text_item_style,// 
+				 taskInfoActivity.viewModel.currentDropDownListData,//
+				 SearchAdapter.ALL);//速度优先
+		media_type_autoComplecTv.setAdapter(typeAcTvAdt);
+		media_type_autoComplecTv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				//TODO 点击后记录选择的类型
+				String str=(String)media_type_autoComplecTv.getAdapter().getItem(position);
+				
+				taskInfoActivity.viewModel.selectPicType=str;
+			}
+		});
+		media_type_autoComplecTv.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					media_type_autoComplecTv.showDropDown();
+				}
+			}
+		});
+		media_type_autoComplecTv.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				media_type_autoComplecTv.showDropDown();
+			}
+			
+		});
+			
 		list_reload.setVisibility(View.GONE);
 
 		btn_menu.setOnClickListener(new OnClickListener() {
@@ -469,7 +508,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 			if (!TaskOperator.submiting(taskInfoActivity.viewModel.currentTask.TaskNum)) {
 				// 如果有空间就打开对应的资源列表
 				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
-					// 选择或者拍摄新的图片
+					//选择或者拍摄新的图片
 					if (index == 0) {
 						if (CategoryType.PictureCollection == mediaType) {
 							String photoType = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PHOTOTYPE);
@@ -524,8 +563,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				// 如果有空间就打开对应的资源列表
 				//图片集合才可以长按
 				boolean isImap=mediaType==CategoryType.PictureCollection;
-				//isImap&&
-				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
+				if (isImap&&taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {
 						// 跳转到 选择图片界面
@@ -700,33 +738,6 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 						mediaInfo = new MediaDataInfo("请选择种类", files);
 						if (mediaInfo != null) {
 							taskInfoActivity.setDropDefaultSelect(mediaInfo,files);
-							/*mediaInfo.itemFileName = files.getName() + ";";
-							mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
-
-							// setDropDefaultSelect();
-							if (hasDefaultSelect()) {
-								mediaInfo.ItemName = "未分类";
-								mediaInfo.CategoryId = taskInfoActivity.viewModel.currentCategory.CategoryID;
-							} else {
-								mediaInfo.ItemName = mediaInfo.itemFileName;
-								mediaInfo.CategoryId = 0;
-							}
-							
-							 * mediaInfo.ItemName = mediaInfo.itemFileName;
-							 * mediaInfo.CategoryId = 0;
-							 
-
-							taskInfoActivity.meidaInfos.add(mediaInfo);// 添加到缓存
-							taskInfoActivity.additional(files.getName(), false);
-							// 同步插入 数据库
-							TaskOperator.saveMediaInfo(taskInfoActivity,//
-									taskInfoActivity.viewModel.currentTask,//
-									taskInfoActivity.viewModel.currentCategory,//
-									mediaInfo.ItemName, files.getName() + ";", "", "", false);//
-							// 刷新内存， 和刷新界面显示
-							taskInfoActivity.refreshTaskCategory();
-							taskInfoActivity.sortTaskItemValue();
-							taskInfoActivity.meidaListAdapter.notifyDataSetChanged();*/
 						}
 					}
 				}

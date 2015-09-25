@@ -71,7 +71,41 @@ public class CameraPreviewActivity extends BaseWorkerActivity implements View.On
 		setPreview();
 	}
 
+	/**
+	 * 预览图片不含旋转
+	 */
 	private void setPreview() {
+		if (EIASApplication.myPhoto != null) {
+			try {								
+				BitmapFactory.Options opt = new BitmapFactory.Options();
+				opt.inDither = true;
+				// 设置这个，只得到Bitmap的属性信息放入opts，而不把Bitmap加载到内存中
+				opt.inJustDecodeBounds = true;
+				// 设置解码器以最佳方式解码
+				opt.inPreferredConfig = Bitmap.Config.RGB_565; // ARGB_8888
+				// 内存不足时可被回收
+				opt.inPurgeable = true;
+				// 设置为false,表示不仅Bitmap的属性，也要加载bitmap
+				opt.inJustDecodeBounds = false;
+
+				// 解析生成相机返回的图片
+				tempBitmap = BitmapFactory.decodeByteArray(EIASApplication.myPhoto, 0, EIASApplication.myPhoto.length, opt);			
+				mPreviewBitmap = Bitmap.createScaledBitmap(tempBitmap, EIASApplication.deviceInfo.ScreenWeight, EIASApplication.deviceInfo.ScreenHeight, true);
+				mPreviewImageView.setImageBitmap(mPreviewBitmap);
+			} catch (Exception e) {
+				e.printStackTrace();
+				showToast("解析相机数据失败");
+			}
+		} else {
+			showToast("拍照失败，请重试");
+		}
+	}
+	
+	/**
+	 * 预览图片包含旋转图片
+	 */
+	@SuppressWarnings("unused")
+	private void setPreviewAndRotate() {
 		if (EIASApplication.myPhoto != null) {
 			String imgName = FileOperateUtil.createFileNameUUID(".jpg");
 			File cachePath = getExternalCacheDir();
@@ -99,11 +133,9 @@ public class CameraPreviewActivity extends BaseWorkerActivity implements View.On
 
 				// 解析生成相机返回的图片
 				tempBitmap = BitmapFactory.decodeByteArray(EIASApplication.myPhoto, 0, EIASApplication.myPhoto.length, opt);
-				int degree = BitmapHelperUtil.readPictureDegree(cacheFile.getAbsolutePath());
-				mPreviewBitmap = BitmapHelperUtil.rotateBitmap(tempBitmap, degree);
-				
-//				tempBitmap = loadBitmap(cachePath + File.separator + imgName, true);
-				mPreviewBitmap = Bitmap.createScaledBitmap(mPreviewBitmap, EIASApplication.deviceInfo.ScreenWeight, EIASApplication.deviceInfo.ScreenHeight, true);
+				//int degree = BitmapHelperUtil.readPictureDegree(cacheFile.getAbsolutePath());
+				//mPreviewBitmap = BitmapHelperUtil.rotateBitmap(tempBitmap, degree);				
+				mPreviewBitmap = Bitmap.createScaledBitmap(tempBitmap, EIASApplication.deviceInfo.ScreenWeight, EIASApplication.deviceInfo.ScreenHeight, true);
 				mPreviewImageView.setImageBitmap(mPreviewBitmap);
 			} catch (Exception e) {
 				e.printStackTrace();
