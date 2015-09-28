@@ -351,7 +351,7 @@ public class CreateTaskActivity extends BaseWorkerActivity {
 			copyToNewTaskInfo(names);
 		}
 		else {
-			showToast("没有勘察表,不能创建任务");
+			showToast("请在首页同步勘察表信息之后再创建任务");//没有勘察表,不能创建任务
 			this.finish();
 		} 
 	}

@@ -213,16 +213,19 @@ public class TaskListMenuOperaotr {
 					if(taskListFragment.viewModel.currentSelectedTask.Status==TaskStatus.Pause){
 						//暂停任务
 						tempItems.add(TaskMenuEnum.启用任务.toString());
+						if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
+							tempItems.add(TaskMenuEnum.任务匹配.toString());
+						}
 					}else if(!taskListFragment.viewModel.currentSelectedTask.IsNew){
 						//非暂停任务， 且不是自建任务
 						tempItems.add(TaskMenuEnum.暂停任务.toString());
+						if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
+							tempItems.add(TaskMenuEnum.提交本地任务.toString());
+							tempItems.add(TaskMenuEnum.任务匹配.toString());
+						}
 					}
-					
 					tempItems.add(TaskMenuEnum.删除本地任务.toString());
-					if (EIASApplication.IsNetworking && !EIASApplication.IsOffline) {
-						tempItems.add(TaskMenuEnum.提交本地任务.toString());
-						tempItems.add(TaskMenuEnum.任务匹配.toString());
-					}
+					
 					tempItems.add(TaskMenuEnum.复制.toString());
 					tempItems.add(TaskMenuEnum.数据检查并导出.toString());
 					tempItems.add(TaskMenuEnum.任务数据导入.toString());

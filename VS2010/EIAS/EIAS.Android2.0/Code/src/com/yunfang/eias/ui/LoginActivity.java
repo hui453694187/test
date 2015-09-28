@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.baidu.location.BDLocation;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.EIASApplication;
+import com.yunfang.eias.base.MainService;
 import com.yunfang.eias.logic.DatadefinesOperator;
 import com.yunfang.eias.logic.LoginInfoOperator;
 import com.yunfang.framework.base.BaseWorkerActivity;
@@ -113,7 +114,11 @@ public class LoginActivity extends BaseWorkerActivity {
 			@Override
 			public void onClick(View v) {
 				if (txtUserAccount.getText().toString().trim().length() > 0 && txtUserPwd.getText().toString().trim().length() > 0 && comboboxServer.getText().trim().length() > 0) {
-					login();
+					if(MainService.checkNetworkAvailable(EIASApplication.getInstance())){
+						login();
+					}else{
+						showToast("请检查网络链接是否正常!");
+					}
 				} else {
 					showToast("用户名、密码和服务器地址不能为空");
 				}
@@ -274,7 +279,6 @@ public class LoginActivity extends BaseWorkerActivity {
 		boolean loginResult=false;
 		if (result.Success) {
 			if (result.Data != null && result.Data.Token != null && result.Data.Token.length() > 0 && !result.Data.Token.equals("null")) {
-				// TODO 登录成功， 更新勘查配置表
 				getNewesDatadefines();
 				loginResult= true;
 			} else {

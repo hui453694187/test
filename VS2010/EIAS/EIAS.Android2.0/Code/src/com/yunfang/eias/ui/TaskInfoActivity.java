@@ -1384,11 +1384,11 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 		mediaInfo.itemFileName = file.getName() + ";";
 		mediaInfo.ItemValue = mediaInfo.itemFileName + ";";
 		mediaInfo.CategoryId = this.viewModel.currentCategory.CategoryID;
-		ShowMediaListFragment smf=(ShowMediaListFragment)this.getSupportFragmentManager().findFragmentByTag("");
-		String typeStr=smf.media_type_autoComplecTv.getText().toString();
-		if (TextUtils.isEmpty(typeStr.trim())) {
+		//ShowMediaListFragment smf=(ShowMediaListFragment)this.getSupportFragmentManager().findFragmentByTag("");
+		//String typeStr=smf.media_type_autoComplecTv.getText().toString();
+		if (!TextUtils.isEmpty(this.viewModel.selectPicType)) {
 			// 用户已选中有分类项
-			mediaInfo.ItemName ="";
+			mediaInfo.ItemName =viewModel.selectPicType;
 			this.meidaInfos.add(mediaInfo);// 添加新子项到缓存
 			doTaskSaveMediaDefaultInfo(mediaInfo);
 		} else if (hasDefaultSelect()) {// 存在未分类选项，默认选中

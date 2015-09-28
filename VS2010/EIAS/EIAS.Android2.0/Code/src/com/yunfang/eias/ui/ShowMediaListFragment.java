@@ -54,6 +54,7 @@ import com.yunfang.eias.tables.DataDefineWorker;
 import com.yunfang.eias.tables.TaskDataWorker;
 import com.yunfang.eias.ui.Adapter.MeidaListAdapter;
 import com.yunfang.eias.ui.Adapter.SearchAdapter;
+import com.yunfang.eias.view.MyAutoCompleteTv;
 import com.yunfang.framework.base.BaseApplication;
 import com.yunfang.framework.base.BaseWorkerFragment;
 import com.yunfang.framework.model.ResultInfo;
@@ -160,7 +161,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	private Button media_bottom_select_tips;
 	
 	/** 媒体类型自动适配框 */
-	public AutoCompleteTextView media_type_autoComplecTv;
+	public MyAutoCompleteTv media_type_autoComplecTv;
 
 	/**
 	 * 勘察表分类项
@@ -322,23 +323,13 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		media_bottom_bar_delete = (Button) mView.findViewById(R.id.media_bottom_bar_delete);
 		media_bottom_select_tips = (Button) mView.findViewById(R.id.media_bottom_select_tips);
 		header_bar_leave_select_all = (CheckBox) mView.findViewById(R.id.header_bar_leave_select_all);
-		media_type_autoComplecTv=(AutoCompleteTextView)mView.findViewById(R.id.media_type_autoComplecTv);
+		media_type_autoComplecTv=(MyAutoCompleteTv)mView.findViewById(R.id.media_type_autoComplecTv);
 		SearchAdapter<String> typeAcTvAdt= new SearchAdapter<String>(taskInfoActivity,// 
 				 R.layout.auto_text_item_style,// 
 				 taskInfoActivity.viewModel.currentDropDownListData,//
-				 SearchAdapter.ALL);//速度优先
+				 SearchAdapter.ALL);
 		media_type_autoComplecTv.setAdapter(typeAcTvAdt);
-		media_type_autoComplecTv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//TODO 点击后记录选择的类型
-				String str=(String)media_type_autoComplecTv.getAdapter().getItem(position);
-				
-				taskInfoActivity.viewModel.selectPicType=str;
-			}
-		});
 		media_type_autoComplecTv.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(hasFocus){
@@ -357,7 +348,6 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		list_reload.setVisibility(View.GONE);
 
 		btn_menu.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				taskInfoActivity.toCategoriesFragment();
@@ -510,6 +500,13 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					//选择或者拍摄新的图片
 					if (index == 0) {
+						//TODO 类型输入框中的值是否正确， 正确就保存到ViewModel
+						if(!chackSelectType()){
+							//选择的不合法，清空缓存
+							taskInfoActivity.viewModel.selectPicType="";
+							ToastUtil.longShow(getActivity(), "当前类型不存在！");
+							return;
+						}
 						if (CategoryType.PictureCollection == mediaType) {
 							String photoType = EIASApplication.getSystemSetting(BroadRecordType.KEY_SETTING_PHOTOTYPE);
 							if (photoType.equals(SystemSettingActivity.photoTypeChooseItem[0])) {
@@ -566,11 +563,18 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				if (isImap&&taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {
+						//TODO 判断类型输入框中的值是否合法，合法记录在ViewModle
+						if(!chackSelectType()){
+							//选择的不合法，清空缓存
+							taskInfoActivity.viewModel.selectPicType="";
+							ToastUtil.longShow(getActivity(), "当前类型不存在！");
+							return true;
+						}
 						// 跳转到 选择图片界面
 						Intent i = new Intent();
 						i.setClass(taskInfoActivity, MultiSelectAlbumActivity.class);
 						startActivityForResult(i, TASK_ALBUM);
-						// getFileOfMediaLib();
+						//getFileOfMediaLib();
 					} else {
 						if (!taskInfoActivity.meidaListAdapter.getVisCheck()) {
 							enterEdit();
@@ -1138,6 +1142,31 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		} else {
 			detailDialog.show();
 		}
+	}
+	
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-9-28 上午9:02:16
+	 * @Description: 检查下拉框的类型输入是否合法    
+	 * @return Boolean 选择的类型是否合法
+	 */
+	private boolean chackSelectType(){
+		boolean result=false;
+		String selectType=media_type_autoComplecTv.getText().toString();
+		if(selectType.trim().length()<=0){
+			taskInfoActivity.viewModel.selectPicType="";
+			return true;
+		}
+		for(String type:taskInfoActivity.viewModel.currentDropDownListData){
+			if(type.equals(selectType)){
+				//保存当前选择的类型到缓存
+				taskInfoActivity.viewModel.selectPicType=type;
+				result=true;
+				break;
+			}
+		}
+		return result;
 	}
 
 }

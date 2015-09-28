@@ -53,7 +53,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 	 * 视图膨胀器
 	 * */
 	private LayoutInflater mInflater;
-	
+
 	private Context context;
 
 	/**
@@ -69,7 +69,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 		mInflater = LayoutInflater.from(context);
 		taskInfoes = objects;
 		itemRID = textViewResourceId;
-		this.context=context;
+		this.context = context;
 	}
 
 	@Override
@@ -105,7 +105,17 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = null;
 		ViewHolder holder;
+		//防止数组越界异常
+		@SuppressWarnings("unused")
+		TaskInfo temp = null;
+		try {
+			temp = taskInfoes.get(position);
+		} catch (IndexOutOfBoundsException indexEx) {
+			DataLogOperator.other(itemRID + "=>数组越界异常:"+position+ ">" + indexEx.getMessage());
+			return convertView;
+		}
 		final TaskInfo item = taskInfoes.get(position);
+
 		try {
 			if (convertView == null) {
 				holder = new ViewHolder();
@@ -200,11 +210,11 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			}
 			// 任务编号
 			if (holder.TaskNum_Txt != null && item.TaskNum != null) {
-				StringBuffer taskNumStr=new StringBuffer("编号:" + item.TaskNum);
-				if(item.Status==TaskStatus.Pause){
+				StringBuffer taskNumStr = new StringBuffer("编号:" + item.TaskNum);
+				if (item.Status == TaskStatus.Pause) {
 					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.red));
 					taskNumStr.append("(任务暂停)");
-				}else{
+				} else {
 					holder.TaskNum_Txt.setTextColor(context.getResources().getColor(R.color.black));
 				}
 				holder.TaskNum_Txt.setText(taskNumStr);
@@ -284,8 +294,9 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			}
 			// 是否被勾选
 			if (holder.checkTaskInfo != null) {
-				if (item.InworkReportFinish || item.Status == TaskStatus.Submiting||item.Status == TaskStatus.Pause) {
+				if (item.InworkReportFinish || item.Status == TaskStatus.Submiting || item.Status == TaskStatus.Pause) {
 					holder.checkTaskInfo.setVisibility(View.GONE);
+					//holder.checkTaskInfo.setEnabled(false);
 				} else {
 					holder.checkTaskInfo.setVisibility(View.VISIBLE);
 					holder.checkTaskInfo.setChecked(item.isChecked);
@@ -337,14 +348,14 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 				}
 			}
 			// 加急费用
-			if (holder.urgent_fee != null && item.UrgentFee >0) {
+			if (holder.urgent_fee != null && item.UrgentFee > 0) {
 				if (item.UrgentFee <= 0) {
 					holder.urgent_fee.setTextColor(EIASApplication.getInstance().getResources().getColor(R.color.gray));
 				}
 				holder.urgent_fee.setText(String.valueOf(item.UrgentFee));
 			}
 			// 预收费用
-			if (holder.liveSearchCharge != null && item.LiveSearchCharge >0) {
+			if (holder.liveSearchCharge != null && item.LiveSearchCharge > 0) {
 				if (item.LiveSearchCharge <= 0) {
 					holder.liveSearchCharge.setTextColor(EIASApplication.getInstance().getResources().getColor(R.color.gray));
 				}
@@ -352,7 +363,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 			}
 			// 加急收费金额的容器
 			if (holder.rl_urgent_fee != null) {
-				if ((item.UrgentFee >0 && item.UrgentFee  > 0) || (item.LiveSearchCharge >0 && item.LiveSearchCharge > 0)) {
+				if ((item.UrgentFee > 0 && item.UrgentFee > 0) || (item.LiveSearchCharge > 0 && item.LiveSearchCharge > 0)) {
 					holder.rl_urgent_fee.setVisibility(View.VISIBLE);
 				}
 			}
@@ -375,7 +386,7 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 					Log.i("TaskListViewAdapter->deliverytime_Txt", e.getMessage());
 				}
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
 			DataLogOperator.other(itemRID + "=>" + item.TaskNum + ">" + e.getMessage());
 		}
 		return view;

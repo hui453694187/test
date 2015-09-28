@@ -20,6 +20,7 @@ import com.yunfang.eias.tables.DataLogWorker;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -112,6 +113,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				// 自定义弹出对话框
 				final Activity activity;// = AppManager.currentActivity();
 				activity = EIASApplication.getInstance().getActivityManager().currentActivity();
+				//ActivityManager serv=(ActivityManager)EIASApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
 				/*
 				 * try { final Activity activity;// =
 				 * AppManager.currentActivity(); activity =
@@ -177,6 +179,13 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		}
 	}
 
+	/**
+	 * @author kevin
+	 * @date 2015-9-28 上午10:53:52
+	 * @Description: 上传异常信息 
+	 * @param ex  异常信息  
+	 * @version V1.0
+	 */
 	private void uploadException(Throwable ex) {
 		//Log.d("errLog", "开始收集异常信息！");
 		StringBuffer sb = null;

@@ -35,7 +35,7 @@
             android:textSize="15sp"
             />
         
-        <AutoCompleteTextView
+        <com.yunfang.eias.view.MyAutoCompleteTv
             android:id="@+id/media_type_autoComplecTv"
             android:layout_weight="7"
             android:layout_width="0dp"
