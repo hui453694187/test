@@ -22,6 +22,7 @@
         android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/defult_pic_type_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal" >

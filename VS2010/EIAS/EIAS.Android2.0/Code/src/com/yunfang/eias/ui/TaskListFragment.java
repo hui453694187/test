@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baidu.mapapi.utils.e;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.BroadRecordType;
 import com.yunfang.eias.base.EIASApplication;
@@ -402,7 +403,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			uiMsg.obj = TaskOperator.syncDoneTaskInfo(this.viewModel.currentSelectedTask);
 			break;
 		case TASK_RESTART_TASK:
-			//TODO 后台执行启用暂停的任务
+			//后台执行启用暂停的任务
 			uiMsg.obj = TaskOperator.restartTask(EIASApplication.getCurrentUser(),this.viewModel.currentSelectedTask);
 			break;
 		default:
@@ -701,7 +702,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 			viewModel.reload = false;
 			break;
 		case TASK_RESTART_TASK:
-			//TODO 前台处理 暂停任务的启用
+			// 前台处理 暂停任务的启用
 			ResultInfo<Boolean> restartResult=(ResultInfo<Boolean>)msg.obj;
 			if(restartResult.Success&&restartResult.Data){
 				viewModel.reload = true;
@@ -1083,7 +1084,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 							}*/
 							switch (viewModel.taskStatus) {
 							case Todo:
-								// 记录长按的位置
+								// 记录单击的位置
 								taskListViewAdapter.setSelectedPosition(position);
 								taskListViewAdapter.notifyDataSetChanged();
 								viewModel.currentSelectedTask = viewModel.taskInfoes.get(position);
@@ -1134,7 +1135,6 @@ public class TaskListFragment extends BaseWorkerFragment {
 
 			@Override
 			public void onLoadMore(final PullToRefreshLayout pullToRefreshLayout) {
-				// Log.d("lee","加载更多");
 				// 加载操作
 				isLoad = true;
 

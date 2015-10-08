@@ -108,7 +108,7 @@ public class CheckVersionTask implements IRequestTask {
 			DataLogOperator.taskHttp("CheckVersionTask=>" + result.Message + "(request)", e.getMessage());
 		}
 		if(result.Message.contains("lang")){
-			result.Message = "无法连接到网络";
+			result.Message = "服务器异常！";
 		}
 		return result;
 	}

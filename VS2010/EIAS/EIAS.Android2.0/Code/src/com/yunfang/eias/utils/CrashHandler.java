@@ -14,8 +14,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.yunfang.eias.R;
 import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.enumObj.OperatorTypeEnum;
+import com.yunfang.eias.logic.AppHeader;
 import com.yunfang.eias.tables.DataLogWorker;
 
 import android.annotation.SuppressLint;
@@ -29,8 +31,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 
 public class CrashHandler implements UncaughtExceptionHandler {
 	public static final String TAG = "CrashHandler";
@@ -75,6 +79,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	 */
 	@Override
 	public void uncaughtException(Thread thread, Throwable ex) {
+		
 		if (!handleException(ex) && mDefaultHandler != null) {
 			// 如果用户没有处理则让系统默认的异常处理器来处理
 			mDefaultHandler.uncaughtException(thread, ex);
@@ -106,47 +111,62 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			@Override
 			public void run() {
 				Looper.prepare();
-				/*
-				 * Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.",
-				 * Toast.LENGTH_LONG) .show();
-				 */
 				// 自定义弹出对话框
-				final Activity activity;// = AppManager.currentActivity();
-				activity = EIASApplication.getInstance().getActivityManager().currentActivity();
-				//ActivityManager serv=(ActivityManager)EIASApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
-				/*
-				 * try { final Activity activity;// =
-				 * AppManager.currentActivity(); activity =
-				 * EIASApplication.getInstance
-				 * ().getActivityManager().currentActivity(); AppHeader header =
-				 * new AppHeader(activity, R.id.home_title);
-				 * 
-				 * header.showDialog("提示", "程序发生异常，现在退出!", new
-				 * View.OnClickListener() {
-				 * 
-				 * @Override public void onClick(View v) {
-				 * android.os.Process.killProcess(android.os.Process.myPid());
-				 * System.exit(1); } }); } catch (Exception e) {
-				 * e.printStackTrace(); Log.d("err", "dd" + e.getMessage());
-				 * android.os.Process.killProcess(android.os.Process.myPid());
-				 * System.exit(1); }
-				 */
-				new AlertDialog.Builder(activity).setMessage("程序发生异常，现在退出!").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						android.os.Process.killProcess(android.os.Process.myPid());
-						System.exit(1); // AppManager.AppExit(activity);
-					}
-				}).create().show();
+				// showTipsDialog();
+				new AlertDialog.Builder(EIASApplication.getInstance().//
+						getActivityManager().//
+						currentActivity()).//
+						setMessage("程序发生异常，现在退出!").//
+						setPositiveButton("确定", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								//需要退出当前栈中的所有活动
+								EIASApplication.getInstance().getActivityManager().finishAllActivity();
+								android.os.Process.killProcess(android.os.Process.myPid());
+								System.exit(1); // AppManager.AppExit(activity);
+							}
+						}).create().show();
 
 				Looper.loop();
 			}
 		}.start();
+		// ;
 		// 收集设备参数信息
 		collectDeviceInfo(mContext);
-		// 保存日志文件
-		saveCrashInfo2File(ex);
+		// 保存日志文     本地不保存异常日志
+		//saveCrashInfo2File(ex);
 		return true;
+	}
+
+	@SuppressWarnings("unused")
+	private void showTipsDialog() {
+		/*
+		 * Activity activity;// = AppManager.currentActivity(); activity =
+		 * EIASApplication.getInstance().getActivityManager().currentActivity();
+		 */
+		try {
+			// AppManager.currentActivity();
+			AppHeader header = new AppHeader(EIASApplication.getInstance().//
+					getActivityManager().//
+					currentActivity(),//
+					R.id.home_title);
+			header.showDialog("提示", "程序发生异常，现在退出!", new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// 结束所有存在的activity
+					EIASApplication.getInstance().getActivityManager().finishAllActivity();
+
+					android.os.Process.killProcess(android.os.Process.myPid());
+					System.exit(1);
+				}
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.d("err", "dd" + e.getMessage());
+			EIASApplication.getInstance().getActivityManager().finishAllActivity();
+			android.os.Process.killProcess(android.os.Process.myPid());
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -172,7 +192,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			try {
 				field.setAccessible(true);
 				infos.put(field.getName(), field.get(null).toString());
-				//Log.d(TAG, field.getName() + " : " + field.get(null));
+				// Log.d(TAG, field.getName() + " : " + field.get(null));
 			} catch (Exception e) {
 				Log.e(TAG, "an error occured when collect crash info", e);
 			}
@@ -182,20 +202,21 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	/**
 	 * @author kevin
 	 * @date 2015-9-28 上午10:53:52
-	 * @Description: 上传异常信息 
-	 * @param ex  异常信息  
+	 * @Description: 上传异常信息
+	 * @param ex
+	 *            异常信息
 	 * @version V1.0
 	 */
 	private void uploadException(Throwable ex) {
-		//Log.d("errLog", "开始收集异常信息！");
+		// Log.d("errLog", "开始收集异常信息！");
 		StringBuffer sb = null;
 		sb = getExceptionStr(ex);
 		String excInfo = "客户端崩溃，未捕获的异常信息:" + sb.toString();
-		//Log.d("errLog", excInfo);
-		//ResultInfo<Boolean> result = null;result = 
+		// Log.d("errLog", excInfo);
+		// ResultInfo<Boolean> result = null;result =
 		DataLogWorker.createDataLog(EIASApplication.getCurrentUser(), excInfo, OperatorTypeEnum.TaskHttp);
 
-		//Log.d("errLog", "上传结果：" + result.Data);
+		// Log.d("errLog", "上传结果：" + result.Data);
 	}
 
 	/**
@@ -204,6 +225,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	 * @param ex
 	 * @return 返回文件名称,便于将文件传送到服务器
 	 */
+	@SuppressWarnings("unused")
 	private String saveCrashInfo2File(Throwable ex) {
 		StringBuffer sb = null;
 		sb = getExceptionStr(ex);

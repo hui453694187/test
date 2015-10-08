@@ -3,7 +3,7 @@
     package="com.yunfang.eias"
     android:installLocation="auto"
     android:versionCode="3"
-    android:versionName="2.1.2.48" >
+    android:versionName="2.1.2.51" >
 
     <uses-sdk
         android:minSdkVersion="11"

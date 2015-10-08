@@ -1175,7 +1175,7 @@ public class TaskInfoActivity extends BaseWorkerFragmentActivity implements OnSc
 	BaseBroadcastReceiver mainServerCreatedReceiver;
 
 	/**
-	 * 响应拍照完成后
+	 * 注册广播，响应拍照完成后
 	 */
 	public void receiverCameraBack() {
 		ArrayList<String> temp = new ArrayList<String>();

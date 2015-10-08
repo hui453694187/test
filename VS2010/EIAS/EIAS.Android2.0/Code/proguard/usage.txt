@@ -413,7 +413,7 @@ com.squareup.picasso.Utils$BitmapHoneycombMR1:
 com.squareup.picasso.Utils$OkHttpLoaderCreator:
     419:419:private Utils$OkHttpLoaderCreator()
 com.yunfang.eias.base.EIASApplication:
-    449:452:protected void StopService()
+    448:451:protected void StopService()
 com.yunfang.eias.base.MainService:
     270:280:private static void cleanBgTask()
 com.yunfang.eias.http.task.AdditionalResourceTask
@@ -438,9 +438,9 @@ com.yunfang.eias.ui.HomeFragment:
 com.yunfang.eias.ui.MainSettingActivity:
     private static final int TASK_CHECK_VERSION
 com.yunfang.eias.ui.ShowMediaListFragment:
-    563:563:private android.content.DialogInterface$OnClickListener dialogListener()
-    172:172:static synthetic int access$10(com.yunfang.eias.ui.ShowMediaListFragment)
-com.yunfang.eias.ui.ShowMediaListFragment$12
+    606:606:private android.content.DialogInterface$OnClickListener dialogListener()
+    179:179:static synthetic int access$11(com.yunfang.eias.ui.ShowMediaListFragment)
+com.yunfang.eias.ui.ShowMediaListFragment$14
 com.yunfang.eias.ui.ShowPhotoFragment:
     346:395:private java.lang.Boolean compressImage(java.io.File)
 com.yunfang.eias.ui.ShowVideoFragment:
@@ -456,6 +456,9 @@ com.yunfang.eias.ui.UserInfoActivity:
     private static final int TASK_CHECK_VERSION
     private static final java.lang.String IMAGE_FILE_NAME
     private static final java.lang.String IMAGE_FILE_TEMPNAME
+com.yunfang.eias.utils.CrashHandler:
+    147:168:private void showTipsDialog()
+com.yunfang.eias.utils.CrashHandler$2
 com.yunfang.framework.base.BaseActivity:
     protected android.os.HandlerThread mHandlerThread
     72:74:protected void sendUiMessage(android.os.Message)

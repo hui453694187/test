@@ -162,6 +162,9 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	
 	/** 媒体类型自动适配框 */
 	public MyAutoCompleteTv media_type_autoComplecTv;
+	
+	/** 默认类型选择视图 */
+	private View defult_pic_type_linearLayout;
 
 	/**
 	 * 勘察表分类项
@@ -323,27 +326,17 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		media_bottom_bar_delete = (Button) mView.findViewById(R.id.media_bottom_bar_delete);
 		media_bottom_select_tips = (Button) mView.findViewById(R.id.media_bottom_select_tips);
 		header_bar_leave_select_all = (CheckBox) mView.findViewById(R.id.header_bar_leave_select_all);
-		media_type_autoComplecTv=(MyAutoCompleteTv)mView.findViewById(R.id.media_type_autoComplecTv);
-		SearchAdapter<String> typeAcTvAdt= new SearchAdapter<String>(taskInfoActivity,// 
-				 R.layout.auto_text_item_style,// 
-				 taskInfoActivity.viewModel.currentDropDownListData,//
-				 SearchAdapter.ALL);
-		media_type_autoComplecTv.setAdapter(typeAcTvAdt);
-		media_type_autoComplecTv.setOnFocusChangeListener(new OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if(hasFocus){
-					media_type_autoComplecTv.showDropDown();
-				}
-			}
-		});
-		media_type_autoComplecTv.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				media_type_autoComplecTv.showDropDown();
-			}
-			
-		});
+		
+		defult_pic_type_linearLayout=mView.findViewById(R.id.defult_pic_type_linearLayout);
+		
+		//TODO 判断当前媒体类型，是否执行加载类型选择视图
+		if(mediaType==CategoryType.PictureCollection){
+			media_type_autoComplecTv=(MyAutoCompleteTv)mView.findViewById(R.id.media_type_autoComplecTv);
+			initPicAutoComplecTv();
+		}else{
+			defult_pic_type_linearLayout.setVisibility(View.GONE);
+		}
+		
 			
 		list_reload.setVisibility(View.GONE);
 
@@ -470,6 +463,36 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		});
 	}
 
+	/** 
+	 * @author kevin
+	 * @date 2015-10-8 上午9:04:46
+	 * @Description: 初始化类型选择空间     
+	 * @version V1.0
+	 */
+	private void initPicAutoComplecTv() {
+		// TODO 自动生成的方法存根
+		SearchAdapter<String> typeAcTvAdt= new SearchAdapter<String>(taskInfoActivity,// 
+				 R.layout.auto_text_item_style,// 
+				 taskInfoActivity.viewModel.currentDropDownListData,//
+				 SearchAdapter.ALL);
+		media_type_autoComplecTv.setAdapter(typeAcTvAdt);
+		media_type_autoComplecTv.setOnFocusChangeListener(new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					media_type_autoComplecTv.showDropDown();
+				}
+			}
+		});
+		media_type_autoComplecTv.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				media_type_autoComplecTv.showDropDown();
+			}
+			
+		});
+	}
+
 	/**
 	 * 刷新需要呈现的媒体文件
 	 */
@@ -559,8 +582,8 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 			if (!TaskOperator.submiting(taskInfoActivity.viewModel.currentTask.TaskNum)) {
 				// 如果有空间就打开对应的资源列表
 				//图片集合才可以长按
-				boolean isImap=mediaType==CategoryType.PictureCollection;
-				if (isImap&&taskInfoActivity.appHeader.checkSDCardHasSize()) {
+				boolean isPic=mediaType==CategoryType.PictureCollection;
+				if (isPic&&taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {
 						//TODO 判断类型输入框中的值是否合法，合法记录在ViewModle

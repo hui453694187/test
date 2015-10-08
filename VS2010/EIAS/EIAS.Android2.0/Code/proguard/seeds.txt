@@ -14702,6 +14702,7 @@ com.yunfang.eias.R$id: int media_reselect
 com.yunfang.eias.R$id: int media_save
 com.yunfang.eias.R$id: int media_start
 com.yunfang.eias.R$id: int media_title
+com.yunfang.eias.R$id: int media_type_autoComplecTv
 com.yunfang.eias.R$id: int message
 com.yunfang.eias.R$id: int message_layout
 com.yunfang.eias.R$id: int move
@@ -16484,15 +16485,9 @@ com.yunfang.eias.ui.MultiSelectAlbumActivity: void previewSelect(android.view.Vi
 com.yunfang.eias.ui.MultiSelectAlbumActivity: void select(android.view.View)
 com.yunfang.eias.ui.MultiSelectAlbumActivity: void showListAnimation()
 com.yunfang.eias.ui.MultiSelectAlbumActivity: void hideListAnimation()
-com.yunfang.eias.ui.MultiSelectAlbumActivity$1: void onDismiss()
-com.yunfang.eias.ui.MultiSelectAlbumActivity$2: void onClick(android.view.View)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$3: void onClick(android.view.View)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$4: void onPageSelected(int)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$4: void onPageScrolled(int,float,int)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$4: void onPageScrollStateChanged(int)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$5: void onAnimationStart(android.view.animation.Animation)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$5: void onAnimationRepeat(android.view.animation.Animation)
-com.yunfang.eias.ui.MultiSelectAlbumActivity$5: void onAnimationEnd(android.view.animation.Animation)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$1: void onAnimationStart(android.view.animation.Animation)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$1: void onAnimationRepeat(android.view.animation.Animation)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$1: void onAnimationEnd(android.view.animation.Animation)
 com.yunfang.eias.ui.MultiSelectAlbumActivity$AlbumFolderAdapter: int getCount()
 com.yunfang.eias.ui.MultiSelectAlbumActivity$AlbumFolderAdapter: java.lang.Object getItem(int)
 com.yunfang.eias.ui.MultiSelectAlbumActivity$AlbumFolderAdapter: long getItemId(int)
@@ -16513,6 +16508,11 @@ com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem: MultiSelectAlbumActivity
 com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem: java.lang.String getPath()
 com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem: boolean equals(java.lang.Object)
 com.yunfang.eias.ui.MultiSelectAlbumActivity$ImageItem: int hashCode()
+com.yunfang.eias.ui.MultiSelectAlbumActivity$PopViewListener: void onPageScrollStateChanged(int)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$PopViewListener: void onPageScrolled(int,float,int)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$PopViewListener: void onPageSelected(int)
+com.yunfang.eias.ui.MultiSelectAlbumActivity$PopViewListener: void onDismiss()
+com.yunfang.eias.ui.MultiSelectAlbumActivity$PopViewListener: void onClick(android.view.View)
 com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter: MultiSelectAlbumActivity$PreviewVpgAdapter(com.yunfang.eias.ui.MultiSelectAlbumActivity,java.util.List)
 com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter: void notifyDataSetChanged()
 com.yunfang.eias.ui.MultiSelectAlbumActivity$PreviewVpgAdapter: int getItemPosition(java.lang.Object)
@@ -16563,6 +16563,7 @@ com.yunfang.eias.ui.ShowMediaListFragment: java.io.File mediaFile
 com.yunfang.eias.ui.ShowMediaListFragment: com.yunfang.eias.model.MediaDataInfo mediaInfo
 com.yunfang.eias.ui.ShowMediaListFragment: java.lang.String[] mediaNameArray
 com.yunfang.eias.ui.ShowMediaListFragment: java.lang.String[] mediaPathArray
+com.yunfang.eias.ui.ShowMediaListFragment: com.yunfang.eias.view.MyAutoCompleteTv media_type_autoComplecTv
 com.yunfang.eias.ui.ShowMediaListFragment: int TASK_ITEMS
 com.yunfang.eias.ui.ShowMediaListFragment: int TASK_PHOTOITEM
 com.yunfang.eias.ui.ShowMediaListFragment: int TASK_ALBUM
@@ -16585,19 +16586,21 @@ com.yunfang.eias.ui.ShowMediaListFragment: void onScroll(android.widget.AbsListV
 com.yunfang.eias.ui.ShowMediaListFragment: void onScrollStateChanged(android.widget.AbsListView,int)
 com.yunfang.eias.ui.ShowMediaListFragment$1: void onItemClick(android.widget.AdapterView,android.view.View,int,long)
 com.yunfang.eias.ui.ShowMediaListFragment$10: void onClick(android.view.View)
-com.yunfang.eias.ui.ShowMediaListFragment$11: void onClick(android.view.View)
-com.yunfang.eias.ui.ShowMediaListFragment$12: void onClick(android.content.DialogInterface,int)
-com.yunfang.eias.ui.ShowMediaListFragment$13: boolean onTouch(android.view.View,android.view.MotionEvent)
-com.yunfang.eias.ui.ShowMediaListFragment$14: void onClick(android.view.View)
-com.yunfang.eias.ui.ShowMediaListFragment$15: void onClick(android.view.View)
+com.yunfang.eias.ui.ShowMediaListFragment$11: void onCheckedChanged(android.widget.CompoundButton,boolean)
+com.yunfang.eias.ui.ShowMediaListFragment$12: void onClick(android.view.View)
+com.yunfang.eias.ui.ShowMediaListFragment$13: void onClick(android.view.View)
+com.yunfang.eias.ui.ShowMediaListFragment$14: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.ui.ShowMediaListFragment$15: boolean onTouch(android.view.View,android.view.MotionEvent)
+com.yunfang.eias.ui.ShowMediaListFragment$16: void onClick(android.view.View)
+com.yunfang.eias.ui.ShowMediaListFragment$17: void onClick(android.view.View)
 com.yunfang.eias.ui.ShowMediaListFragment$2: boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long)
 com.yunfang.eias.ui.ShowMediaListFragment$3: void onClick(android.view.View)
-com.yunfang.eias.ui.ShowMediaListFragment$4: void onClick(android.view.View)
+com.yunfang.eias.ui.ShowMediaListFragment$4: void onFocusChange(android.view.View,boolean)
 com.yunfang.eias.ui.ShowMediaListFragment$5: void onClick(android.view.View)
 com.yunfang.eias.ui.ShowMediaListFragment$6: void onClick(android.view.View)
 com.yunfang.eias.ui.ShowMediaListFragment$7: void onClick(android.view.View)
 com.yunfang.eias.ui.ShowMediaListFragment$8: void onClick(android.view.View)
-com.yunfang.eias.ui.ShowMediaListFragment$9: void onCheckedChanged(android.widget.CompoundButton,boolean)
+com.yunfang.eias.ui.ShowMediaListFragment$9: void onClick(android.view.View)
 com.yunfang.eias.ui.ShowPhotoFragment
 com.yunfang.eias.ui.ShowPhotoFragment: int TASK_PHOTOLIB
 com.yunfang.eias.ui.ShowPhotoFragment: int TASK_PHOTO
@@ -16801,6 +16804,7 @@ com.yunfang.eias.utils.CrashHandler: void uncaughtException(java.lang.Thread,jav
 com.yunfang.eias.utils.CrashHandler: void collectDeviceInfo(android.content.Context)
 com.yunfang.eias.utils.CrashHandler$1: void run()
 com.yunfang.eias.utils.CrashHandler$1$1: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.utils.CrashHandler$2: void onClick(android.view.View)
 com.yunfang.eias.utils.DataCheckHelper: DataCheckHelper()
 com.yunfang.eias.utils.DataCheckHelper: long getFileSizes(java.io.File)
 com.yunfang.eias.utils.DataCheckHelper: long getFileSize(java.io.File)
@@ -16859,6 +16863,15 @@ com.yunfang.eias.utils.OpenDialogHelper$6: void onClick(android.content.DialogIn
 com.yunfang.eias.utils.OpenDialogHelper$7: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.utils.OpenDialogHelper$8: void onClick(android.content.DialogInterface,int)
 com.yunfang.eias.utils.OpenDialogHelper$9: void onClick(android.content.DialogInterface,int)
+com.yunfang.eias.view.MyAutoCompleteTv
+com.yunfang.eias.view.MyAutoCompleteTv: MyAutoCompleteTv(android.content.Context)
+com.yunfang.eias.view.MyAutoCompleteTv: MyAutoCompleteTv(android.content.Context,android.util.AttributeSet,int)
+com.yunfang.eias.view.MyAutoCompleteTv: MyAutoCompleteTv(android.content.Context,android.util.AttributeSet)
+com.yunfang.eias.view.MyAutoCompleteTv: void setClearIconVisible(boolean)
+com.yunfang.eias.view.MyAutoCompleteTv: boolean onTouchEvent(android.view.MotionEvent)
+com.yunfang.eias.view.MyAutoCompleteTv: void beforeTextChanged(java.lang.CharSequence,int,int,int)
+com.yunfang.eias.view.MyAutoCompleteTv: void afterTextChanged(android.text.Editable)
+com.yunfang.eias.view.MyAutoCompleteTv: void onTextChanged(java.lang.CharSequence,int,int,int)
 com.yunfang.eias.view.PullToRefreshLayout
 com.yunfang.eias.view.PullToRefreshLayout: java.lang.String TAG
 com.yunfang.eias.view.PullToRefreshLayout: int INIT
@@ -17001,6 +17014,7 @@ com.yunfang.eias.viewmodel.TaskItemViewModel: java.util.ArrayList currentTaskCat
 com.yunfang.eias.viewmodel.TaskItemViewModel: java.util.ArrayList currentDropDownListData
 com.yunfang.eias.viewmodel.TaskItemViewModel: com.yunfang.eias.enumObj.TaskStatus taskStatus
 com.yunfang.eias.viewmodel.TaskItemViewModel: java.lang.Boolean reload
+com.yunfang.eias.viewmodel.TaskItemViewModel: java.lang.String selectPicType
 com.yunfang.eias.viewmodel.TaskItemViewModel: int position
 com.yunfang.eias.viewmodel.TaskItemViewModel: com.yunfang.eias.ui.Adapter.SearchAdapter searchAdapter
 com.yunfang.eias.viewmodel.TaskItemViewModel: TaskItemViewModel()

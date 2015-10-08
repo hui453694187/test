@@ -16,7 +16,6 @@ import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -118,13 +117,22 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 	 * 初始化图片加载类
 	 */
 	private void initImageLoader() {
-		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).threadPriority(Thread.NORM_PRIORITY - 2).denyCacheImageMultipleSizesInMemory()
-				.diskCacheFileNameGenerator(new Md5FileNameGenerator()).diskCacheSize(100 * 1024 * 1024).diskCacheFileCount(300).tasksProcessingOrder(QueueProcessingType.LIFO).build();
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)//
+				.threadPriority(Thread.NORM_PRIORITY - 2)//
+				.denyCacheImageMultipleSizesInMemory()//
+				.diskCacheFileNameGenerator(new Md5FileNameGenerator())//
+				.diskCacheSize(100 * 1024 * 1024).diskCacheFileCount(300)//
+				.tasksProcessingOrder(QueueProcessingType.LIFO).build();
 		ImageLoader.getInstance().init(config);
 		imageLoader = ImageLoader.getInstance();
 		// 配置ImageLoader
-		option = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.friends_sends_pictures_no).showImageForEmptyUri(R.drawable.friends_sends_pictures_no)
-				.showImageOnFail(R.drawable.friends_sends_pictures_no).cacheInMemory(true).cacheOnDisk(true).considerExifParams(true).imageScaleType(ImageScaleType.EXACTLY)
+		option = new DisplayImageOptions.Builder()//
+				.showImageOnLoading(R.drawable.friends_sends_pictures_no)//
+				.showImageForEmptyUri(R.drawable.friends_sends_pictures_no)//
+				.showImageOnFail(R.drawable.friends_sends_pictures_no)//
+				.cacheInMemory(true).cacheOnDisk(true)//
+				.considerExifParams(true)//
+				.imageScaleType(ImageScaleType.EXACTLY)//
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
 	}
 
@@ -168,7 +176,6 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			int i = parent.getId();
 			switch (i) {
 			case R.id.grid_album:// 图片gridView
-				// TODO 弹出 pop 窗口 显示图片预览界面
 				initPreviewPop(position, currentShowImage.imgList);
 				break;
 			case R.id.lv_album:// 相册文件夹列表
@@ -196,68 +203,17 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			int w = EIASApplication.deviceInfo.ScreenWeight;
 			int h = EIASApplication.deviceInfo.ScreenHeight;
 			previewPopup = densityUtil.createPopWindows(context, R.layout.popup_preview_pic, R.color.white, w, h);
-			// 初始化界面
-			previewPopup.setOnDismissListener(new OnDismissListener() {
-
-				@Override
-				public void onDismiss() {
-					setConfirmText(selectImgList.size() > 0, confirmBtn);
-					gridAdapter.notifyDataSetChanged();
-				}
-			});
-			popView = previewPopup.getContentView();
-			pvPopHolder.previewVp = (ViewPager) popView.findViewById(R.id.vpg_preview);
-			pvPopHolder.backBnt = (Button) popView.findViewById(R.id.btn_back);
-			pvPopHolder.chackBnt = (Button) popView.findViewById(R.id.btn_check);
-			pvPopHolder.countTv = (TextView) popView.findViewById(R.id.tv_count_pic);
-			pvPopHolder.confirmTv = (TextView) popView.findViewById(R.id.tv_confirm);
-			pvPopHolder.backBnt.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					previewPopup.dismiss();
-				}
-			});
-			pvPopHolder.chackBnt.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					int currenSelect = pvPopHolder.previewVp.getCurrentItem();
-					PreviewVpgAdapter pvAdt = (PreviewVpgAdapter) pvPopHolder.previewVp.getAdapter();
-					ImageItem img = pvAdt.getItemByPostion(currenSelect);
-					chackImg(pvPopHolder.chackBnt, img, pvPopHolder.confirmTv);
-				}
-			});
-
+			popView = initPopView();
 			// 点击的图片是否是选中
 			ImageItem img = currentShowImage.imgList.get(position);
 			pvPopHolder.chackBnt.setSelected(selectImgList.contains(img.getPath()));
 
 			previewAdt = new PreviewVpgAdapter(showImgList);
 			pvPopHolder.previewVp.setAdapter(previewAdt);
-			pvPopHolder.previewVp.setOnPageChangeListener(new OnPageChangeListener() {
-
-				@Override
-				public void onPageSelected(int position) {
-					int count = pvPopHolder.previewVp.getAdapter().getCount();
-					pvPopHolder.countTv.setText((position + 1) + "/" + count);
-					// 当前显示的图片 path
-					PreviewVpgAdapter pvAdt = (PreviewVpgAdapter) pvPopHolder.previewVp.getAdapter();
-					String path = pvAdt.getItemByPostion(position).getPath();
-
-					pvPopHolder.chackBnt.setSelected(selectImgList.contains(path));
-				}
-
-				@Override
-				public void onPageScrolled(int arg0, float arg1, int arg2) {
-				}
-
-				@Override
-				public void onPageScrollStateChanged(int arg0) {
-				}
-			});
+			//
 			popView.setTag(pvPopHolder);
 		} else {
 			// 刷新数据
-			//Log.d("kevin","第二次进入+"+showImgList.size());
 			previewAdt.setCurrenImgList(showImgList);
 			popView = previewPopup.getContentView();
 			pvPopHolder = (PreviewPopHolder) popView.getTag();
@@ -271,6 +227,78 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 	/***
 	 * 
+	 * @author kevin
+	 * @date 2015-9-30 上午11:13:22
+	 * @Description: 初始化图片预览界面 ，监听控件事件。
+	 * @return View 窗口视图
+	 */
+	private View initPopView() {
+		View popView = previewPopup.getContentView();
+		pvPopHolder.previewVp = (ViewPager) popView.findViewById(R.id.vpg_preview);
+		pvPopHolder.backBnt = (Button) popView.findViewById(R.id.btn_back);
+		pvPopHolder.chackBnt = (Button) popView.findViewById(R.id.btn_check);
+		pvPopHolder.countTv = (TextView) popView.findViewById(R.id.tv_count_pic);
+		pvPopHolder.confirmTv = (TextView) popView.findViewById(R.id.tv_confirm);
+
+		PopViewListener popListener = new PopViewListener();
+		previewPopup.setOnDismissListener(popListener);
+		pvPopHolder.backBnt.setOnClickListener(popListener);
+		pvPopHolder.chackBnt.setOnClickListener(popListener);
+		pvPopHolder.previewVp.setOnPageChangeListener(popListener);
+		return popView;
+	}
+
+	/***
+	 * 弹出窗口，事件处理
+	 * 
+	 * @author kevin
+	 */
+	private class PopViewListener implements OnClickListener, OnDismissListener, OnPageChangeListener {
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+		}
+
+		@Override
+		public void onPageSelected(int position) {
+			int count = pvPopHolder.previewVp.getAdapter().getCount();
+			pvPopHolder.countTv.setText((position + 1) + "/" + count);
+			// 当前显示的图片 path
+			PreviewVpgAdapter pvAdt = (PreviewVpgAdapter) pvPopHolder.previewVp.getAdapter();
+			String path = pvAdt.getItemByPostion(position).getPath();
+			pvPopHolder.chackBnt.setSelected(selectImgList.contains(path));
+		}
+
+		@Override
+		public void onDismiss() {
+			setConfirmText(selectImgList.size() > 0, confirmBtn);
+			gridAdapter.notifyDataSetChanged();
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.btn_back:
+				previewPopup.dismiss();
+				break;
+			case R.id.btn_check:
+				int currenSelect = pvPopHolder.previewVp.getCurrentItem();
+				PreviewVpgAdapter pvAdt = (PreviewVpgAdapter) pvPopHolder.previewVp.getAdapter();
+				ImageItem img = pvAdt.getItemByPostion(currenSelect);
+				chackImg(pvPopHolder.chackBnt, img, pvPopHolder.confirmTv);
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+
+	/***
+	 * 
 	 * @author kevin 图片预览适配器
 	 */
 	private class PreviewVpgAdapter extends PagerAdapter {
@@ -278,17 +306,18 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 		private SparseArray<View> sparseList = new SparseArray<View>();
 
 		private List<ImageItem> currenImgList = new ArrayList<ImageItem>();
-		
+
 		private int mChildCount;
 
 		public PreviewVpgAdapter(List<ImageItem> pathList) {
-			
-			if(this.currenImgList!=null){
+
+			if (this.currenImgList != null) {
 				this.currenImgList.clear();
 			}
-			//不可以直接赋值，需要值传递
+			// 不可以直接赋值，需要值传递
 			this.currenImgList.addAll(pathList);
 		}
+
 		/***
 		 * 刷新图片数据
 		 * 
@@ -299,18 +328,18 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			/** 需要copy 一份新的list */
 			this.currenImgList.addAll(pathList);
 			this.notifyDataSetChanged();
-			
+
 		}
-		
-		@Override  
-	     public void notifyDataSetChanged() {           
-	           mChildCount = getCount();  
-	           super.notifyDataSetChanged();  
-	     }  
-		
+
+		@Override
+		public void notifyDataSetChanged() {
+			mChildCount = getCount();
+			super.notifyDataSetChanged();
+		}
+
 		@Override
 		public int getItemPosition(Object object) {
-			if(mChildCount>0){
+			if (mChildCount > 0) {
 				mChildCount--;
 				return POSITION_NONE;
 			}
@@ -344,14 +373,12 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 		@Override
 		public void destroyItem(View container, int position, Object object) {
-			Log.d("kevin","destroyItem-》"+position);
 			((ViewPager) container).removeView(sparseList.get(position));
 			sparseList.remove(position);
 		}
 
- 		@Override
+		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			Log.d("kevin","ViewGroup---》destroyItem-》"+position);
 			container.removeView(sparseList.get(position));
 			sparseList.remove(position);
 		}
@@ -377,6 +404,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 
 	/***
 	 * 返回事件
+	 * 
 	 * @param view
 	 */
 	public void onBack(View view) {
@@ -411,7 +439,7 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			selectImg.add(new ImageItem(path));
 		}
 		initPreviewPop(0, selectImg);
-		pvPopHolder.chackBnt.setSelected(true);//预览的第一项默认选中
+		pvPopHolder.chackBnt.setSelected(true);// 预览的第一项默认选中
 	}
 
 	/***
@@ -478,7 +506,6 @@ public class MultiSelectAlbumActivity extends BaseWorkerActivity {
 			do {
 				// 获取图片路径
 				String path = mCursor.getString(_date);
-				Log.d("path", "path:" + path);
 				// 所有图片的第一张
 				if (StringUtil.IsNullOrEmpty(allImage.firstImg)) {
 					allImage.firstImg = path;

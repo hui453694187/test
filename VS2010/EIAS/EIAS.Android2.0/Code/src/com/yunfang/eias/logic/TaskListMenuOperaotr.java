@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -798,6 +799,8 @@ public class TaskListMenuOperaotr {
 		TextView building_txt = (TextView) dialog_view_detail.findViewById(R.id.building_txt);
 		TextView floor_txt = (TextView) dialog_view_detail.findViewById(R.id.floor_txt);
 		TextView targetArea_txt = (TextView) dialog_view_detail.findViewById(R.id.targetArea_txt);
+		TextView contacter_txt=(TextView)dialog_view_detail.findViewById(R.id.contacter_txt);
+		TextView contacterTel_txt=(TextView)dialog_view_detail.findViewById(R.id.contacterTel_txt);
 		TextView owner_txt = (TextView) dialog_view_detail.findViewById(R.id.owner_txt);
 		TextView ownerTel_txt = (TextView) dialog_view_detail.findViewById(R.id.ownerTel_txt);
 		TextView targetName_txt = (TextView) dialog_view_detail.findViewById(R.id.targetName_txt);
@@ -808,48 +811,73 @@ public class TaskListMenuOperaotr {
 		TextView remark_txt = (TextView) dialog_view_detail.findViewById(R.id.remark_txt);
 		Button btn_confirm = (Button) dialog_view_detail.findViewById(R.id.btn_confirm);
 
-		if (taskNum_txt != null && taskInfo.TaskNum.length() > 0) {
+		setTaskTextView(taskNum_txt,taskInfo.TaskNum);
+		/*if (taskNum_txt != null && taskInfo.TaskNum.length() > 0) {
 			taskNum_txt.setText("任务编号：" + taskInfo.TaskNum);
-		}
-		if (address_txt != null && taskInfo.TargetAddress.length() > 0) {
+		}*/
+		setTaskTextView(address_txt,taskInfo.TargetAddress);
+		/*if (address_txt != null && taskInfo.TargetAddress.length() > 0) {
 			address_txt.setText("地址：" + taskInfo.TargetAddress);
-		}
-		if (residentialArea_txt != null && taskInfo.ResidentialArea.length() > 0) {
+		}*/
+		setTaskTextView(residentialArea_txt,taskInfo.ResidentialArea);
+		/*if (residentialArea_txt != null && taskInfo.ResidentialArea.length() > 0) {
 			residentialArea_txt.setText("小区名称：" + taskInfo.ResidentialArea);
-		}
-		if (building_txt != null && taskInfo.Building.length() > 0) {
+		}*/
+		setTaskTextView(building_txt,taskInfo.Building);
+		/*if (building_txt != null && taskInfo.Building.length() > 0) {
 			building_txt.setText("楼栋名称：" + taskInfo.Building);
-		}
-		if (floor_txt != null && taskInfo.Floor.length() > 0) {
+		}*/
+		setTaskTextView(floor_txt,taskInfo.Floor);
+		/*if (floor_txt != null && taskInfo.Floor.length() > 0) {
 			floor_txt.setText("所在楼层：" + taskInfo.Floor);
-		}
-		if (targetArea_txt != null && taskInfo.TargetArea.length() > 0) {
+		}*/
+		setTaskTextView(targetArea_txt,taskInfo.TargetArea);
+		/*if (targetArea_txt != null && taskInfo.TargetArea.length() > 0) {
 			targetArea_txt.setText("建筑面积：" + taskInfo.TargetArea);
-		}
-		if (owner_txt != null && taskInfo.Owner.length() > 0) {
-			owner_txt.setText("所属业主：" + taskInfo.Owner);
-		}
-		if (ownerTel_txt != null && taskInfo.OwnerTel.length() > 0) {
+		}*/
+		//联系人
+		setTaskTextView(contacter_txt,taskInfo.ContactPerson);
+		/*if (contacter_txt != null && taskInfo.ContactPerson.length() > 0) {
+			contacter_txt.setText("联系人：" + taskInfo.ContactPerson);
+		}*/
+		setTaskTextView(contacterTel_txt,taskInfo.ContactTel);
+		/*if (contacterTel_txt != null && taskInfo.ContactTel.length() > 0) {
+			contacterTel_txt.setText("联系人电话：" + taskInfo.ContactTel);
+		}*/
+		//业主   Owner 业主  OwnerTel 业主电话
+		setTaskTextView(owner_txt,taskInfo.Owner);
+		/*if (owner_txt != null && taskInfo.Owner.length() > 0) {
+			owner_txt.setText("业主：" + taskInfo.Owner);
+		}*/
+		setTaskTextView(ownerTel_txt,taskInfo.OwnerTel);
+		/*if (ownerTel_txt != null && taskInfo.OwnerTel.length() > 0) {
 			ownerTel_txt.setText("业主电话：" + taskInfo.OwnerTel);
-		}
-		if (targetName_txt != null && taskInfo.TargetName.length() > 0) {
+		}*/
+		setTaskTextView(targetName_txt,taskInfo.TargetName);
+		/*if (targetName_txt != null && taskInfo.TargetName.length() > 0) {
 			targetName_txt.setText("目标名称：" + taskInfo.TargetName);
-		}
-		if (clientUnit_txt != null && taskInfo.ClientUnit.length() > 0) {
+		}*/
+		setTaskTextView(clientUnit_txt,taskInfo.ClientUnit);
+		/*if (clientUnit_txt != null && taskInfo.ClientUnit.length() > 0) {
 			clientUnit_txt.setText("委托人单位：" + taskInfo.ClientUnit);
-		}
-		if (clientDep_txt != null && taskInfo.ClientDep.length() > 0) {
+		}*/
+		setTaskTextView(clientDep_txt,taskInfo.ClientDep);
+		/*if (clientDep_txt != null && taskInfo.ClientDep.length() > 0) {
 			clientDep_txt.setText("委托人部门：" + taskInfo.ClientDep);
-		}
-		if (clientName_txt != null && taskInfo.ClientName.length() > 0) {
+		}*/
+		setTaskTextView(clientName_txt,taskInfo.ClientName);
+		/*if (clientName_txt != null && taskInfo.ClientName.length() > 0) {
 			clientName_txt.setText("委托人名称：" + taskInfo.ClientName);
-		}
-		if (clientTel_txt != null && taskInfo.ClientTel.length() > 0) {
+		}*/
+		setTaskTextView(clientTel_txt,taskInfo.ClientTel);
+		/*if (clientTel_txt != null && taskInfo.ClientTel.length() > 0) {
 			clientTel_txt.setText("委托人联系电话：" + taskInfo.ClientTel);
-		}
-		if (remark_txt != null && taskInfo.Remark.length() > 0) {
+		}*/
+		
+		setTaskTextView(remark_txt,taskInfo.Remark);
+		/*if (remark_txt != null && taskInfo.Remark.length() > 0) {
 			remark_txt.setText("标注：" + taskInfo.Remark);
-		}
+		}*/
 
 		btn_confirm.setOnClickListener(new View.OnClickListener() {
 
@@ -866,6 +894,22 @@ public class TaskListMenuOperaotr {
 		}
 	}
 
+	/***
+	 * @author kevin
+	 * @date 2015-10-8 上午10:49:09
+	 * @Description: 设置任务信息各字段的值 
+	 * @param textView 控件
+	 * @param value 控件值
+	 * @version V1.0
+	 */
+	private void setTaskTextView(TextView textView,String value){
+		if(textView!=null&&!TextUtils.isEmpty(value.trim())){
+			textView.setText(textView.getText()+value);
+		}else{
+			textView.setVisibility(View.GONE);
+		}
+	}
+	
 	/**
 	 * 数据检查
 	 */
