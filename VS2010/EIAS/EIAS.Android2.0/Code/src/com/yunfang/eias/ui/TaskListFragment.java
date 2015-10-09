@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.baidu.mapapi.utils.e;
 import com.yunfang.eias.R;
 import com.yunfang.eias.base.BroadRecordType;
 import com.yunfang.eias.base.EIASApplication;
@@ -727,6 +726,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 		}
 		if (isLoad) {// 刷新中， 取消刷新
 			taskPullTorefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+			isLoad=false;
 		}
 	}
 
@@ -862,7 +862,8 @@ public class TaskListFragment extends BaseWorkerFragment {
 			if (viewModel.taskInfoes != null) {
 				task_listview.setAdapter(taskListViewAdapter);
 			} else {// 刷新数据
-				taskListViewAdapter.notifyDataSetChanged();
+				taskListViewAdapter.refachView(viewModel.taskInfoes);
+				//taskListViewAdapter.notifyDataSetChanged();
 			}
 			task_listview.setSelection(viewModel.listItemCurrentPosition);
 		}
@@ -877,7 +878,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 				element.Status = TaskStatus.Submiting;
 			}
 		}
-		taskListViewAdapter.notifyDataSetChanged();
+		taskListViewAdapter.refachView(viewModel.taskInfoes);//notifyDataSetChanged();
 	}
 
 	// }}
@@ -955,6 +956,9 @@ public class TaskListFragment extends BaseWorkerFragment {
 		reload_btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(isLoad){// 处于下拉刷新中不可重复刷新
+					return;
+				}
 				viewModel.currentIndex = 1;
 				viewModel.taskInfoes.retainAll(viewModel.taskInfoes);
 				viewModel.taskInfoes.clear();
@@ -1077,7 +1081,7 @@ public class TaskListFragment extends BaseWorkerFragment {
 					if (viewModel.homeActivity.moveX < viewModel.homeActivity.TOUCH_DISTANCE && viewModel.homeActivity.moveY < viewModel.homeActivity.TOUCH_DISTANCE) {
 						viewModel.currentSelectedTask = (TaskInfo) arg0.getItemAtPosition(position);
 						if (viewModel.taskStatus != null) {
-							/*//TODO 过滤暂停任务，提示任务已被暂停。
+							/*  过滤暂停任务，提示任务已被暂停。
 							if(viewModel.currentSelectedTask.Status==TaskStatus.Pause){
 								viewModel.homeActivity.appHeader.showDialog("提示信息", "任务已被暂停!");
 								return;

@@ -19,22 +19,19 @@ import com.yunfang.eias.base.EIASApplication;
 import com.yunfang.eias.enumObj.OperatorTypeEnum;
 import com.yunfang.eias.logic.AppHeader;
 import com.yunfang.eias.tables.DataLogWorker;
+import com.yunfang.eias.view.ErrMsgDialog;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 public class CrashHandler implements UncaughtExceptionHandler {
 	public static final String TAG = "CrashHandler";
@@ -113,10 +110,28 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				Looper.prepare();
 				// 自定义弹出对话框
 				// showTipsDialog();
-				new AlertDialog.Builder(EIASApplication.getInstance().//
+				
+				final ErrMsgDialog errMsgDialog=new ErrMsgDialog(EIASApplication.getInstance().//
+						getActivityManager().//
+						currentActivity());//
+				errMsgDialog.setConfirmClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						EIASApplication.getInstance().getActivityManager().finishAllActivity();
+						android.os.Process.killProcess(android.os.Process.myPid());
+						System.exit(1); // AppManager.AppExit(activity);
+						errMsgDialog.dismiss();
+					}
+				});
+				
+				errMsgDialog.setErrMsgInfo("程序发生异常，点击确认退出!");
+				errMsgDialog.show();
+				
+				/*new AlertDialog.Builder(EIASApplication.getInstance().//
 						getActivityManager().//
 						currentActivity()).//
-						setMessage("程序发生异常，现在退出!").//
+						setMessage("程序发生异常，点击确认退出!").//
 						setPositiveButton("确定", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -125,7 +140,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 								android.os.Process.killProcess(android.os.Process.myPid());
 								System.exit(1); // AppManager.AppExit(activity);
 							}
-						}).create().show();
+						}).create().show();*/
 
 				Looper.loop();
 			}
@@ -150,7 +165,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 					getActivityManager().//
 					currentActivity(),//
 					R.id.home_title);
-			header.showDialog("提示", "程序发生异常，现在退出!", new View.OnClickListener() {
+			header.showDialog("提示", "程序发生异常，点击确认退出!", new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// 结束所有存在的activity
@@ -211,7 +226,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		// Log.d("errLog", "开始收集异常信息！");
 		StringBuffer sb = null;
 		sb = getExceptionStr(ex);
-		String excInfo = "客户端崩溃，未捕获的异常信息:" + sb.toString();
+		String localVersionName=EIASApplication.versionInfo.LocalVersionName;
+		String excInfo = "客户端版本:"+localVersionName+"        \r\n客户端崩溃，未捕获的异常信息:" + sb.toString();
 		// Log.d("errLog", excInfo);
 		// ResultInfo<Boolean> result = null;result =
 		DataLogWorker.createDataLog(EIASApplication.getCurrentUser(), excInfo, OperatorTypeEnum.TaskHttp);
@@ -242,7 +258,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		for (Map.Entry<String, String> entry : infos.entrySet()) {
 			String key = entry.getKey();
 			String value = entry.getValue();
-			sb.append(key + "=" + value + "\n");
+			sb.append(key + "=" + value + "\r\n");
 		}
 
 		Writer writer = new StringWriter();

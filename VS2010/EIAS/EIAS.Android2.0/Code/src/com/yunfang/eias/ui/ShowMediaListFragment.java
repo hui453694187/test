@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 import android.annotation.SuppressLint;
@@ -16,7 +15,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -329,7 +327,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 		
 		defult_pic_type_linearLayout=mView.findViewById(R.id.defult_pic_type_linearLayout);
 		
-		//TODO 判断当前媒体类型，是否执行加载类型选择视图
+		// 判断当前媒体类型，是否执行加载类型选择视图
 		if(mediaType==CategoryType.PictureCollection){
 			media_type_autoComplecTv=(MyAutoCompleteTv)mView.findViewById(R.id.media_type_autoComplecTv);
 			initPicAutoComplecTv();
@@ -470,7 +468,6 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 	 * @version V1.0
 	 */
 	private void initPicAutoComplecTv() {
-		// TODO 自动生成的方法存根
 		SearchAdapter<String> typeAcTvAdt= new SearchAdapter<String>(taskInfoActivity,// 
 				 R.layout.auto_text_item_style,// 
 				 taskInfoActivity.viewModel.currentDropDownListData,//
@@ -523,7 +520,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				if (taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					//选择或者拍摄新的图片
 					if (index == 0) {
-						//TODO 类型输入框中的值是否正确， 正确就保存到ViewModel
+						// 类型输入框中的值是否正确， 正确就保存到ViewModel
 						if(!chackSelectType()){
 							//选择的不合法，清空缓存
 							taskInfoActivity.viewModel.selectPicType="";
@@ -586,7 +583,7 @@ public class ShowMediaListFragment extends BaseWorkerFragment implements OnScrol
 				if (isPic&&taskInfoActivity.appHeader.checkSDCardHasSize()) {
 					// 选择或者拍摄新的图片
 					if (index == 0) {
-						//TODO 判断类型输入框中的值是否合法，合法记录在ViewModle
+						// 判断类型输入框中的值是否合法，合法记录在ViewModle
 						if(!chackSelectType()){
 							//选择的不合法，清空缓存
 							taskInfoActivity.viewModel.selectPicType="";

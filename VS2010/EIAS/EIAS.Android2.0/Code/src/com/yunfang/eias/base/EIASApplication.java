@@ -490,7 +490,7 @@ public class EIASApplication extends BaseApplication {
 		locationHelper.setOperatorListener(new BaiduLoactionOperatorListener() {
 			@Override
 			public void onSelected(BDLocation location) {
-				pushLatlag(location.getLatitude(), location.getLongitude());
+				pushLatlag(location.getLatitude(), location.getLongitude(),location.getCity());
 			}
 		});
 	}
@@ -498,12 +498,13 @@ public class EIASApplication extends BaseApplication {
 	/**
 	 * 推送坐标
 	 */
-	public static void pushLatlag(double latitude, double longitude) {
+	public static void pushLatlag(double latitude, double longitude,String city) {
 		if (EIASApplication.IsNetworking && EIASApplication.getCurrentUser() != null && EIASApplication.locationHelper != null) {
 			// 设置任务参数
 			HashMap<String, Object> para = new HashMap<String, Object>();
 			para.put("latitude", latitude);
 			para.put("longitude", longitude);
+			para.put("city",city.replaceAll("市", ""));
 			// 设置后台运行的任务
 			BackgroundServiceTask task = new BackgroundServiceTask(MainService.PUSH_LATLNG, para);
 			// 添加到任务池中

@@ -560,8 +560,9 @@ public class MainService extends BaseBackgroundService {
 		if (task.getTaskParam() != null) {
 			Double latitude = Double.valueOf(task.getTaskParam().get("latitude").toString());
 			Double longitude = Double.valueOf(task.getTaskParam().get("longitude").toString());
+			String city=task.getTaskParam().get("city").toString();
 			PushCoordinateTask taskHttp = new PushCoordinateTask();
-			taskHttp.request(EIASApplication.getCurrentUser(), latitude, longitude);
+			taskHttp.request(EIASApplication.getCurrentUser(), latitude, longitude,city);
 		}
 	}
 

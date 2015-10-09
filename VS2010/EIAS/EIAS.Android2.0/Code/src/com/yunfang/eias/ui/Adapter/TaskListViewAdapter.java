@@ -67,11 +67,32 @@ public class TaskListViewAdapter extends ArrayAdapter<TaskInfo> {
 	public TaskListViewAdapter(Context context, int textViewResourceId, ArrayList<TaskInfo> objects) {
 		super(context, textViewResourceId, objects);
 		mInflater = LayoutInflater.from(context);
-		taskInfoes = objects;
+		if(this.taskInfoes==null){
+			this.taskInfoes=new ArrayList<TaskInfo>();
+		}
+		this.taskInfoes.addAll(objects);
 		itemRID = textViewResourceId;
 		this.context = context;
 	}
 
+	/***
+	 * 
+	 * @author kevin
+	 * @date 2015-10-9 下午3:22:43
+	 * @Description: 方法描述 
+	 * @param datas    
+	 * @version V1.0
+	 */
+	public void refachView(ArrayList<TaskInfo> datas){
+		if(this.taskInfoes!=null){
+			this.taskInfoes.clear();
+		}else{
+			this.taskInfoes=new ArrayList<TaskInfo>();
+		}
+		this.taskInfoes.addAll(datas);
+		this.notifyDataSetChanged();
+	}
+	
 	@Override
 	public int getCount() {
 		return taskInfoes.size();

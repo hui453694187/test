@@ -41,7 +41,7 @@ public class PushCoordinateTask implements IRequestTask {
 	 * @param lng:经度
 	 * @return
 	 */
-	public ResultInfo<Boolean> request(UserInfo currentUser, double lat,double lng) {
+	public ResultInfo<Boolean> request(UserInfo currentUser, double lat,double lng,String city) {
 		ResultInfo<Boolean> result = new ResultInfo<Boolean>();		
 		
 		String url = currentUser.LatestServer + "/apis/GetCoordinate";
@@ -53,6 +53,7 @@ public class PushCoordinateTask implements IRequestTask {
 		params.put("name", currentUser.Name);
 		params.put("lat", lat);
 		params.put("lng", lng);
+		params.put("city", city);
 		params.put("time", DateTimeUtil.getCurrentTime());
 		params.put("maptype", "baidumap");
 		params.put("device", EIASApplication.deviceInfo.DeviceId);
