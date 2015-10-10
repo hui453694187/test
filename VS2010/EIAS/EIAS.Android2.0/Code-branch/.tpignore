@@ -1,0 +1,5 @@
+\Q/bin/\E.*
+\Q/gen/\E.*
+\Q/proguard/\E.*
+\Q/project.properties\E
+\Q/proguard-project.txt\E
